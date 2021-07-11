@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS public.comments
     user_id integer NOT NULL,
     text character varying NOT NULL,
     review_id integer NOT NULL,
-    date date NOT NULL,
+    date bigint NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS public.reviews
     show_id integer NOT NULL,
     user_id integer NOT NULL,
     show_rating numeric NOT NULL,
-    text aclitem NOT NULL,
-    date date NOT NULL,
+    text character varying NOT NULL,
+    date bigint NOT NULL,
     rating integer NOT NULL,
     PRIMARY KEY (id)
 );
@@ -31,8 +31,11 @@ CREATE TABLE IF NOT EXISTS public.shows
     user_id integer NOT NULL,
     rating numeric,
     title character varying NOT NULL,
-    location character varying NOT NULL,
-    date character varying NOT NULL,
+    street character varying NOT NULL,
+    city character varying NOT NULL,
+    zip numeric NOT NULL,
+    state character varying NOT NULL,
+    date bigint NOT NULL,
     "cast" character varying,
     website character varying,
     description character varying NOT NULL,
