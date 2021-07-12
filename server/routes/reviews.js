@@ -6,6 +6,7 @@ const {
   downVoteReview,
   addComment,
   getComments,
+  getReviewsByUser,
 } = require('../controllers/reviews/index');
 
 reviewsRouter.get('/', getAllReviews);
@@ -14,6 +15,7 @@ reviewsRouter.put('/:id/upvote', upVoteReview);
 reviewsRouter.put('/:id/downvote', downVoteReview);
 reviewsRouter.get('/:id/comment', getComments);
 reviewsRouter.post('/:id/comment', addComment);
+reviewsRouter.get('/user/:id', getReviewsByUser);
 
 // reviewsRouter.post('/:id/comment', (req, res) => {
 //   addComment()

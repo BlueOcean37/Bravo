@@ -6,6 +6,7 @@ const upVoteReview = require('./upVoteReview');
 const downVoteReview = require('./downVoteReview');
 const getComments = require('./getComments');
 const addComment = require('./addComment');
+const getReviewsByUser = require('./getReviewsByUser');
 
 module.exports = {
   getAllReviews,
@@ -14,4 +15,5 @@ module.exports = {
   downVoteReview,
   getComments,
   addComment,
+  getReviewsByUser,
 };
