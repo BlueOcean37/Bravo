@@ -5,7 +5,7 @@ BEGIN;
 
 CREATE TABLE IF NOT EXISTS public.comments
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     user_id integer NOT NULL,
     text character varying NOT NULL,
     review_id integer NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS public.comments
 
 CREATE TABLE IF NOT EXISTS public.reviews
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     show_id integer NOT NULL,
     user_id integer NOT NULL,
     show_rating numeric NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS public.reviews
 
 CREATE TABLE IF NOT EXISTS public.shows
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     user_id integer NOT NULL,
     rating numeric,
     title character varying NOT NULL,
@@ -79,3 +79,11 @@ ALTER TABLE public.shows
     NOT VALID;
 
 END;
+
+
+-- Command for setting sequences for tables
+
+-- SELECT setval('comments_id_seq', max(id)) FROM comments;
+-- SELECT setval('reviews_id_seq', max(id)) FROM reviews;
+-- SELECT setval('shows_id_seq', max(id)) FROM shows;
+-- SELECT setval('users_id_seq', max(id)) FROM users;
