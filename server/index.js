@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const { reviewsRouter, showsRouter, usersRouter } = require('./routes/index');
+const pool = require('./db/index');
 
 const app = express();
 const port = 4000;

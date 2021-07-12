@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS public.shows
 
 CREATE TABLE IF NOT EXISTS public.users
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     username character varying(25) NOT NULL,
     password character varying NOT NULL,
     email character varying NOT NULL,
