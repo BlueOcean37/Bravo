@@ -1,13 +1,10 @@
 // GET all shows controller
 const pool = require("../../db/index");
 
-const databaseQuery = () => {
-  const queryString = "SELECT * FROM shows";
-  return pool.query(queryString);
-};
-
 const getAllShows = (req, res) => {
-  databaseQuery()
+  const queryString = "SELECT * FROM shows";
+  pool
+    .query(queryString)
     .then((data) => res.status(200).json(data))
     .catch((err) => {
       console.log(err);
