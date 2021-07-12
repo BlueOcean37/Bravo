@@ -2,6 +2,9 @@
 
 const getAllShows = require('./getAllShows');
 
+const getShow = require('./getShow');
+
 module.exports = {
   getAllShows,
+  getShow,
 };

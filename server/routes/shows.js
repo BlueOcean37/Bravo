@@ -1,6 +1,8 @@
 const showsRouter = require('express').Router();
-const { getAllShows } = require('../controllers/shows');
+const { getAllShows, getShow } = require('../controllers/shows');
 
 showsRouter.get('/', getAllShows);
+
+showsRouter.get('/:id', getShow);
 
 module.exports = showsRouter;
