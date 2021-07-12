@@ -1,7 +1,7 @@
 // POST add a comment to review controller
 
 const addComment = (req, res) => {
-  res.send('hello world');
+  res.send('hello world add Comments');
 };
 
 module.exports = addComment;
