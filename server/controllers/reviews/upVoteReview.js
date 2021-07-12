@@ -2,9 +2,16 @@
 
 const pool = require('../../db/index');
 
-const upVoteReview = (id) => {
-  const upVote = `SET rating = rating - 1 WHERE reviews.id = $1`;
-  return pool.query(getReviews, [id]);
+const upVoteReview = (req, res) => {
+  console.log(req.params.id);
+  const upVote = `UPDATE reviews SET rating = rating + 1 WHERE reviews.id = ${req.params.id}`;
+  pool
+    .query(upVote)
+    .then((result) => res.status(201).send('Review upvoted!'))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
 };
 
 module.exports = upVoteReview;
