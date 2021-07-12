@@ -78,4 +78,6 @@ ALTER TABLE public.shows
     REFERENCES public.users (id)
     NOT VALID;
 
+
+
 END;
