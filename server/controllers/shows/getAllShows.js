@@ -1,7 +1,15 @@
 // GET all shows controller
+const pool = require("../../db/index");
 
 const getAllShows = (req, res) => {
-  res.send('hello world');
+  const queryString = "SELECT * FROM shows";
+  pool
+    .query(queryString)
+    .then((data) => res.status(200).json(data))
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 };
 
 module.exports = getAllShows;
