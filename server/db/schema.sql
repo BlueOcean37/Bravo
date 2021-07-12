@@ -5,7 +5,7 @@ BEGIN;
 
 CREATE TABLE IF NOT EXISTS public.comments
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     user_id integer NOT NULL,
     text character varying NOT NULL,
     review_id integer NOT NULL,
@@ -15,25 +15,25 @@ CREATE TABLE IF NOT EXISTS public.comments
 
 CREATE TABLE IF NOT EXISTS public.reviews
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     show_id integer NOT NULL,
     user_id integer NOT NULL,
     show_rating numeric NOT NULL,
     text character varying NOT NULL,
     date bigint NOT NULL,
-    rating integer NOT NULL,
+    rating integer NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.shows
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     user_id integer NOT NULL,
     rating numeric,
     title character varying NOT NULL,
     street character varying NOT NULL,
     city character varying NOT NULL,
-    zip numeric NOT NULL,
+    zip integer NOT NULL,
     state character varying NOT NULL,
     date bigint NOT NULL,
     "cast" character varying,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS public.shows
 
 CREATE TABLE IF NOT EXISTS public.users
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     username character varying(25) NOT NULL,
     password character varying NOT NULL,
     email character varying NOT NULL,

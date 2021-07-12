@@ -3,7 +3,6 @@
 const pool = require('../../db/index');
 
 const upVoteReview = (req, res) => {
-  console.log(req.params.id);
   const upVote = `UPDATE reviews SET rating = rating + 1 WHERE reviews.id = ${req.params.id}`;
   pool
     .query(upVote)
