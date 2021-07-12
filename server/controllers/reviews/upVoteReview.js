@@ -8,7 +8,6 @@ const upVoteReview = (req, res) => {
     .query(upVote)
     .then((result) => res.status(204).send('Review upvoted!'))
     .catch((err) => {
-      console.log(err);
       res.status(500).send(err);
     });
 };

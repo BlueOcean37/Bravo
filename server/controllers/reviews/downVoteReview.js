@@ -7,7 +7,6 @@ const downVoteReview = (req, res) => {
     .query(downVoteReview)
     .then((result) => res.status(204).send('Review downvoted!'))
     .catch((err) => {
-      console.error('error updating the downVote', err.stack);
       res.sendStatus(500);
     });
 };

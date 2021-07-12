@@ -3,7 +3,6 @@ const pool = require('../../db/index');
 
 const addComment = (req, res) => {
   const reviewId = req.params.id;
-  console.log('reviewId: ', reviewId);
   const userId = req.body.user_id;
   const text = req.body.text;
   const timestamp = new Date().getTime();
@@ -12,7 +11,6 @@ const addComment = (req, res) => {
     .query(reviewComment)
     .then((result) => res.status(201).send('Comment Added'))
     .catch((err) => {
-      console.log(err);
       res.status(500).send(err);
     });
 };

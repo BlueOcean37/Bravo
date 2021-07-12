@@ -10,7 +10,6 @@ const addReview = (req, res) => {
     .query(addReview)
     .then((result) => res.sendStatus(201))
     .catch((err) => {
-      console.error('error adding new review to db', err.stack);
       res.sendStatus(500);
     });
 };
