@@ -5,7 +5,7 @@ const downVoteReview = (req, res) => {
   const downVoteReview = `UPDATE reviews SET rating = rating - 1 WHERE id = ${req.params.id}`;
   pool
     .query(downVoteReview)
-    .then((result) => res.sendStatus(204))
+    .then((result) => res.status(204).send('Review downvoted!'))
     .catch((err) => {
       console.error('error updating the downVote', err.stack);
       res.sendStatus(500);

@@ -2,11 +2,12 @@
 const pool = require('../../db/index');
 
 const addComment = (req, res) => {
-  let reviewId = req.params.id;
+  const reviewId = req.params.id;
   console.log('reviewId: ', reviewId);
-  let userId = req.body.user_id;
-  let text = req.body.text;
-  const reviewComment = `INSERT INTO comments (review_id, user_id, text) VALUES (${reviewId}, ${userId}, ${text})`;
+  const userId = req.body.user_id;
+  const text = req.body.text;
+  const timestamp = new Date().getTime();
+  const reviewComment = `INSERT INTO comments (review_id, user_id, text, date) VALUES (${reviewId}, ${userId}, '${text}', ${timestamp})`;
   pool
     .query(reviewComment)
     .then((result) => res.status(201).send('Comment Added'))
