@@ -6,8 +6,8 @@ const addUser = (req, res) => {
 
   pool
     .query(queryString)
-    .then(() => res.sendStatus(201))
-    .catch((err) => res.status(400).json(err));
+    .then((result) => res.send(result))
+    .catch((err) => res.send(err, 'failed'));
 };
 
 module.exports = addUser;
