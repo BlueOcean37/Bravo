@@ -6,7 +6,7 @@ import Shows from './showsView/Shows';
 import Users from './usersView/Users';
 import Authentication from './authentication/Authentication';
 import Login from './authentication/login/Login';
-import ShowForm from './showForm/ShowForm';
+import ShowForm from './showForm/showForm';
 
 export default function App() {
   return (
@@ -21,7 +21,7 @@ export default function App() {
             <Route exact path="/shows" component={Shows} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Authentication} />
+            {/* <Route exact path="/signup" component={Authentication} /> */}
             <Route exact path="/addShow" component={ShowForm} />
           </Switch>
         </main>
