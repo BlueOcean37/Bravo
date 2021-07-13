@@ -7,7 +7,9 @@ const addShow = (req, res) => {
 
   const queryString = `
   INSERT INTO shows
-  (user_id, title, street, city, zip, state, date, "cast", website, description, photo)
+  (user_id, title, street, city,
+  zip, state, date, "cast", website,
+  description, photo)
   VALUES (
   '${user_id}', '${title}', '${street}', '${city}',
   '${zip}','${state}', '${date}', '${cast}', '${website}',
