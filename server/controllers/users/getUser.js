@@ -7,7 +7,7 @@ const getUser = (req, res) => {
   WHERE users.id = ${id}`;
   pool
     .query(queryString)
-    .then((result) => res.status(201).json(result.rows))
+    .then((result) => res.status(201).json(result.rows[0]))
     .catch((err) => {
       console.error(err);
       res.sendStatus(500);
