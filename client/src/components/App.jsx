@@ -21,7 +21,7 @@ export default function App() {
             <Route exact path="/shows" component={Shows} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Authentication} />
+            {/* <Route exact path="/signup" component={Authentication} /> */}
             <Route exact path="/addShow" component={ShowForm} />
           </Switch>
         </main>
