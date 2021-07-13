@@ -6,12 +6,8 @@ import Shows from './showsView/Shows';
 import Users from './usersView/Users';
 import Authentication from './authentication/Authentication';
 import Login from './authentication/login/Login';
-<<<<<<< HEAD
 import ShowForm from './showForm/ShowForm';
 import NotFound from './notFound/NotFound';
-=======
-import ShowForm from './showForm/showForm';
->>>>>>> 0b4e0e8b9fee2bcfc247d7cf181374e749730bf4
 
 export default function App() {
   return (
