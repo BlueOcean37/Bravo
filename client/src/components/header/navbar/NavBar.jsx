@@ -63,7 +63,7 @@ export default function NavBar() {
   return (
     <div className={navstyle.grow}>
       <AppBar position="static" title={<img src="https://unsplash.it/40/40" />}>
-        <Toolbar>
+        <Toolbar className={navstyle.toolBar}>
           <Logo />
           <AppMenu />
           <div className={navstyle.grow} />
