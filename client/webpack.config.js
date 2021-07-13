@@ -3,7 +3,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-// /Users/warrenwong/Desktop/bravo/frontend/client/src/index.jsx
 module.exports = {
   entry: path.resolve(__dirname, 'src/Index.jsx'),
   output: {
@@ -24,8 +23,8 @@ module.exports = {
       },
       {
         test: /\.module\.s(a|c)ss$/,
-        loader: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+        use: [
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -44,8 +43,8 @@ module.exports = {
       {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+        use: [
+          'style-loader',
           'css-loader',
           {
             loader: 'sass-loader',
