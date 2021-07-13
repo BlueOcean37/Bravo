@@ -5,7 +5,6 @@ import NavBar from './navbar/NavBar';
 export default function Header() {
   return (
     <div>
-      Entire Header goes here
       <NavBar />
     </div>
   );
