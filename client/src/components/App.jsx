@@ -7,12 +7,11 @@ import Users from './usersView/Users';
 import Login from './authentication/login/Login';
 import ShowForm from './showForm/ShowForm';
 import Signup from './authentication/signup/Signup';
+import NavBar from './header/navbar/NavBar';
+import NotFound from './notFound/NotFound';
 import { AuthProvider } from '../contexts/AuthContext';
-// import the user state
-// if user is logged in, then set up the log out route
 
 export default function App() {
-  // add the user is logged in state here
   return (
     <Router>
       <div id="mainContainer">
@@ -27,8 +26,10 @@ export default function App() {
             <AuthProvider>
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
+              <Route exact path="/signOut" component={Home} />
             </AuthProvider>
             <Route exact path="/addShow" component={ShowForm} />
+            <Route path="/" component={NotFound} />
           </Switch>
         </main>
         <footer></footer>

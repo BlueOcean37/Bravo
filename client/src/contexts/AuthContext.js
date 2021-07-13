@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
   }
 
   function logout() {
-    return auth.signout();
+    return auth.signOut();
   }
 
   useEffect(() => {
@@ -37,8 +37,8 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     signup,
-    login,
     logout,
+    login,
   };
 
   // if not loading, then don't render anything until user is set
