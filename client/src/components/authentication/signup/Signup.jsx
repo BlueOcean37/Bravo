@@ -12,7 +12,7 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const { signup } = useAuth();
+  const { signup, currentUser } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -38,6 +38,7 @@ export default function Signup() {
     setLoading(true);
     signup(email, password)
       .then(() => {
+        console.log(currentUser);
         console.log('Successfully created an account!');
         history.push('/');
       })

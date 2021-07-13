@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// create a sign out link
+// add a conditional for if logged in
+// import auth and current user if logged in
 
 export default function NavBar() {
   return (

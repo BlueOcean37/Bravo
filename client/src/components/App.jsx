@@ -8,8 +8,11 @@ import Login from './authentication/login/Login';
 import ShowForm from './showForm/ShowForm';
 import Signup from './authentication/signup/Signup';
 import { AuthProvider } from '../contexts/AuthContext';
+// import the user state
+// if user is logged in, then set up the log out route
 
 export default function App() {
+  // add the user is logged in state here
   return (
     <Router>
       <div id="mainContainer">
