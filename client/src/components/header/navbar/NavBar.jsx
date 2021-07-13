@@ -32,7 +32,6 @@ export default function NavBar() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
   };
 
   const menuId = 'primary-search-account-menu';
