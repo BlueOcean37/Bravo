@@ -1,9 +1,9 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-// /Users/warrenwong/Desktop/bravo/frontend/client/src/index.jsx
 module.exports = {
   entry: path.resolve(__dirname, 'src/Index.jsx'),
   output: {
@@ -69,5 +69,6 @@ module.exports = {
       filename: isDevelopment ? '[name].css' : '[name].[hash].css',
       chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css',
     }),
+    new Dotenv(),
   ],
 };
