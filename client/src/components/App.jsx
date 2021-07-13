@@ -7,6 +7,7 @@ import Users from './usersView/Users';
 import Authentication from './authentication/Authentication';
 import Login from './authentication/login/Login';
 import ShowForm from './showForm/ShowForm';
+import NotFound from './notFound/NotFound';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
             <Route exact path="/login" component={Login} />
             {/* <Route exact path="/signup" component={Authentication} /> */}
             <Route exact path="/addShow" component={ShowForm} />
+            <Route path="/" component={NotFound} />
           </Switch>
         </main>
         <footer></footer>
