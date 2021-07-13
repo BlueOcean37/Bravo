@@ -18,4 +18,4 @@ Thumbs.db
 client/public
 .vscode
 dump.rdb
-/client/public/bundle.js
+client/public/bundle.js
