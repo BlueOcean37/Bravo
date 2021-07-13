@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import navstyle from './navbar.module';
 import Logo from '../logo/Logo';
 import AppMenu from '../menu/Menu';
+import Search from '../search/Search';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -67,6 +68,7 @@ export default function NavBar() {
           <Logo />
           <AppMenu />
           <div className={navstyle.grow} />
+          <Search />
           <div className={navstyle.sectionDesktop}>
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
