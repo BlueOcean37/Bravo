@@ -2,7 +2,7 @@
 const pool = require('../../db/index');
 
 const getShow = (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id;
   const queryString = `SELECT *, (
     SELECT jsonb_agg(jsonb_build_object(
       'id', reviews.id,
