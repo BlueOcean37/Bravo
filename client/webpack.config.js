@@ -1,7 +1,4 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/Index.jsx'),
@@ -29,14 +26,10 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              sourceMap: isDevelopment,
             },
           },
           {
             loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment,
-            },
           },
         ],
       },
@@ -48,9 +41,6 @@ module.exports = {
           'css-loader',
           {
             loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment,
-            },
           },
         ],
       },
@@ -63,10 +53,4 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss'],
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-      chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css',
-    }),
-  ],
 };
