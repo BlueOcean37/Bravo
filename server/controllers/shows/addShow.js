@@ -1,35 +1,25 @@
 // POST add a show controller
-const pool = require("../../db/index");
+const pool = require('../../db/index');
 
 const addShow = (req, res) => {
-  const {
-    title,
-    street,
-    city,
-    zip,
-    state,
-    cast,
-    website,
-    description,
-    photo,
-    user_id,
-    date,
-  } = req.body;
+  const { title, street, city, zip, state, cast, website, description, photo, user_id } = req.body;
+
+  const timestamp = new Date().getTime();
 
   const queryString = `
   INSERT INTO shows
   (user_id, title, street, city, zip, state, date, "cast", website, description, photo)
   VALUES (
   '${user_id}', '${title}', '${street}', '${city}',
-  '${zip}','${state}', '${date}', '${cast}', '${website}',
+  '${zip}','${state}', '${timestamp}', '${cast}', '${website}',
   '${description}', '${photo}'
   )`;
 
   pool
     .query(queryString)
-    .then((data) => res.send(201).json(data))
+    .then((data) => res.sendStatus(201))
     .catch((err) => {
-      console.log(err);
+      console.error('error adding a show to db', err.stack);
       res.sendStatus(500);
     });
 };

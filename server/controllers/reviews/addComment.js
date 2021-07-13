@@ -9,9 +9,10 @@ const addComment = (req, res) => {
   const reviewComment = `INSERT INTO comments (review_id, user_id, text, date) VALUES (${reviewId}, ${userId}, '${text}', ${timestamp})`;
   pool
     .query(reviewComment)
-    .then((result) => res.status(201).send('Comment Added'))
+    .then((result) => res.sendStatus(201))
     .catch((err) => {
-      res.status(500).send(err);
+      console.error('error adding comment to db', err.stack);
+      res.sendStatus(500);
     });
 };
 
