@@ -6,8 +6,11 @@ const addUser = (req, res) => {
 
   pool
     .query(queryString)
-    .then((result) => res.send(result))
-    .catch((err) => res.send(err, 'failed'));
+    .then((result) => res.sendStatus(201))
+    .catch((err) => {
+      console.error('error adding a user', err.stack);
+      res.sendStatus(500);
+    });
 };
 
 module.exports = addUser;

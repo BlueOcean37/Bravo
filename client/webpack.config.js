@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/Index.jsx'),
@@ -53,4 +54,6 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss'],
   },
+  plugins: [new Dotenv()],
 };
+

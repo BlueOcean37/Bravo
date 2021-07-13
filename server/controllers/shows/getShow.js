@@ -1,5 +1,5 @@
 // GET show By ID controller
-const pool = require("../../db/index");
+const pool = require('../../db/index');
 
 const getShow = (req, res) => {
   const id = req.params.id;
@@ -28,9 +28,9 @@ const getShow = (req, res) => {
   WHERE shows.id = ${id}`;
   pool
     .query(queryString)
-    .then((data) => res.status(200).json(data.rows))
+    .then((result) => res.status(200).send(result.rows))
     .catch((err) => {
-      console.log(err);
+      console.error('error getting all reviews for a single show', err.stack);
       res.sendStatus(500);
     });
 };
