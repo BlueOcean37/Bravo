@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -77,7 +78,9 @@ export default function Signup() {
           Sign Up
         </Button>
       </form>
-      <div>Already have an account? Log In</div>
+      <div>
+        Already have an account? <Link to="/login"> Login </Link>
+      </div>
     </>
   );
 }
