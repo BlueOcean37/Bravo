@@ -1,7 +1,15 @@
 // put update a review up vote controller
 
+const pool = require('../../db/index');
+
 const upVoteReview = (req, res) => {
-  res.send('hello world');
+  const upVote = `UPDATE reviews SET rating = rating + 1 WHERE reviews.id = ${req.params.id}`;
+  pool
+    .query(upVote)
+    .then((result) => res.status(204).send('Review upvoted!'))
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 };
 
 module.exports = upVoteReview;
