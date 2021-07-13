@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Card from '@material-ui/core/Card';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -15,15 +14,10 @@ export default function Login() {
   const { login } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
-  const formChangeHandler = (e, value) => {
-    if (e.target.id === 'email') {
-      setEmail(e.target.value);
-    } else if (e.target.id === 'password') {
-      setPassword(e.target.value);
-    } else {
-      setPasswordConfirm(e.target.value);
-    }
+  const formChangeHandler = (e) => {
+    e.target.id === 'email' ? setEmail(e.target.value) : setPassword(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -32,10 +26,13 @@ export default function Login() {
     setError('');
     setLoading(true);
     login(email, password)
-      .then(() => console.log('Successfully signup an account!'))
+      .then(() => {
+        console.log('Successfully logged!');
+        history.push('/');
+      })
       .catch((err) => {
         console.log(err);
-        setError('Failed to sign in');
+        setError('Failed to log in!');
       });
     setLoading(false);
   };
@@ -43,7 +40,6 @@ export default function Login() {
   return (
     <>
       <h2> Log In </h2>
-      {currentUser.email}
       {error && (
         <Alert variant="outlined" severity="error">
           {error}
@@ -58,7 +54,7 @@ export default function Login() {
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input onChange={formChangeHandler} id="password" aria-describedby="password-text" />
-          <FormHelperText id="password-text">Enter strong password</FormHelperText>
+          <FormHelperText id="password-text">Enter password</FormHelperText>
         </FormControl>
         <Button disabled={loading} type="submit">
           Login

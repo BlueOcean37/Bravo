@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Card from '@material-ui/core/Card';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,9 +12,10 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const { signup, currentUser } = useAuth();
+  const { signup } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const formChangeHandler = (e, value) => {
     if (e.target.id === 'email') {
@@ -37,7 +37,10 @@ export default function Signup() {
     setError('');
     setLoading(true);
     signup(email, password)
-      .then(() => console.log('Successfully created an account!'))
+      .then(() => {
+        console.log('Successfully created an account!');
+        history.push('/');
+      })
       .catch((err) => {
         console.log(err);
         setError('Failed to create an account');
@@ -48,7 +51,6 @@ export default function Signup() {
   return (
     <>
       <h2> Sign Up </h2>
-      {currentUser.email}
       {error && (
         <Alert variant="outlined" severity="error">
           {error}
