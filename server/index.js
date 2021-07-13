@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
 // TODO: add express static file serve here
+app.use(express.static("../client/public"));
 
 app.use("/reviews", reviewsRouter);
 app.use("/shows", showsRouter);
