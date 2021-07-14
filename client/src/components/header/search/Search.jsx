@@ -74,10 +74,10 @@ export default function Search() {
           InputProps={{
             ...params.InputProps,
             endAdornment: (
-              <React.Fragment>
+              <>
                 {loading ? <CircularProgress color="inherit" size={20} /> : null}
                 {params.InputProps.endAdornment}
-              </React.Fragment>
+              </>
             ),
           }}
         />
