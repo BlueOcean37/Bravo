@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core'
-import { ThumbUp, ThumbDown } from '@material-ui/icons';
+import { ExpandLessOutlined, ExpandMoreOutlined } from '@material-ui/icons';
 import axios from 'axios';
 import styles from './reviewcard.module';
 
@@ -15,9 +15,13 @@ const {
   read,
   link,
   footer,
+  showPhotoContainer,
+  showPhoto,
+  upVote,
+  downVote
 } = styles;
 
-export default function ReviewCard({ id, username, rating, date, title, location, text, show_id }) {
+export default function ReviewCard({ id, username, rating, date, title, location, text, show_id, user_id, show_photo, comments }) {
   const [vote, setVote] = useState(rating)
   
   const onVote = (direction) => {
@@ -37,32 +41,33 @@ export default function ReviewCard({ id, username, rating, date, title, location
     <div className={reviewContainer}>
       <div className={ratingContainer}>
         <Button 
-          variant='contained' 
-          color='secondary' 
           onClick={() => {onVote('up')}}>
-          <ThumbUp/>
+          <ExpandLessOutlined id={upVote}/>
         </Button>
         <h2>{vote}</h2>
-        <Button 
-          variant='contained' 
-          color='secondary' 
+          <Button 
           onClick={() => {onVote('down')}}>
-          <ThumbDown/>
+          <ExpandMoreOutlined id={downVote}/>
         </Button>
       </div>
       <div className={cardContainer}>
         <div className={header}>
-          <span>{username}</span>
           <Link to={{ pathname: '/shows', state: show_id }} className={link}>
             <span>
               {title}: {location}
             </span>
+          </Link>
+          <Link to={{ pathname: '/users', state: user_id }} className={link}>
+            <span>{username}</span>
           </Link>
         </div>
         <div className={review}>
           <ReadMore text={text} />
         </div>
         <div className={footer}>{date}</div>
+        <div>
+          <DisplayComments comments={comments}/>
+        </div>
       </div>
     </div>
   );
@@ -86,3 +91,32 @@ const ReadMore = ({ text }) => {
     return <p>{text}</p>;
   }
 };
+
+const DisplayComments = ({ comments }) => {
+  if (!comments) return null
+  const [displayComments, setDisplayComments] = useState(false);
+  
+  console.log('THIS IS MY COMMENTS', comments)
+  const toggleComments = () => {
+    setDisplayComments(!displayComments);
+  }
+
+  return (
+    <div>
+      <div onClick={toggleComments} style={{color: "red"}}>View all comments</div>
+      {displayComments ? 
+        <div style={{padding:'20px'}}>
+          {comments.map((comment) => 
+            <div style={{padding: '2px'}}>
+              <span>
+                {comment.text}
+              </span>
+              <time>
+                {new Date(Number(comment.date)).toDateString()}
+              </time>
+            </div>)}
+        </div> 
+      : null}
+    </div>
+  )
+}

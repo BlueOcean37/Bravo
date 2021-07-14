@@ -17,6 +17,15 @@
   align-items: center;
   justify-content: center;
   width: 20%;
+  flex-direction: column;
+}
+
+#upVote{
+  color: green
+}
+
+#downVote {
+  color: red;
 }
 
 .cardContainer {
@@ -53,4 +62,15 @@
   align-items: center;
   justify-content: flex-end;
   font-size: 10px;
+}
+
+.showPhotoContainer{
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+}
+.showPhoto{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

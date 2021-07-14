@@ -6,16 +6,11 @@ import ReviewCard from '../commons/ReviewCard';
 import HomeShows from './HomeShows';
 
 export default function Home() {
-  // const [shows, setShows] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [reviewsDisplay, setReviewsDisplay] = useState(4);
-  // const [showComments, setShowComments] = useState(false);
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    // axios.get('/api/shows')
-    // .then(({ data }) => setShows(data))
-    // .catch((err) => console.log(err))
     axios.get('/api/reviews')
       .then(({ data }) => setReviews(data))  
       .catch((err) => console.log(err))
@@ -26,10 +21,6 @@ export default function Home() {
       setReviewsDisplay(reviewsDisplay + 3);
     }
   }
-
-  // function showTheComments() {
-  //   setShowComments(!showComments);
-  // }
 
   return (
     reviews
@@ -51,16 +42,20 @@ export default function Home() {
                 <div key={index}>
                   {index <= reviewsDisplay ? 
                   <div>
+                    {console.log(review)}
                     <ReviewCard
                       key={index}
                       id={review.id}
+                      user_id={review.user_id}
                       username={review.user[0].username}
                       title={review.show[0].title}
+                      show_photo={review.show[0].photo}
                       location={review.show[0].location}
                       rating={review.rating}
                       text={review.text}
                       show_id={review.show_id}
-                      date={new Date(Number(review.date)).toLocaleDateString('en-US')}
+                      date={review.date}
+                      comments={review.comments}
                     />
                   </div>
                   : null}
