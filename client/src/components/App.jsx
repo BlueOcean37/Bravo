@@ -9,7 +9,6 @@ import ShowForm from './showForm/ShowForm';
 import Signup from './authentication/signup/Signup';
 import NavBar from './header/navbar/NavBar';
 import NotFound from './notFound/NotFound';
-import { AuthProvider } from '../contexts/AuthContext';
 
 export default function App() {
   return (
@@ -23,11 +22,9 @@ export default function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/shows" component={Shows} />
             <Route exact path="/users" component={Users} />
-            <AuthProvider>
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/signOut" component={Home} />
-            </AuthProvider>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/signOut" component={Home} />
             <Route exact path="/addShow" component={ShowForm} />
             <Route path="/" component={NotFound} />
           </Switch>
