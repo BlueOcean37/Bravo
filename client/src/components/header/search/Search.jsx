@@ -27,7 +27,6 @@ export default function Search() {
       const response = await fetch('/api/shows');
       await sleep(1e3); // For demo purposes.
       const shows = await response.json();
-      console.log(shows);
       if (active) {
         setOptions(Object.keys(shows).map((key) => shows[key]));
       }
