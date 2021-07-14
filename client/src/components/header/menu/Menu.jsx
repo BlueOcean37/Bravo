@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 export default function Menu() {
   return (
     <div>
-      <IconButton color="inherit">
+      {/* <IconButton color="inherit">
         <Link to={'/'}> Home </Link>
       </IconButton>
       <IconButton color="inherit">
@@ -25,7 +25,7 @@ export default function Menu() {
       </IconButton>
       <IconButton color="inherit">
         <Link to={'/signup'}> Signup </Link>
-      </IconButton>
+      </IconButton> */}
     </div>
   );
 }
