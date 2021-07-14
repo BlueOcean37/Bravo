@@ -1,5 +1,6 @@
 import React from 'react';
 import fetch from 'cross-fetch';
+import searchStyle from './search.module';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -59,10 +60,12 @@ export default function Search() {
       options={options}
       loading={loading}
       renderOption={(option) => (
-        <React.Fragment>
-          <img src={option.image}></img>
-          {option.title}
-        </React.Fragment>
+        <>
+          <a>
+            <img className={searchStyle.photo} alt="show image" src={option.photo}></img>
+            <p> {option.title}</p>
+          </a>
+        </>
       )}
       renderInput={(params) => (
         <TextField
