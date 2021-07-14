@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-
-import { Link } from 'react-router-dom';
-
+import { Link, useHistory } from 'react-router-dom';
 import navstyle from './navbar.module';
 import Logo from '../logo/Logo';
 import AppMenu from '../menu/Menu';
 import Search from '../search/Search';
+import { useAuth } from '../../../contexts/AuthContext';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -25,6 +24,8 @@ export default function NavBar() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const { logout, currentUser } = useAuth();
+  const history = useHistory();
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -32,6 +33,17 @@ export default function NavBar() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = (e) => {
+    if (currentUser !== null) {
+      logout()
+        .then(() => {
+          console.log('Successfully logged out!');
+          history.push('/');
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const menuId = 'primary-search-account-menu';
@@ -56,6 +68,11 @@ export default function NavBar() {
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Link to={'/addShow'}> Add Show </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link onClick={handleLogout} to={'/signOut'}>
+          Sign Out
+        </Link>
       </MenuItem>
     </Menu>
   );
