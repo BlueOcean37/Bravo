@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './userInfo.module';
-const { container, photo, name } = styles;
+const { container, photoContainer, photo, name } = styles;
 
 export default function UserInfo() {
   const id = 8;
@@ -14,8 +14,8 @@ export default function UserInfo() {
   }, []);
   return (
     <div className={container}>
-      <div className={photo}>
-        <img alt="profile picture" src={userInfo.photo} />
+      <div className={photoContainer}>
+        <img alt="profile picture" src={userInfo.photo} className={photo} />
       </div>
       <div className={name}>
         <h2>
