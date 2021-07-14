@@ -1,1 +1,47 @@
-// main home view scss goes here
+#shows_reviews {
+  display: flex;
+  flex-direction: column;
+}
+
+#dropDown, #link {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+}
+
+#showsContainer {
+  display: flex;
+  align-self: center;
+  overflow: auto;
+  scroll-behavior: smooth;
+  width: 1500px;
+  border-style: solid;
+}
+
+#showsPhoto {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  height: 200px;
+  margin: 20px;
+}
+
+#outerReviewsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#innerReviewsContainer {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  overflow: auto;
+  scroll-behavior: smooth;
+  height: 800px;
+  width: 1500px;
+}
+
+#reviews {
+  border-style: solid;
+  margin: 20px;
+}
