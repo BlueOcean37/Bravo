@@ -101,7 +101,6 @@ export default function ShowForm() {
             dropzoneText={'Drag and drop an image here or click'}
             onChange={(file) => {
               if (file.length) {
-                console.log(file);
                 handleImageUpload(file);
               }
             }}
