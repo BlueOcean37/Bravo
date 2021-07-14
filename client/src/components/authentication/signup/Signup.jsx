@@ -7,23 +7,36 @@ import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../../../contexts/AuthContext';
+import styles from './signup.module.scss';
 
 export default function Signup() {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const { signup, currentUser } = useAuth();
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const { signup, currentUser } = useAuth();
   const history = useHistory();
 
-  const formChangeHandler = (e, value) => {
+  const formChangeHandler = (e) => {
+    console.log(e.target.value);
     if (e.target.id === 'email') {
       setEmail(e.target.value);
     } else if (e.target.id === 'password') {
       setPassword(e.target.value);
-    } else {
+    } else if (e.target.id === 'password-confirm') {
       setPasswordConfirm(e.target.value);
+    } else if (e.target.id === 'username') {
+      setUsername(e.target.value);
+    } else if (e.target.id === 'firstName') {
+      setFirstName(e.target.value);
+    } else if (e.target.id === 'lastName') {
+      setLastName(e.target.value);
     }
   };
 
@@ -51,38 +64,56 @@ export default function Signup() {
 
   return (
     <>
-      <h2> Sign Up </h2>
-      {error && (
-        <Alert variant="outlined" severity="error">
-          {error}
-        </Alert>
-      )}
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <FormControl>
-          <InputLabel htmlFor="email">Email address</InputLabel>
-          <Input onChange={formChangeHandler} id="email" aria-describedby="email-text" />
-          <FormHelperText id="email-text">Enter a valid email address.</FormHelperText>
-        </FormControl>
-        <FormControl>
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <Input onChange={formChangeHandler} id="password" aria-describedby="password-text" />
-          <FormHelperText id="password-text">Enter strong password</FormHelperText>
-        </FormControl>
-        <FormControl>
-          <InputLabel htmlFor="password-confirm">Confirm Password</InputLabel>
-          <Input
-            onChange={formChangeHandler}
-            id="password-confirm"
-            aria-describedby="password-confirm-text"
-          />
-          <FormHelperText id="password-confirm-text">Password must match.</FormHelperText>
-        </FormControl>
-        <Button disabled={loading} type="submit">
-          Sign Up
-        </Button>
-      </form>
-      <div>
-        Already have an account? <Link to="/login"> Login </Link>
+      <div id={styles.signupContainer}>
+        <h2> Sign Up </h2>
+        {error && (
+          <Alert variant="outlined" severity="error">
+            {error}
+          </Alert>
+        )}
+        <form
+          onChange={formChangeHandler}
+          id={styles.formContainer}
+          onSubmit={handleSubmit}
+          autoComplete="off"
+        >
+          <FormControl>
+            <InputLabel htmlFor="username">Username</InputLabel>
+            <Input id="username" aria-describedby="username-text" />
+            <FormHelperText id="username-text">Enter a valid username.</FormHelperText>
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="firstName">First Name</InputLabel>
+            <Input id="firstName" aria-describedby="firstName-text" />
+            <FormHelperText id="firstName-text">Enter a valid first name.</FormHelperText>
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="lastName">Last Name</InputLabel>
+            <Input id="lastName" aria-describedby="lastName-text" />
+            <FormHelperText id="lastName-text">Enter a valid last name.</FormHelperText>
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="email">Email address</InputLabel>
+            <Input id="email" aria-describedby="email-text" />
+            <FormHelperText id="email-text">Enter a valid email address.</FormHelperText>
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <Input id="password" aria-describedby="password-text" />
+            <FormHelperText id="password-text">Enter strong password</FormHelperText>
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="password-confirm">Confirm Password</InputLabel>
+            <Input id="password-confirm" aria-describedby="password-confirm-text" />
+            <FormHelperText id="password-confirm-text">Password must match.</FormHelperText>
+          </FormControl>
+          <Button disabled={loading} type="submit">
+            Sign Up
+          </Button>
+        </form>
+        <div>
+          Already have an account? <Link to="/login"> Login </Link>
+        </div>
       </div>
     </>
   );
