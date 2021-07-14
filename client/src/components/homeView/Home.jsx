@@ -65,7 +65,7 @@ export default function Home() {
               <div key={index}>
                 {index <= showsDisplay ? 
                   <div>
-                    {show.title}
+                    <h3>{show.title}</h3>
                     <img 
                       id={styles.showsPhoto} 
                       src={show.photo}
@@ -119,22 +119,22 @@ export default function Home() {
                       <div>
                         {`LOCATION: ${review.show[0].location}`}
                       </div>
+                      <img src={review.user[0].photo}/>
+                      <p>
+                        {`REVIEW TEXT: ${review.text}`}
+                      </p>
+                      <time>
+                        {`DATE: ${new Date(Number(review.date)).toLocaleDateString('en-US')}`}
+                      </time>
                       {review.comments ? review.comments.map((comment, index) => 
                         <div key={index}> SHOW COMMENTS
-                          <div>
+                          <p>
                             {`COMMENT TEXT: ${comment.text}`}
-                          </div>
-                          <div>
-                            {`COMMENT TEXT: ${new Date(Number(comment.date)).toLocaleDateString('en-US')}`}
-                          </div>
+                          </p>
+                          <time>
+                            {`COMMENT DATE: ${new Date(Number(comment.date)).toLocaleDateString('en-US')}`}
+                          </time>
                         </div>) : null}
-                      <img src={review.user[0].photo}/>
-                      <div>
-                        {`TEXT: ${review.text}`}
-                      </div>
-                      <div>
-                        {`DATE: ${new Date(Number(review.date)).toLocaleDateString('en-US')}`}
-                      </div>
                     </div> 
                   : null}
               </div>))}
