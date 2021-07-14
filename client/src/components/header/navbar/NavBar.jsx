@@ -57,23 +57,27 @@ export default function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>
-        <Link to={'/signup'}> Signup </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to={'/login'}> Login </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to={'/users'}> Profile </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to={'/addShow'}> Add Show </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link onClick={handleLogout} to={'/signOut'}>
-          Sign Out
-        </Link>
-      </MenuItem>
+      {currentUser !== null ? (
+        <div>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to={'/addShow'}> Add a Show </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link onClick={handleLogout} to={'/signOut'}>
+              Sign Out
+            </Link>
+          </MenuItem>
+        </div>
+      ) : (
+        <div>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to={'/signup'}> Signup </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to={'/login'}> Login </Link>
+          </MenuItem>
+        </div>
+      )}
     </Menu>
   );
 
