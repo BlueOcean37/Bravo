@@ -14,7 +14,7 @@ export default function UserReviews() {
       .then(({ data }) => setUserReviews(data))
       .catch((err) => console.log(err));
   }, []);
-  console.log(userReviews);
+  // console.log(userReviews);
   return (
     <div className={container}>
       {userReviews.map((review, i) => {

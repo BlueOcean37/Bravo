@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core'
+import { ThumbUp, ThumbDown } from '@material-ui/icons';
+import axios from 'axios';
 import styles from './reviewcard.module';
 
 const {
@@ -14,12 +17,38 @@ const {
   footer,
 } = styles;
 
-export default function ReviewCard({ username, rating, date, title, location, text, show_id }) {
+export default function ReviewCard({ id, username, rating, date, title, location, text, show_id }) {
+  const [vote, setVote] = useState(rating)
+  
+  const onVote = (direction) => {
+    if (direction === 'up') {
+      axios.put(`/api/reviews/${id}/upvote`)
+        .then(setVote(vote + 1))
+        .catch((err) => console.log(err))
+    } else if (direction === 'down') {
+      axios.put(`/api/reviews/${id}/downvote`)
+        .then(setVote(vote - 1))
+        .catch((err) => console.log(err))
+    }
+  }
+
   date = new Date(Number(date)).toDateString();
   return (
     <div className={reviewContainer}>
       <div className={ratingContainer}>
-        <h2>{rating}</h2>
+        <Button 
+          variant='contained' 
+          color='secondary' 
+          onClick={() => {onVote('up')}}>
+          <ThumbUp/>
+        </Button>
+        <h2>{vote}</h2>
+        <Button 
+          variant='contained' 
+          color='secondary' 
+          onClick={() => {onVote('down')}}>
+          <ThumbDown/>
+        </Button>
       </div>
       <div className={cardContainer}>
         <div className={header}>
