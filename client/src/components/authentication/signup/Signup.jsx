@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -24,19 +25,21 @@ export default function Signup() {
   const history = useHistory();
 
   const formChangeHandler = (e) => {
-    console.log(e.target.value);
-    if (e.target.id === 'email') {
-      setEmail(e.target.value);
-    } else if (e.target.id === 'password') {
-      setPassword(e.target.value);
-    } else if (e.target.id === 'password-confirm') {
-      setPasswordConfirm(e.target.value);
-    } else if (e.target.id === 'username') {
-      setUsername(e.target.value);
-    } else if (e.target.id === 'firstName') {
-      setFirstName(e.target.value);
-    } else if (e.target.id === 'lastName') {
-      setLastName(e.target.value);
+    const targetId = e.target.id;
+    const value = e.target.value;
+    console.log(value);
+    if (targetId === 'email') {
+      setEmail(value);
+    } else if (targetId === 'password') {
+      setPassword(value);
+    } else if (targetId === 'password-confirm') {
+      setPasswordConfirm(value);
+    } else if (targetId === 'username') {
+      setUsername(value);
+    } else if (targetId === 'firstName') {
+      setFirstName(value);
+    } else if (targetId === 'lastName') {
+      setLastName(value);
     }
   };
 
@@ -50,6 +53,21 @@ export default function Signup() {
     setError('');
     setLoading(true);
     signup(email, password)
+      .then(() => {
+        let options = {
+          method: 'post',
+          url: '/api/users',
+          data: {
+            UID: currentUser.uid,
+            username,
+            password,
+            email,
+            first_name,
+            last_name,
+          },
+        };
+        return axios(options);
+      })
       .then(() => {
         console.log(currentUser);
         console.log('Successfully created an account!');
