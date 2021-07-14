@@ -14,11 +14,12 @@ const addShow = (req, res) => {
   '${user_id}', '${title}', '${street}', '${city}',
   '${zip}','${state}', '${date}', '${cast}', '${website}',
   '${description}', '${photo}'
-  )`;
+  )
+  RETURNING id;`;
 
   pool
     .query(queryString)
-    .then((data) => res.sendStatus(201))
+    .then((result) => res.status(201).send(result.rows[0]))
     .catch((err) => {
       console.error('error adding a show to db', err.stack);
       res.sendStatus(500);
