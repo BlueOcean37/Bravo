@@ -10,6 +10,7 @@ export default function Home() {
   const [reviews, setReviews] = useState([]);
   const [showsDisplay, setShowsDisplay] = useState(4);
   const [reviewsDisplay, setReviewsDisplay] = useState(4);
+  const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
     axios.get('/api/shows')
@@ -42,6 +43,10 @@ export default function Home() {
     if (e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight) {
       setReviewsDisplay(reviewsDisplay + 3);
     }
+  }
+
+  function showTheComments() {
+    setShowComments(!showComments);
   }
 
   return (
@@ -126,15 +131,24 @@ export default function Home() {
                       <time>
                         {`DATE: ${new Date(Number(review.date)).toLocaleDateString('en-US')}`}
                       </time>
-                      {review.comments ? review.comments.map((comment, index) => 
-                        <div key={index}> SHOW COMMENTS
-                          <p>
-                            {`COMMENT TEXT: ${comment.text}`}
-                          </p>
-                          <time>
-                            {`COMMENT DATE: ${new Date(Number(comment.date)).toLocaleDateString('en-US')}`}
-                          </time>
-                        </div>) : null}
+                      <div>
+                        <Button 
+                          variant='contained' 
+                          color='secondary' 
+                          onClick={() => {showTheComments()}}>
+                          SHOW COMMENTS
+                        </Button>
+                        {showComments ? (review.comments ? review.comments.map((comment, index) => 
+                          <div key={index}>
+                            <p>
+                              {`COMMENT TEXT: ${comment.text}`}
+                            </p>
+                            <time>
+                              {`COMMENT DATE: ${new Date(Number(comment.date)).toLocaleDateString('en-US')}`}
+                            </time>
+                          </div>) : null)
+                          : null}
+                        </div>
                     </div> 
                   : null}
               </div>))}
