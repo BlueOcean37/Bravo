@@ -27,7 +27,7 @@ export default function Signup() {
   const formChangeHandler = (e) => {
     const targetId = e.target.id;
     const value = e.target.value;
-    console.log(value);
+
     if (targetId === 'email') {
       setEmail(value);
     } else if (targetId === 'password') {
@@ -54,22 +54,17 @@ export default function Signup() {
     setLoading(true);
     signup(email, password)
       .then(() => {
-        let options = {
-          method: 'post',
-          url: '/api/users',
-          data: {
-            UID: currentUser.uid,
-            username,
-            password,
-            email,
-            first_name,
-            last_name,
-          },
+        let userData = {
+          username,
+          password,
+          email,
+          first_name,
+          last_name,
+          photo: 'http:123',
         };
-        return axios(options);
+        return axios.post('/api/users', userData);
       })
       .then(() => {
-        console.log(currentUser);
         console.log('Successfully created an account!');
         history.push('/');
       })
