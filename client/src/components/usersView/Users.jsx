@@ -3,13 +3,12 @@ import React from 'react';
 import UserInfo from './userInfo/UserInfo.jsx';
 import UserReviews from './userReviews/UserReviews';
 import styles from './users.module';
-
-export default function Users() {
+const { container } = styles;
+export default function Users(id) {
   return (
-    <div>
-      Users Main Page
-      <UserInfo />
-      <UserReviews />
+    <div className={container}>
+      <UserInfo id={id} />
+      <UserReviews id={id} />
     </div>
   );
 }
