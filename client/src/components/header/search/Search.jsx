@@ -58,6 +58,12 @@ export default function Search() {
       getOptionLabel={(option) => option.title}
       options={options}
       loading={loading}
+      renderOption={(option) => (
+        <React.Fragment>
+          <img src={option.image}></img>
+          {option.title}
+        </React.Fragment>
+      )}
       renderInput={(params) => (
         <TextField
           {...params}
