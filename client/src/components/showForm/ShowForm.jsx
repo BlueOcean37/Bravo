@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
+import { DropzoneArea } from 'material-ui-dropzone';
 import axios from 'axios';
 import styles from './showForm.module';
 
@@ -13,6 +14,17 @@ export default function ShowForm() {
   const [website, setWebsite] = useState('');
   const [cast, setCast] = useState('');
   const [description, setDescription] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
+
+  const formValidation = () => {
+    return title && street && city && state && zip && date;
+  };
+
+  const handleImageUpload = (file) => {
+    setPhoto(file[0]);
+    const photoData = new FormData().append('showImage', photo);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,10 +49,6 @@ export default function ShowForm() {
     } else {
       alert('Please enter a value for all required fields');
     }
-  };
-
-  const formValidation = () => {
-    return title && street && city && state && zip && date;
   };
 
   return (
@@ -87,7 +95,17 @@ export default function ShowForm() {
           />
         </div>
         <div className={styles.photoContainer}>
-          <Button className={styles.btn}>Add Photo</Button>
+          <DropzoneArea
+            filesLimit={1}
+            acceptedFiles={['image/*']}
+            dropzoneText={'Drag and drop an image here or click'}
+            onChange={(file) => {
+              if (file.length) {
+                console.log(file);
+                handleImageUpload(file);
+              }
+            }}
+          />
           <Button className={styles.btn} onClick={handleSubmit}>
             Submit
           </Button>
