@@ -3,16 +3,18 @@ import axios from 'axios';
 import styles from './home.module.scss';
 import ReviewCard from '../commons/ReviewCard';
 import HomeShows from './HomeShows';
+import HomeBanner from './homeBanner/HomeBanner';
 
 export default function Home() {
   const [reviews, setReviews] = useState([]);
   const [reviewsDisplay, setReviewsDisplay] = useState(4);
 
   useEffect(() => {
-    axios.get('/api/reviews')
-      .then(({ data }) => setReviews(data))  
-      .catch((err) => console.log(err))
-  }, [])
+    axios
+      .get('/api/reviews')
+      .then(({ data }) => setReviews(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   function displayMoreReviews(e) {
     if (e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight) {
@@ -21,24 +23,19 @@ export default function Home() {
   }
 
   return (
-    reviews
-      ? <section id={styles.reviews}>
-          <h2>
-            Trending
-          </h2>
-          <HomeShows sort={'rating'}/>
-          <h2>
-            Most Recent
-          </h2>
-          <HomeShows sort={'date'}/>
+    <>
+      <HomeBanner />
+      <section id={styles.reviews}>
+        <h2>Trending</h2>
+        <HomeShows sort={'rating'} />
+        <h2>Most Recent</h2>
+        <HomeShows sort={'date'} />
         <section id={styles.outerReviewsContainer}>
-          <h2>
-            REVIEWS
-          </h2>
-            <div id={styles.innerReviewsContainer} onScroll={displayMoreReviews}>
-              {reviews.map((review, index) => (
-                <div key={index}>
-                  {index <= reviewsDisplay ? 
+          <h2>REVIEWS</h2>
+          <div id={styles.innerReviewsContainer} onScroll={displayMoreReviews}>
+            {reviews.map((review, index) => (
+              <div key={index}>
+                {index <= reviewsDisplay ? (
                   <div>
                     <ReviewCard
                       key={index}
@@ -56,12 +53,12 @@ export default function Home() {
                       comments={review.comments}
                     />
                   </div>
-                  : null}
-                </div>
-              ))}
-            </div>
-          </section>
+                ) : null}
+              </div>
+            ))}
+          </div>
         </section>
-      : null
-  )
+      </section>
+    </>
+  );
 }
