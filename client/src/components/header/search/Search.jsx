@@ -1,15 +1,13 @@
 import React from 'react';
 import fetch from 'cross-fetch';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import searchStyle from './search.module';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -47,12 +45,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Search() {
   const [open, setOpen] = React.useState(false);
-  const [showId, setShowid] = React.useState();
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
 
   const classes = useStyles();
-  const theme = useTheme();
 
   React.useEffect(() => {
     let active = true;
@@ -127,6 +123,7 @@ export default function Search() {
       )}
       renderInput={(params) => (
         <TextField
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...params}
           label="Search for shows or users"
           variant="outlined"
