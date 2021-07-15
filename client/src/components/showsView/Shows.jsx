@@ -1,33 +1,30 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import axios from "axios";
-import ShowInfo from "./ShowInfo.jsx";
-import Reviews from "./Reviews.jsx";
-import AddReview from "./AddReview.jsx";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+import ShowInfo from './ShowInfo.jsx';
+import Reviews from './Reviews.jsx';
+import AddReview from './AddReview.jsx';
 
 class Shows extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-
       reviews: [],
 
-   showInfo: {}
-
+      showInfo: {},
     };
     // console.log("THIS IS REVIEWS RESPONSE", this.state.reviews);
-  this.getReviews = this.getReviews.bind(this)
-  this.handleAddNewReview = this.handleAddNewReview.bind(this)
+    this.getReviews = this.getReviews.bind(this);
+    this.handleAddNewReview = this.handleAddNewReview.bind(this);
   }
 
-
   getReviews() {
-    axios.get('/api/shows/2')
-      .then(({data}) => {
+    axios
+      .get('/api/shows/2')
+      .then(({ data }) => {
         // console.log("THIS IS DATA RESPONSE", data);
         // console.log("THIS IS REVIEWS RESPONSE", data[0].reviews);
-        console.log("THIS IS SHOW INFO", data[0].title);
+        console.log('THIS IS SHOW INFO', data[0].title);
         this.setState({
           reviews: data[0].reviews,
           showInfo: {
@@ -43,8 +40,8 @@ class Shows extends React.Component {
             showCity: data[0].city,
             showZip: data[0].zip,
             showState: data[0].state,
-            showRating: data[0].rating
-          }
+            showRating: data[0].rating,
+          },
         });
       })
       .catch((err) => console.log(err));
@@ -54,19 +51,20 @@ class Shows extends React.Component {
     // console.log("THIS IS NEW REVIEW", state)
     // console.log("THIS IS NUMBER OF REVIEWS", this.state.reviews.length + 1);
     // console.log("THIS IS NAME OF NEW REVIEW", newstate.name);
-    axios.post('/api/reviews', {
-      show_id: reviewData.show_id,
-      user_id: reviewData.user_id,
-      show_rating: reviewData.show_rating,
-      text: reviewData.text
-    })
-    .then((response) => {
-      console.log("THIS IS RESPONSE WITH NEW REVIEW", response);
-    })
-    .catch ((error) => {
-      console.log("THIS IS RESPONSE WITH NEW review", error);
-    })
-    .then (() => this.getReviews());
+    axios
+      .post('/api/reviews', {
+        show_id: reviewData.show_id,
+        user_id: reviewData.user_id,
+        show_rating: reviewData.show_rating,
+        text: reviewData.text,
+      })
+      .then((response) => {
+        console.log('THIS IS RESPONSE WITH NEW REVIEW', response);
+      })
+      .catch((error) => {
+        console.log('THIS IS RESPONSE WITH NEW review', error);
+      })
+      .then(() => this.getReviews());
   }
 
   // user_id integer NOT NULL,
@@ -93,19 +91,19 @@ class Shows extends React.Component {
 
   render() {
     return (
-
-   <div>
-      <ShowInfo showData= {this.state.showInfo}/>
-      <AddReview handleAddNewReview = {this.handleAddNewReview}
-      userId={this.state.showInfo.user_id}
-      id={this.state.showInfo.id}
-    />
-      <Reviews reviewData= {this.state.reviews} showInfo={this.state.showInfo}/>
-    </div>
-    )}
+      <div>
+        <ShowInfo showData={this.state.showInfo} />
+        <AddReview
+          handleAddNewReview={this.handleAddNewReview}
+          userId={this.state.showInfo.user_id}
+          id={this.state.showInfo.id}
+        />
+        <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
+      </div>
+    );
+  }
 }
-
+//add
 export default Shows;
-
 
 // ReactDOM.render(<App />, document.getElementById("app"));
