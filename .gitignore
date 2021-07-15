@@ -5,6 +5,7 @@ dist/*
 node_modules/
 *.log
 client/public/bundle.js
+client/public/bundle.js.LICENSE.txt
 
 # OS generated files
 .DS_Store
@@ -18,4 +19,3 @@ Thumbs.db
 .env
 .vscode
 dump.rdb
-client/public/bundle.js
