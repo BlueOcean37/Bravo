@@ -4,13 +4,13 @@ import { ArrowForward, ArrowBack } from '@material-ui/icons';
 import styles from './homeshows.module';
 import axios from 'axios';
 
-export default function HomeShows({query}) {
+export default function HomeShows({sort}) {
   const [shows, setShows] = useState([]);
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(4);
   
   useEffect(() => {
-    axios.get(`/api/shows?query=${query}`)
+    axios.get(`/api/shows?sort=${sort}`)
     .then(({ data }) => setShows(data))
     .catch((err) => console.log(err))
   }, [])

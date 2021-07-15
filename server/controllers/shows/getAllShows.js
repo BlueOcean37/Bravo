@@ -2,8 +2,8 @@
 const pool = require('../../db/index');
 
 const getAllShows = (req, res) => {
-  const order = req.query.query 
-  console.log(order)
+  const order = req.query.sort
+
   const queryString = `SELECT * FROM shows ORDER BY ${order} DESC LIMIT 20`;
   pool
     .query(queryString)

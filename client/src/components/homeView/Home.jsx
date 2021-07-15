@@ -26,11 +26,11 @@ export default function Home() {
           <h2>
             Trending
           </h2>
-          <HomeShows query={'rating'}/>
+          <HomeShows sort={'rating'}/>
           <h2>
             Most Recent
           </h2>
-          <HomeShows query={'date'}/>
+          <HomeShows sort={'date'}/>
         <section id={styles.outerReviewsContainer}>
           <h2>
             REVIEWS
