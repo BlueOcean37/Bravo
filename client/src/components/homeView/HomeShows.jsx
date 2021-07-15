@@ -43,7 +43,6 @@ export default function HomeShows({sort}) {
           <div key={index}>
             {index >= start && index <= start + 3 ? 
             <div className={styles.imgContainer}>
-              {/* <h3>{show.title}</h3> */}
               <img 
                 className={styles.showsPhoto} 
                 src={show.photo}
