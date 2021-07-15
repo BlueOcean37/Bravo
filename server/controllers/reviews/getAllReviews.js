@@ -11,7 +11,8 @@ const getAllReviews = (req, res) => {
   ) AS user, (
     SELECT jsonb_agg(jsonb_build_object(
       'title', shows.title,
-      'location', shows.street
+      'location', shows.street,
+      'photo', shows.photo
     ))
     FROM shows WHERE shows.id = reviews.show_id
   ) AS show, (
