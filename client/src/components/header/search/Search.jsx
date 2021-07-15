@@ -105,7 +105,7 @@ export default function Search() {
       renderOption={(option) => (
         <>
           <Link to={`/shows/${option.id}`}>
-            <Card className={classes.root}>
+            <Card className={classes.root} variant="outlined">
               <CardMedia className={classes.cover} image={`${option.photo}`} title={option.title} />
               <div className={classes.details}>
                 <CardContent className={classes.content}>
