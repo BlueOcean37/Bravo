@@ -1,52 +1,34 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import navstyle from './navbar.module';
-import Logo from '../logo/Logo';
-import AppMenu from '../menu/Menu';
-import Search from '../search/Search';
-import { useAuth } from '../../../contexts/AuthContext';
+
+import { ThemeProvider } from '@material-ui/core';
+
+import Brightness3Icon from '@material-ui/icons/Brightness3';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 
-import { ThemeProvider } from '@material-ui/core';
-// import Paper from '@material-ui/core/Paper';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
-import Brightness3Icon from '@material-ui/icons/Brightness3';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
+import navstyle from './navbar.module.scss';
+import Logo from '../logo/Logo';
+import AppMenu from '../menu/Menu';
+import Search from '../search/Search';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginBottom: theme.spacing(2),
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+import { useAuth } from '../../../contexts/AuthContext';
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [theme, setTheme] = useState(true);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const { logout, currentUser } = useAuth();
   const history = useHistory();
 
-  const [theme, setTheme] = useState(true);
-  const classes = useStyles();
+  const isMenuOpen = Boolean(anchorEl);
   const icon = !theme ? <Brightness7Icon /> : <Brightness3Icon />;
-  const appliedTheme = createMuiTheme(theme ? light : dark);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -56,14 +38,13 @@ export default function NavBar() {
     setAnchorEl(null);
   };
 
-  const handleLogout = (e) => {
+  const handleLogout = () => {
     if (currentUser !== null) {
       logout()
         .then(() => {
-          console.log('Successfully logged out!');
           history.push('/');
         })
-        .catch((err) => console.log(err));
+        .catch((err) => err);
     }
   };
 
@@ -81,10 +62,10 @@ export default function NavBar() {
       {currentUser !== null ? (
         <div>
           <MenuItem onClick={handleMenuClose}>
-            <Link to={'/addShow'}> Add a Show </Link>
+            <Link to="/addShow"> Add a Show </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Link onClick={handleLogout} to={'/signOut'}>
+            <Link onClick={handleLogout} to="/signOut">
               Sign Out
             </Link>
           </MenuItem>
@@ -92,10 +73,10 @@ export default function NavBar() {
       ) : (
         <div>
           <MenuItem onClick={handleMenuClose}>
-            <Link to={'/signup'}> Signup </Link>
+            <Link to="/signup"> Signup </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Link to={'/login'}> Login </Link>
+            <Link to="/login"> Login </Link>
           </MenuItem>
         </div>
       )}
