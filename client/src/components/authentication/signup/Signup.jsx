@@ -1,14 +1,10 @@
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import { Button, FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../../../contexts/AuthContext';
-import styles from './signup.module.scss';
+import styles from './signup.module';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -23,6 +19,9 @@ export default function Signup() {
 
   const { signup, currentUser } = useAuth();
   const history = useHistory();
+
+  const formValidation = () =>
+    username && email && password && passwordConfirm && first_name && last_name;
 
   const formChangeHandler = (e) => {
     const targetId = e.target.id;
@@ -91,33 +90,48 @@ export default function Signup() {
           autoComplete="off"
         >
           <FormControl>
-            <InputLabel htmlFor="username">Username</InputLabel>
-            <Input id="username" aria-describedby="username-text" />
+            <InputLabel htmlFor="username">Username *</InputLabel>
+            <Input
+              autoFocus={true}
+              required={true}
+              id="username"
+              aria-describedby="username-text"
+            />
             <FormHelperText id="username-text">Enter a valid username.</FormHelperText>
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="firstName">First Name</InputLabel>
-            <Input id="firstName" aria-describedby="firstName-text" />
+            <InputLabel htmlFor="firstName">First Name *</InputLabel>
+            <Input required={true} id="firstName" aria-describedby="firstName-text" />
             <FormHelperText id="firstName-text">Enter a valid first name.</FormHelperText>
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="lastName">Last Name</InputLabel>
-            <Input id="lastName" aria-describedby="lastName-text" />
+            <InputLabel htmlFor="lastName">Last Name *</InputLabel>
+            <Input required={true} id="lastName" aria-describedby="lastName-text" />
             <FormHelperText id="lastName-text">Enter a valid last name.</FormHelperText>
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="email">Email address</InputLabel>
-            <Input id="email" aria-describedby="email-text" />
+            <InputLabel htmlFor="email">Email address *</InputLabel>
+            <Input required={true} id="email" aria-describedby="email-text" />
             <FormHelperText id="email-text">Enter a valid email address.</FormHelperText>
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input id="password" aria-describedby="password-text" />
+            <InputLabel htmlFor="password">Password *</InputLabel>
+            <Input
+              required={true}
+              inputProps={{ type: 'password' }}
+              id="password"
+              aria-describedby="password-text"
+            />
             <FormHelperText id="password-text">Enter strong password</FormHelperText>
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="password-confirm">Confirm Password</InputLabel>
-            <Input id="password-confirm" aria-describedby="password-confirm-text" />
+            <InputLabel htmlFor="password-confirm">Confirm Password *</InputLabel>
+            <Input
+              required={true}
+              inputProps={{ type: 'password' }}
+              id="password-confirm"
+              aria-describedby="password-confirm-text"
+            />
             <FormHelperText id="password-confirm-text">Password must match.</FormHelperText>
           </FormControl>
           <Button disabled={loading} type="submit">

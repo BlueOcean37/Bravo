@@ -2,8 +2,13 @@
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
   display: flex;
   flex-direction: row;
+<<<<<<< HEAD
   background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)), url("../../../assets/homeBanner2.png");
   height: 60vh;
+=======
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)), url("../../../assets/homeBanner.png");
+  height: 80vh;
+>>>>>>> 80794975b7eefcefe2a225e337c8e54bd07a65f7
   padding-top: 100px;
 
   /* Position and center the image to scale nicely on all screens */
