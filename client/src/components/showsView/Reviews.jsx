@@ -9,6 +9,9 @@ class Reviews extends React.Component {
 
     this.state = {
       reviews: [],
+      id:"",
+      downvote:"",
+      upvote:""
     };
 
   }
@@ -22,16 +25,22 @@ class Reviews extends React.Component {
 
 
   render() {
+    if (this.props.reviewData ) {
+
     return (
 <div>
       <h1> Reviews  </h1>
 
-  {this.props.reviews.map(review =>
+ {this.props.reviewData ? this.props.reviewData.map(review => {
+ return (
     <Review reviewData ={review} comments={this.props.comments}/>
-  )}
+ )}) : null
+  }
+
 </div>
 
     );
+}
 
 
 

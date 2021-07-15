@@ -3,14 +3,24 @@ import Comment from './Comment.jsx';
 
 
 const Comments = ({comments}) => {
-return (
+  return (
+    <div>
+  {/* if (comments) { */}
+<p> Comments: </p>
   <div>
-    {comments.map((comment) =>
+    {comments ? comments.map(comment => {
+      return (
       <Comment comment ={comment} />
-    )}
+    )}) : null
+      }
   </div>
-)
-};
+
+    {/* } */}
+    </div>
+
+  )
+  };
+
 
 
 

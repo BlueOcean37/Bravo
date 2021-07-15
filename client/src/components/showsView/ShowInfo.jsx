@@ -1,8 +1,10 @@
 import React from "react";
 
 
-const ShowInfo = ({data}) => (
+const ShowInfo = ({showData}) => {
 
+  // if(showData.showTitle !== undefined) {
+return (
   <div>
     {/* <h1> Show Info
     {data.title} {data.rating} {data.street}
@@ -12,20 +14,20 @@ const ShowInfo = ({data}) => (
     </h1> */}
 
     <h1> Show Info  </h1>
-    <p class = 'showTitle'> {data.title} </p>
+    <p class = 'showTitle'> {showData.showTitle} </p>
 
     <div class='showInfo'>
-          <img class='showPhoto' src={data.photo} />
-          <img class='showRating' src={this.props.stars(this.state.rating)}/>
+          <img class='showPhoto' src={showData.showPhoto} />
+          <p class='showRating' > Rating: {showData.showRating}</p>
 
-          <p class = 'showDates'> {data.date} </p>
-          <p class = 'showWeb'> {data.website} </p>
+          <p class = 'showDates'> Dates: {showData.showDate} </p>
+          <p class = 'showWeb'> {showData.showWebsite} </p>
 
-          <p class = 'showDescript'> {data.description} </p>
-          <p class = 'showCast'> {data[cast]} </p>
+          <p class = 'showDescript'> Description: {showData.showDescription} </p>
+          <p class = 'showCast'> {showData.showCast} </p>
 
-          <p class = 'showLocation'> {data.street}
-          {data.city} {data.zip} {data.state}  </p>
+          <p class = 'showLocation'> Address: {showData.showStreet}
+          {showData.showCity} {showData.showZip} {showData.showState}  </p>
 
      </div>
 
@@ -33,6 +35,9 @@ const ShowInfo = ({data}) => (
 
 
   </div>
-);
+)
+  // }
+
+};
 
 export default ShowInfo;

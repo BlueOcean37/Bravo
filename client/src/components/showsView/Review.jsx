@@ -2,10 +2,28 @@ import React from "react";
 import Comments from './Comments.jsx';
 
 //ADD A REVIEW
+class Review extends React.Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
 
-const Review = ({data}, {comments}) => {
-return
+      id:"",
+      downvote:"",
+      upvote:"",
+      comments:[],
+      rating:""
+    };
+
+  }
+
+  render() {
+
+  }
+}
+
+const Review = ({reviewData}, {comments}, {handleUpVote}, {handleDownVote}) => {
+return (
   <div>
     {/* <h1> Show Info
     {data.title} {data.rating} {data.street}
@@ -16,22 +34,25 @@ return
 
 <div class='reviewBox'>
 
-  <p class = 'reviewUsername'>  {data.username} </p>
-  <p class = 'reviewDate'>  {data.date} </p>
-  <p class = 'reviewShowRateing'>  {data.showRating} </p>
+  <p class = 'reviewUsername'> Username: {reviewData.username} </p>
+  <p class = 'reviewDate'> Date: {reviewData.date} </p>
+  <p class = 'reviewShowRateing'> User Show Rating: {reviewData.show_rating} </p>
 
       <div class='reviewTextBox'>
 
-              <p class = 'reviewText'> {data.reviewText} </p>
+              <p class = 'reviewText'> {reviewData.text} </p>
         </div>
-  <p class = 'reviewRating'> {data.reviewRating} </p>
+  <p class = 'reviewRating'> Review Rating: {reviewData.rating} </p>
 </div>
-
-
-
-<Comments comments = {comments}/>
+<button class = 'addComment'> Reply </button>
+<button class = 'likeReview'
+   onClick={(e) => handleUpVote(reviewData.id)}> Like </button>
+<button class = 'dislikeReview'
+   onClick={(e) => handleDownVote(reviewData.id)}> Dislike </button>
+<Comments comments = {reviewData.comments}/>
 
   </div>
+)
 };
 
 export default Review;

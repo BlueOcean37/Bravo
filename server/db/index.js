@@ -18,3 +18,7 @@ pool.query("SELECT NOW()", (err, res) => {
 });
 
 module.exports = pool;
+
+
+// psql -U postgres
+//  password: postgres
