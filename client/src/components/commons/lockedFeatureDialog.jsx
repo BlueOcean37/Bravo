@@ -10,8 +10,10 @@ import {
 } from '@material-ui/core';
 import styles from './lockedFeatureDialog.module';
 
-export default function LockedFeatureDialog(props) {
-  const { showLockedFeatureDialog, setShowLockedFeatureDialog } = props;
+export default function LockedFeatureDialog({
+  showLockedFeatureDialog,
+  setShowLockedFeatureDialog,
+}) {
   {
     /**To use this component, you must create this state and setState
      * function in the parent component and pass them down as props.
