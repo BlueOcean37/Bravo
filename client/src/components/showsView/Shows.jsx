@@ -17,6 +17,7 @@ class Shows extends React.Component {
     // console.log("THIS IS REVIEWS RESPONSE", this.state.reviews);
     this.getReviews = this.getReviews.bind(this);
     this.handleAddNewReview = this.handleAddNewReview.bind(this);
+    // this.handleAddNewComment = this.handleAddNewComment.bind(this);
   }
 
   getReviews() {
@@ -47,6 +48,22 @@ class Shows extends React.Component {
       })
       .catch((err) => console.log(err));
   }
+
+  // handleAddNewComment(commentData) {
+
+  //   axios.post(`/api/reviews/${this.props.}/comment`, {
+  //       id: reviewData.review_id,
+  //       user_id: reviewData.user_id,
+  //       text: reviewData.text,
+  //     })
+  //     .then((response) => {
+  //       console.log('THIS IS RESPONSE WITH NEW REVIEW', response);
+  //     })
+  //     .catch((error) => {
+  //       console.log('THIS IS RESPONSE WITH NEW review', error);
+  //     })
+  //     .then(() => this.getReviews());
+  // }
 
   handleAddNewReview(reviewData) {
     // console.log("THIS IS NEW REVIEW", state)
@@ -100,6 +117,12 @@ class Shows extends React.Component {
           id={this.state.showInfo.id}
         />
         <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
+
+        {/* <AddComment
+          user_id={this.state.showInfo.user_id}
+          showInfo={this.state.showInfo}
+          handleAddNewComment={this.handleAddNewComment}
+        /> */}
       </div>
     );
   }

@@ -51,7 +51,7 @@ const Review = ({ reviewData }, { comments }, { handleUpVote }, { handleDownVote
         {' '}
         Dislike{' '}
       </button>
-      <Comments comments={reviewData.comments} />
+      {/* <Comments comments={reviewData.comments} /> */}
     </div>
   );
 };

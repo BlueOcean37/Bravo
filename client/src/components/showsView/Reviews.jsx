@@ -25,7 +25,7 @@ class Reviews extends React.Component {
           <h1> Reviews </h1>
           {this.props.reviewData
             ? this.props.reviewData.map((review) => {
-                console.log(review);
+                // console.log(review);
                 return (
                   <ReviewCard
                     user_photo={review.photo}
