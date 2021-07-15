@@ -45,7 +45,6 @@
 }
 
 .review {
-  // border: 1px solid black;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -97,9 +96,15 @@
   width: 16%;
 }
 
-.commentsTime {
+.commentTime {
   display: flex;
   justify-content: flex-end;
   font-size: 10px;
   color: rgb(149, 148, 160);
+}
+
+.textTime {
+  font-size: 10px;
+  color: grey;
+  margin-right: 10px;
 }

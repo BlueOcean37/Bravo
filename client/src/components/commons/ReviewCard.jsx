@@ -24,7 +24,8 @@ const {
   userPhoto,
   rightSideContainer,
   flexShow,
-  commentsTime
+  commentTime,
+  textTime
 } = styles;
 
 export default function ReviewCard({ id, username, rating, date, title, location, text, show_id, user_id, user_photo, show_photo, comments }) {
@@ -81,7 +82,7 @@ export default function ReviewCard({ id, username, rating, date, title, location
             </Link>
             </div>
             <div>
-              <span style={{"font-size": "10px", "color": "grey", "margin-right": "10px"}}>{date}</span>
+              <span className={textTime}>{date}</span>
               <Link to={{ pathname: '/users', state: user_id }} className={link}>
                 <span>{username}</span>
               </Link>
@@ -129,12 +130,18 @@ const DisplayComments = ({ comments }) => {
 
   return (
     <div>
-      <div onClick={toggleComments}>Show all comments</div>
+      {displayComments ? 
+        <div onClick={toggleComments}>
+          Hide All Comments
+        </div> 
+        : <div onClick={toggleComments}>
+          View All Comments
+        </div>} 
       {displayComments ? 
         <div className={commentsContainer}>
           {comments.map((comment) => 
             <div>
-              <time className={commentsTime}>
+              <time className={commentTime}>
                 {new Date(Number(comment.date)).toLocaleDateString("en-US")}
               </time>
               <span>
