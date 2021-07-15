@@ -62,7 +62,7 @@ export default function Search() {
     }
 
     (async () => {
-      const response = await fetch('/api/shows');
+      const response = await fetch('/api/shows?sort=rating');
       await sleep(1e3); // For demo purposes.
       const shows = await response.json();
       if (active) {
