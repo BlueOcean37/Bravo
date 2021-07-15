@@ -23,7 +23,7 @@ class Shows extends React.Component {
   // ${this.props.location.state}
   getReviews() {
     axios
-      .get(`/api/shows/3`)
+      .get(`/api/shows/${this.props.location.state}`)
       .then(({ data }) => {
         // console.log("THIS IS DATA RESPONSE", data);
         // console.log("THIS IS REVIEWS RESPONSE", data[0].reviews);

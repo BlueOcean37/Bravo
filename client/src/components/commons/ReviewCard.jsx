@@ -120,9 +120,6 @@ export default function ReviewCard({
           <div className={footer}>
             <DisplayComments comments={comments} />
           </div>
-          <div>
-            <Shows review_id={id} />
-          </div>
         </div>
       </div>
     </div>
