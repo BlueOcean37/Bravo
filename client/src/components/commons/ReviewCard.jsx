@@ -112,7 +112,7 @@ export default function ReviewCard({
               <Link to={{ pathname: '/users', state: user_id }} className={link}>
                 <span>{username}</span>
               </Link>
-              <img className={userPhoto} src={user_photo} />
+              {user_photo ? <img className={userPhoto} src={user_photo} /> : null}
             </div>
           </div>
           <div className={review}>
