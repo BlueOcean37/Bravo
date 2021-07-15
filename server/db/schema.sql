@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS public.shows
     zip integer NOT NULL,
     state character varying NOT NULL,
     date bigint NOT NULL,
-    "cast" character varying,
     website character varying,
     description character varying NOT NULL,
     photo character varying,
@@ -77,7 +76,6 @@ ALTER TABLE public.shows
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
     NOT VALID;
-
 
 
 END;
