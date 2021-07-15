@@ -57,36 +57,40 @@ export default function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>
-        <Link to={'/signup'}> Signup </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to={'/login'}> Login </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to={'/users'}> Profile </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link to={'/addShow'}> Add Show </Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <Link onClick={handleLogout} to={'/signOut'}>
-          Sign Out
-        </Link>
-      </MenuItem>
+      {currentUser !== null ? (
+        <div>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to={'/addShow'}> Add a Show </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link onClick={handleLogout} to={'/signOut'}>
+              Sign Out
+            </Link>
+          </MenuItem>
+        </div>
+      ) : (
+        <div>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to={'/signup'}> Signup </Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to={'/login'}> Login </Link>
+          </MenuItem>
+        </div>
+      )}
     </Menu>
   );
 
   return (
     <div className={navstyle.grow}>
-      <AppBar position="static" title={<img src="https://unsplash.it/40/40" />}>
+      <AppBar style={{ background: '#000000' }} position="relative">
         <Toolbar className={navstyle.toolBar}>
           <Logo />
           <AppMenu />
           <div className={navstyle.grow} />
           <Search />
           <div className={navstyle.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            <IconButton aria-label="show 17 new notifications" color="primary">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
@@ -97,7 +101,7 @@ export default function NavBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              color="primary"
             >
               <AccountCircle />
             </IconButton>

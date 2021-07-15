@@ -1,1 +1,14 @@
-// sign up page scss
+#formContainer{
+  display:flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 900px;
+}
+
+#signupContainer{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 45px;
+}
