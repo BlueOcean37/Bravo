@@ -43,14 +43,14 @@ export default function HomeShows({sort}) {
         {shows.map((show, index) => (
           <div key={index}>
             {index >= start && index <= start + 3 ? 
-            <div className={styles.imgContainer}>
               <Link to={{ pathname: '/shows', state: show.id }}>
-                <img 
-                  className={styles.showsPhoto} 
-                  src={show.photo}
-                />
+                <div className={styles.imgContainer}>
+                  <img 
+                    className={styles.showsPhoto} 
+                    src={show.photo}
+                  />
+                </div>
               </Link>
-            </div>
             : null}
           </div>))} 
       <Button onClick={() => displayMoreShows('forward')}>

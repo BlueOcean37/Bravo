@@ -7,7 +7,6 @@ import styles from './reviewcard.module';
 import { useAuth } from '../../contexts/AuthContext';
 
 const {
-  container,
   ratingContainer,
   cardContainer,
   header,
@@ -68,9 +67,15 @@ export default function ReviewCard({ id, username, rating, date, title, location
       </div>
       <div className={rightSideContainer}>
         <div className={flexShow}>
-          <div className={showPhotoContainer}>
-            <img src={show_photo} className={showPhoto} alt="show photo"></img>
-          </div>
+          {show_photo ? 
+            <div className={showPhotoContainer}>
+              <img 
+                src={show_photo} 
+                className={showPhoto} 
+                alt="show photo">
+              </img>
+            </div> 
+          : null}
         </div>
         <div className={cardContainer}>
           <div className={header}>
@@ -139,8 +144,8 @@ const DisplayComments = ({ comments }) => {
         </div>} 
       {displayComments ? 
         <div className={commentsContainer}>
-          {comments.map((comment) => 
-            <div>
+          {comments.map((comment, index) => 
+            <div key={index}>
               <time className={commentTime}>
                 {new Date(Number(comment.date)).toLocaleDateString("en-US")}
               </time>
