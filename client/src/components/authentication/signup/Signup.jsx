@@ -49,10 +49,6 @@ export default function Signup() {
       return setError('Passwords do not match');
     }
 
-    if (!formValidation()) {
-      return setError('Please enter a value for all required fields');
-    }
-
     setError('');
     setLoading(true);
     signup(email, password)
@@ -95,32 +91,47 @@ export default function Signup() {
         >
           <FormControl>
             <InputLabel htmlFor="username">Username *</InputLabel>
-            <Input id="username" aria-describedby="username-text" />
+            <Input
+              autoFocus={true}
+              required={true}
+              id="username"
+              aria-describedby="username-text"
+            />
             <FormHelperText id="username-text">Enter a valid username.</FormHelperText>
           </FormControl>
           <FormControl>
             <InputLabel htmlFor="firstName">First Name *</InputLabel>
-            <Input id="firstName" aria-describedby="firstName-text" />
+            <Input required={true} id="firstName" aria-describedby="firstName-text" />
             <FormHelperText id="firstName-text">Enter a valid first name.</FormHelperText>
           </FormControl>
           <FormControl>
             <InputLabel htmlFor="lastName">Last Name *</InputLabel>
-            <Input id="lastName" aria-describedby="lastName-text" />
+            <Input required={true} id="lastName" aria-describedby="lastName-text" />
             <FormHelperText id="lastName-text">Enter a valid last name.</FormHelperText>
           </FormControl>
           <FormControl>
             <InputLabel htmlFor="email">Email address *</InputLabel>
-            <Input id="email" aria-describedby="email-text" />
+            <Input required={true} id="email" aria-describedby="email-text" />
             <FormHelperText id="email-text">Enter a valid email address.</FormHelperText>
           </FormControl>
           <FormControl>
             <InputLabel htmlFor="password">Password *</InputLabel>
-            <Input id="password" aria-describedby="password-text" />
+            <Input
+              required={true}
+              inputProps={{ type: 'password' }}
+              id="password"
+              aria-describedby="password-text"
+            />
             <FormHelperText id="password-text">Enter strong password</FormHelperText>
           </FormControl>
           <FormControl>
             <InputLabel htmlFor="password-confirm">Confirm Password *</InputLabel>
-            <Input id="password-confirm" aria-describedby="password-confirm-text" />
+            <Input
+              required={true}
+              inputProps={{ type: 'password' }}
+              id="password-confirm"
+              aria-describedby="password-confirm-text"
+            />
             <FormHelperText id="password-confirm-text">Password must match.</FormHelperText>
           </FormControl>
           <Button disabled={loading} type="submit">

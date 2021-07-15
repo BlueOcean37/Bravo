@@ -45,13 +45,26 @@ export default function Login() {
         )}
         <form id={styles.formContainer} onSubmit={handleSubmit} autoComplete="off">
           <FormControl>
-            <InputLabel htmlFor="email">Email address</InputLabel>
-            <Input onChange={formChangeHandler} id="email" aria-describedby="email-text" />
+            <InputLabel htmlFor="email">Email address *</InputLabel>
+            <Input
+              autoFocus={true}
+              required={true}
+              onChange={formChangeHandler}
+              id="email"
+              aria-describedby="email-text"
+            />
             <FormHelperText id="email-text">Enter a valid email address.</FormHelperText>
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input onChange={formChangeHandler} id="password" aria-describedby="password-text" />
+            <InputLabel htmlFor="password">Password *</InputLabel>
+            <Input
+              onChange={formChangeHandler}
+              name="password"
+              required={true}
+              inputProps={{ type: 'password' }}
+              id="password"
+              aria-describedby="password-text"
+            />
             <FormHelperText id="password-text">Enter password</FormHelperText>
           </FormControl>
           <Button disabled={loading} type="submit">
