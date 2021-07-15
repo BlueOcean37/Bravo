@@ -1,5 +1,8 @@
 import React from 'react';
 import fetch from 'cross-fetch';
+
+import { Link, useHistory } from 'react-router-dom';
+
 import searchStyle from './search.module';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -13,6 +16,7 @@ function sleep(delay = 0) {
 
 export default function Search() {
   const [open, setOpen] = React.useState(false);
+  const [showId, setShowid] = React.useState();
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
 
@@ -62,7 +66,14 @@ export default function Search() {
         <>
           <a>
             <img className={searchStyle.photo} alt="show image" src={option.photo}></img>
-            <p> {option.title}</p>
+            <p
+              onClick={() => {
+                setShowid(option.id);
+                <Link to={`'/shows/${option.id}'`}> Home </Link>;
+              }}
+            >
+              {option.title}
+            </p>
           </a>
         </>
       )}
