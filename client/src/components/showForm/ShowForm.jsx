@@ -88,45 +88,46 @@ export default function ShowForm() {
       <div className={styles.form}>
         <div className={styles.input}>
           <TextField
+            autoFocus={true}
             id="title"
             label="Show Title"
             value={title}
-            required
+            required={true}
             onChange={(e) => setTitle(e.target.value)}
           />
           <TextField
             id="street"
             label="Street Address"
             value={street}
-            required
+            required={true}
             onChange={(e) => setStreet(e.target.value)}
           />
           <TextField
             id="city"
             label="City"
             value={city}
-            required
+            required={true}
             onChange={(e) => setCity(e.target.value)}
           />
           <TextField
             id="state"
             label="State"
             value={state}
-            required
+            required={true}
             onChange={(e) => setState(e.target.value)}
           />
           <TextField
             id="zip"
             label="Zipcode"
             value={zip}
-            required
+            required={true}
             onChange={(e) => setZip(e.target.value)}
           />
           <TextField
             id="date"
             label="Dates"
             value={date}
-            required
+            required={true}
             type="date"
             onChange={(e) => setDate(e.target.value)}
           />
