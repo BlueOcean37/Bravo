@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import searchStyle from './search.module';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 function sleep(delay = 0) {
@@ -47,9 +48,14 @@ export default function Search() {
     }
   }, [open]);
 
+  const filterOptions = createFilterOptions({
+    limit: 5,
+    stringify: (option) => option.title,
+  });
+
   return (
     <Autocomplete
-      id="asynchronous-demo"
+      id="search"
       style={{ width: 300, background: 'white' }}
       open={open}
       onOpen={() => {
@@ -62,18 +68,17 @@ export default function Search() {
       getOptionLabel={(option) => option.title}
       options={options}
       loading={loading}
+      filterOptions={filterOptions}
       renderOption={(option) => (
         <>
-          <a>
+          <a
+            onClick={() => {
+              setShowid(option.id);
+              <Link to={`'/shows/${option.id}'`}> Home </Link>;
+            }}
+          >
             <img className={searchStyle.photo} alt="show image" src={option.photo}></img>
-            <p
-              onClick={() => {
-                setShowid(option.id);
-                <Link to={`'/shows/${option.id}'`}> Home </Link>;
-              }}
-            >
-              {option.title}
-            </p>
+            <p>{option.title}</p>
           </a>
         </>
       )}

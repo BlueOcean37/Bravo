@@ -18,6 +18,22 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
+import { ThemeProvider } from '@material-ui/core';
+// import Paper from '@material-ui/core/Paper';
+import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import Brightness3Icon from '@material-ui/icons/Brightness3';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginBottom: theme.spacing(2),
+    flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -26,6 +42,11 @@ export default function NavBar() {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const { logout, currentUser } = useAuth();
   const history = useHistory();
+
+  const [theme, setTheme] = useState(true);
+  const classes = useStyles();
+  const icon = !theme ? <Brightness7Icon /> : <Brightness3Icon />;
+  const appliedTheme = createMuiTheme(theme ? light : dark);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -82,53 +103,49 @@ export default function NavBar() {
   );
 
   return (
-    <div className={navstyle.grow}>
-      <AppBar style={{ background: '#000000' }} position="relative">
-        <Toolbar className={navstyle.toolBar}>
-          <Logo />
-          <AppMenu />
-          <div className={navstyle.grow} />
-          <Search />
-          <div className={navstyle.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="primary">
-              <Badge color="secondary">
-                <button
-                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-                  tabindex="0"
-                  type="button"
-                  aria-label="Toggle light/dark theme"
-                  data-ga-event-category="header"
-                  data-ga-event-action="dark"
-                  title="Toggle light/dark theme"
-                >
-                  <span class="MuiIconButton-label">
-                    <svg
-                      class="MuiSvgIcon-root"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"></path>
-                    </svg>
-                  </span>
-                  <span class="MuiTouchRipple-root"></span>
-                </button>
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="primary"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMenu}
-    </div>
+    <ThemeProvider>
+      <div className={navstyle.grow}>
+        <AppBar style={{ background: '#000000' }} position="relative">
+          <Toolbar className={navstyle.toolBar}>
+            <Logo />
+            <AppMenu />
+            <div className={navstyle.grow} />
+            <Search />
+            <div className={navstyle.sectionDesktop}>
+              <IconButton
+                edge="end"
+                color="inherit"
+                aria-label="mode"
+                onClick={() => setTheme(!theme)}
+              >
+                {icon}
+              </IconButton>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="primary"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+        {renderMenu}
+      </div>
+    </ThemeProvider>
   );
 }
+
+export const light = {
+  palette: {
+    type: 'light',
+  },
+};
+export const dark = {
+  palette: {
+    type: 'dark',
+  },
+};
