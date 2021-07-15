@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import {
   TextField,
   Button,
@@ -12,6 +12,7 @@ import {
 import { DropzoneArea } from 'material-ui-dropzone';
 import axios from 'axios';
 import styles from './showForm.module';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function ShowForm() {
   const [title, setTitle] = useState('');
@@ -19,21 +20,31 @@ export default function ShowForm() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(null);
   const [website, setWebsite] = useState('');
   const [cast, setCast] = useState('');
   const [description, setDescription] = useState('');
   const [photo, setPhoto] = useState('');
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
+  const [newShowID, setNewShowID] = useState(null);
+  const [redirectToShowPage, setRedirectToShowPage] = useState(false);
+  const [counter, setCounter] = useState(6);
 
   const formValidation = () => {
     return title && street && city && state && zip && date;
   };
 
-  const handleImageUpload = (file) => {
-    setPhoto(file[0]);
-    const photoData = new FormData().append('showImage', photo);
-  };
+  useEffect(() => {
+    if (counter < 6) {
+      const countDown = setTimeout(() => {
+        setCounter(counter - 1);
+        if (counter === 0) {
+          setRedirectToShowPage(true);
+        }
+      }, 1000);
+      return () => clearTimeout(countDown);
+    }
+  }, [counter]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +64,11 @@ export default function ShowForm() {
       };
       axios
         .post('/api/shows/', newShow)
-        .then((res) => setSubmitDialogOpen(true))
+        .then((res) => {
+          setSubmitDialogOpen(true);
+          setNewShowID(res.data.id);
+          setCounter(5);
+        })
         .catch((err) => {
           console.error('There was an error', err);
           alert('There was a problem submitting your show, please try again');
@@ -63,18 +78,9 @@ export default function ShowForm() {
     }
   };
 
-  const resetForm = () => {
-    setTitle('');
-    setStreet('');
-    setCity('');
-    setState('');
-    setZip('');
-    setDate('');
-    setWebsite('');
-    setCast('');
-    setDescription('');
-    setPhoto('');
-  };
+  if (redirectToShowPage) {
+    return <Redirect to={{ pathname: '/shows', state: { show_id: newShowID } }} />;
+  }
 
   return (
     <div className={styles.container}>
@@ -82,45 +88,47 @@ export default function ShowForm() {
       <div className={styles.form}>
         <div className={styles.input}>
           <TextField
+            autoFocus={true}
             id="title"
             label="Show Title"
             value={title}
-            required
+            required={true}
             onChange={(e) => setTitle(e.target.value)}
           />
           <TextField
             id="street"
             label="Street Address"
             value={street}
-            required
+            required={true}
             onChange={(e) => setStreet(e.target.value)}
           />
           <TextField
             id="city"
             label="City"
             value={city}
-            required
+            required={true}
             onChange={(e) => setCity(e.target.value)}
           />
           <TextField
             id="state"
             label="State"
             value={state}
-            required
+            required={true}
             onChange={(e) => setState(e.target.value)}
           />
           <TextField
             id="zip"
             label="Zipcode"
             value={zip}
-            required
+            required={true}
             onChange={(e) => setZip(e.target.value)}
           />
           <TextField
             id="date"
             label="Dates"
+            InputLabelProps={{ shrink: true }}
             value={date}
-            required
+            required={true}
             type="date"
             onChange={(e) => setDate(e.target.value)}
           />
@@ -147,11 +155,6 @@ export default function ShowForm() {
             filesLimit={1}
             acceptedFiles={['image/*']}
             dropzoneText={'Drag and drop an image here or click'}
-            onChange={(file) => {
-              if (file.length) {
-                handleImageUpload(file);
-              }
-            }}
           />
           <div>
             <Button className={styles.btn} onClick={handleSubmit}>
@@ -165,21 +168,15 @@ export default function ShowForm() {
               <DialogTitle id="submit-dialog-title">{'Your show has been submitted'}</DialogTitle>
               <DialogContent>
                 <DialogContentText id="submit-dialog-description">
-                  Your show has successfully been submitted. Would you like to add another show or
-                  return to the homepage?
+                  Your show has successfully been submitted. You will be redirected to your new
+                  show's page in {counter} seconds.
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button
-                  onClick={() => {
-                    resetForm();
-                    setSubmitDialogOpen(false);
-                  }}
-                >
-                  <Link to="/addShow">Add another show</Link>
-                </Button>
-                <Button onClick={() => setSubmitDialogOpen(false)} autoFocus>
-                  <Link to="/">Go to the homepage</Link>
+                <Button onClick={() => setSubmitDialogOpen(false)}>
+                  <Link to={{ pathname: '/shows', state: { show_id: newShowID } }}>
+                    Continue to show page
+                  </Link>
                 </Button>
               </DialogActions>
             </Dialog>
