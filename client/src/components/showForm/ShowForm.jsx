@@ -86,6 +86,7 @@ export default function ShowForm() {
           <div className={styles.form}>
             <div className={styles.input}>
               <TextField
+                autoFocus={true}
                 id="title"
                 label="Show Title"
                 value={title}
