@@ -1,6 +1,10 @@
+@import '../styles/global';
+
 #reviews {
   display: flex;
   flex-direction: column;
+  background-color: $bgcolor;
+  color: $fontcolor;
 }
 
 #outerReviewsContainer {

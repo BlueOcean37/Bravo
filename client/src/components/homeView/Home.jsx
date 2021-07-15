@@ -3,16 +3,19 @@ import axios from 'axios';
 import styles from './home.module.scss';
 import ReviewCard from '../commons/ReviewCard';
 import HomeShows from './HomeShows';
+import globalStyle from '../styles/_global.scss';
 
 export default function Home() {
+  console.log('styles', document.documentElement.style);
   const [reviews, setReviews] = useState([]);
   const [reviewsDisplay, setReviewsDisplay] = useState(4);
 
   useEffect(() => {
-    axios.get('/api/reviews')
-      .then(({ data }) => setReviews(data))  
-      .catch((err) => console.log(err))
-  }, [])
+    axios
+      .get('/api/reviews')
+      .then(({ data }) => setReviews(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   function displayMoreReviews(e) {
     if (e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight) {
@@ -20,48 +23,44 @@ export default function Home() {
     }
   }
 
-  return (
-    reviews
-      ? <section id={styles.reviews}>
-          <h2>
-            Trending
-          </h2>
-          <HomeShows sort={'rating'}/>
-          <h2>
-            Most Recent
-          </h2>
-          <HomeShows sort={'date'}/>
-        <section id={styles.outerReviewsContainer}>
-          <h2>
-            REVIEWS
-          </h2>
-            <div id={styles.innerReviewsContainer} onScroll={displayMoreReviews}>
-              {reviews.map((review, index) => (
-                <div key={index}>
-                  {index <= reviewsDisplay ? 
-                  <div>
-                    <ReviewCard
-                      key={index}
-                      id={review.id}
-                      user_id={review.user_id}
-                      user_photo={review.user[0].photo}
-                      username={review.user[0].username}
-                      title={review.show[0].title}
-                      show_photo={review.show[0].photo}
-                      location={review.show[0].location}
-                      rating={review.rating}
-                      text={review.text}
-                      show_id={review.show_id}
-                      date={review.date}
-                      comments={review.comments}
-                    />
-                  </div>
-                  : null}
+  return reviews ? (
+    <section id={styles.reviews}>
+      <div>
+        <h2>Trending</h2>
+        <HomeShows sort={'rating'} />
+      </div>
+      <div>
+        <h2>Most Recent</h2>
+        <HomeShows sort={'date'} />
+      </div>
+      <section id={styles.outerReviewsContainer}>
+        <h2>REVIEWS</h2>
+        <div id={styles.innerReviewsContainer} onScroll={displayMoreReviews}>
+          {reviews.map((review, index) => (
+            <div key={index}>
+              {index <= reviewsDisplay ? (
+                <div>
+                  <ReviewCard
+                    key={index}
+                    id={review.id}
+                    user_id={review.user_id}
+                    user_photo={review.user[0].photo}
+                    username={review.user[0].username}
+                    title={review.show[0].title}
+                    show_photo={review.show[0].photo}
+                    location={review.show[0].location}
+                    rating={review.rating}
+                    text={review.text}
+                    show_id={review.show_id}
+                    date={review.date}
+                    comments={review.comments}
+                  />
                 </div>
-              ))}
+              ) : null}
             </div>
-          </section>
-        </section>
-      : null
-  )
+          ))}
+        </div>
+      </section>
+    </section>
+  ) : null;
 }
