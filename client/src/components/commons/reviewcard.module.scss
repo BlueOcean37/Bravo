@@ -1,9 +1,3 @@
-.container {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
 .reviewContainer {
   display: flex;
   padding: 24px;
@@ -14,9 +8,11 @@
   align-items: center;
   flex-direction: column;
 }
+
 #upVote{
   color: green
 }
+
 #downVote {
   color: red;
 }
@@ -26,10 +22,15 @@
   justify-content: space-between;
   padding-right: 16px;
   padding-left: 16px;
+  width: 100%;
 }
+
 .rightSideContainer{
   display: flex;
+  width: 100%;
 }
+
+
 .header {
   display: flex;
   align-items: center;
@@ -76,8 +77,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 16%;
 }
+
 .commentTime {
   display: flex;
   justify-content: flex-end;
@@ -89,9 +90,3 @@
   color: grey;
   margin-right: 10px;
 }
-
-
-
-
-
-

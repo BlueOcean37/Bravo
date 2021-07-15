@@ -1,0 +1,18 @@
+.showsContainer {
+  display: flex;
+  align-self: center;
+}
+
+.imgContainer{
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  height: 200px;
+  margin: 20px;
+}
+
+.showsPhoto {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

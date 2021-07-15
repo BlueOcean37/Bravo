@@ -13,6 +13,7 @@ class Shows extends React.Component {
 
       showInfo: {},
     };
+    console.log('THIS IS PROPS', this.props);
     // console.log("THIS IS REVIEWS RESPONSE", this.state.reviews);
     this.getReviews = this.getReviews.bind(this);
     this.handleAddNewReview = this.handleAddNewReview.bind(this);
@@ -20,7 +21,7 @@ class Shows extends React.Component {
 
   getReviews() {
     axios
-      .get('/api/shows/2')
+      .get(`/api/shows/${this.props.location.state}`)
       .then(({ data }) => {
         // console.log("THIS IS DATA RESPONSE", data);
         // console.log("THIS IS REVIEWS RESPONSE", data[0].reviews);
