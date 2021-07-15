@@ -96,9 +96,7 @@ export default function ReviewCard({
             <div className={showPhotoContainer}>
               <img src={show_photo} className={showPhoto} alt="show photo"></img>
             </div>
-          ) : (
-            <div />
-          )}
+          ) : null}
         </div>
         <div className={cardContainer}>
           <div className={header}>
