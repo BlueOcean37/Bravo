@@ -2,25 +2,25 @@ import React from "react";
 import Comments from './Comments.jsx';
 
 //ADD A REVIEW
-class Review extends React.Component {
-  constructor(props) {
-    super(props);
+// class Review extends React.Component {
+//   constructor(props) {
+//     super(props);
 
-    this.state = {
+//     this.state = {
 
-      id:"",
-      downvote:"",
-      upvote:"",
-      comments:[],
-      rating:""
-    };
+//       id:"",
+//       downvote:"",
+//       upvote:"",
+//       comments:[],
+//       rating:""
+//     };
 
-  }
+//   }
 
-  render() {
+//   render() {
 
-  }
-}
+//   }
+// }
 
 const Review = ({reviewData}, {comments}, {handleUpVote}, {handleDownVote}) => {
 return (
