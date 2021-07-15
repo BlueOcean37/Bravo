@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core'
 import { ArrowForward, ArrowBack } from '@material-ui/icons';
 import styles from './homeshows.module';
@@ -43,10 +44,12 @@ export default function HomeShows({sort}) {
           <div key={index}>
             {index >= start && index <= start + 3 ? 
             <div className={styles.imgContainer}>
-              <img 
-                className={styles.showsPhoto} 
-                src={show.photo}
-              />
+              <Link to={{ pathname: '/shows', state: show.id }}>
+                <img 
+                  className={styles.showsPhoto} 
+                  src={show.photo}
+                />
+              </Link>
             </div>
             : null}
           </div>))} 
