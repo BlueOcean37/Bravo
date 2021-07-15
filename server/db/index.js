@@ -1,6 +1,7 @@
 // database setup goes here
 require("dotenv").config();
 
+
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -17,3 +18,7 @@ pool.query("SELECT NOW()", (err, res) => {
 });
 
 module.exports = pool;
+
+
+// psql -U postgres
+//  password: postgres
