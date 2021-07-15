@@ -83,7 +83,7 @@ export default function NavBar() {
 
   return (
     <div className={navstyle.grow}>
-      <AppBar color="transparent" position="fixed">
+      <AppBar style={{ background: '#000000' }} position="relative">
         <Toolbar className={navstyle.toolBar}>
           <Logo />
           <AppMenu />
