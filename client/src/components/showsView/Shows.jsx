@@ -1,14 +1,9 @@
-// shows MAIN page, only import sub components here
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import ShowInfo from "./ShowInfo.jsx";
 import Reviews from "./Reviews.jsx";
 import AddReview from "./AddReview.jsx";
-
-// export default function Shows() {
-//   return <div>Shows Main Page</div>;
-// }
 
 class Shows extends React.Component {
   constructor(props) {
@@ -37,18 +32,18 @@ class Shows extends React.Component {
           reviews: data[0].reviews,
           showInfo: {
             id: data[0].id,
-          user_id: data[0].user_id,
-          showTitle: data[0].title,
-          showPhoto: data[0].photo,
-          showDate: data[0].date,
-          showWebsite: data[0].website,
-          showDescription: data[0].description,
-          showCast: data[0].cast,
-          showStreet: data[0].street,
-          showCity: data[0].city,
-          showZip: data[0].zip,
-          showState: data[0].state,
-          showRating: data[0].rating
+            user_id: data[0].user_id,
+            showTitle: data[0].title,
+            showPhoto: data[0].photo,
+            showDate: data[0].date,
+            showWebsite: data[0].website,
+            showDescription: data[0].description,
+            showCast: data[0].cast,
+            showStreet: data[0].street,
+            showCity: data[0].city,
+            showZip: data[0].zip,
+            showState: data[0].state,
+            showRating: data[0].rating
           }
         });
       })
@@ -64,7 +59,6 @@ class Shows extends React.Component {
       user_id: reviewData.user_id,
       show_rating: reviewData.show_rating,
       text: reviewData.text
-
     })
     .then((response) => {
       console.log("THIS IS RESPONSE WITH NEW REVIEW", response);
@@ -72,7 +66,7 @@ class Shows extends React.Component {
     .catch ((error) => {
       console.log("THIS IS RESPONSE WITH NEW review", error);
     })
-    .then ( () => this.getReviews());
+    .then (() => this.getReviews());
   }
 
   // user_id integer NOT NULL,
@@ -93,11 +87,6 @@ class Shows extends React.Component {
   //     .catch((err) => console.log(err));
   // }
 
-
-
-
-
-
   componentDidMount() {
     this.getReviews();
   }
@@ -106,23 +95,16 @@ class Shows extends React.Component {
     return (
 
    <div>
-
-      <ShowInfo showData= {this.state.showInfo}
-      />
-
-
-    <AddReview handleAddNewReview = {this.handleAddNewReview}
-    userId={this.state.showInfo.user_id}
-    id={this.state.showInfo.id}
+      <ShowInfo showData= {this.state.showInfo}/>
+      <AddReview handleAddNewReview = {this.handleAddNewReview}
+      userId={this.state.showInfo.user_id}
+      id={this.state.showInfo.id}
     />
-
-
-      <Reviews reviewData= {this.state.reviews} />
-
+      <Reviews reviewData= {this.state.reviews} showInfo={this.state.showInfo}/>
     </div>
-
     )}
 }
+
 export default Shows;
 
 
