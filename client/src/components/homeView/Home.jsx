@@ -19,9 +19,10 @@ export default function Home() {
       setReviewsDisplay(reviewsDisplay + 3);
     }
   }
+
   return (
-    <div className={styles.layoutSize}>
-      <section id={styles.reviews}>
+    reviews
+      ? <section id={styles.reviews}>
           <h2>
             Trending
           </h2>
@@ -61,6 +62,6 @@ export default function Home() {
             </div>
         </section>
       </section>
-    </div>
+      : null
   )
 }
