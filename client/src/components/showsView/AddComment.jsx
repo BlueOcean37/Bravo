@@ -1,7 +1,7 @@
 // import React from 'react';
-// import { useAuth } from '../../contexts/AuthContext';
+// // import { useAuth } from '../../contexts/AuthContext';
 
-// const { currentUser } = useAuth();
+// // const { currentUser } = useAuth();
 
 // class AddComment extends React.Component {
 //   constructor(props) {
@@ -21,7 +21,7 @@
 //     event.preventDefault();
 
 //     this.props.handleAddNewComment({
-//       user_id: this.props.id,
+//       user_id: this.props.user_id,
 //       review_id: this.props.review_id,
 //       text: this.state.text,
 //     });
@@ -52,4 +52,4 @@
 //     );
 //   }
 // }
-// export default addComment;
+// export default AddComment;

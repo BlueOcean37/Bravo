@@ -79,7 +79,7 @@ export default function ShowForm() {
   };
 
   if (redirectToShowPage) {
-    return <Redirect to={{ pathname: '/shows', state: { show_id: newShowID } }} />;
+    return <Redirect to={{ pathname: '/shows', state: newShowID }} />;
   }
 
   return (

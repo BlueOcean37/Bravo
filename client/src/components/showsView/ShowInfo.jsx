@@ -36,5 +36,3 @@ const ShowInfo = ({ showData }) => {
 };
 
 export default ShowInfo;
-
-//add

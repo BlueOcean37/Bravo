@@ -14,10 +14,6 @@ class Reviews extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.getReviews();
-  // }
-
   render() {
     if (this.props.reviewData) {
       return (

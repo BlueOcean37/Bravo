@@ -4,6 +4,7 @@ import axios from 'axios';
 import ShowInfo from './ShowInfo.jsx';
 import Reviews from './Reviews.jsx';
 import AddReview from './AddReview.jsx';
+// import AddComment from './AddComment.jsx';
 
 class Shows extends React.Component {
   constructor(props) {
@@ -13,16 +14,16 @@ class Shows extends React.Component {
 
       showInfo: {},
     };
-    console.log('THIS IS PROPS', this.props);
+    // console.log('THIS IS PROPS', this.props);
     // console.log("THIS IS REVIEWS RESPONSE", this.state.reviews);
     this.getReviews = this.getReviews.bind(this);
     this.handleAddNewReview = this.handleAddNewReview.bind(this);
     // this.handleAddNewComment = this.handleAddNewComment.bind(this);
   }
-
+  // ${this.props.location.state}
   getReviews() {
     axios
-      .get(`/api/shows/${this.props.location.state}`)
+      .get(`/api/shows/3`)
       .then(({ data }) => {
         // console.log("THIS IS DATA RESPONSE", data);
         // console.log("THIS IS REVIEWS RESPONSE", data[0].reviews);
@@ -50,11 +51,12 @@ class Shows extends React.Component {
   }
 
   // handleAddNewComment(commentData) {
-
-  //   axios.post(`/api/reviews/${this.props.}/comment`, {
-  //       id: reviewData.review_id,
-  //       user_id: reviewData.user_id,
-  //       text: reviewData.text,
+  //   console.log('THIS IS REVIEW ID', this.props.review_id);
+  //   axios
+  //     .post(`/api/reviews/${this.props.review_id}/comment`, {
+  //       id: this.props.review_id,
+  //       user_id: commentData.user_id,
+  //       text: commentData.text,
   //     })
   //     .then((response) => {
   //       console.log('THIS IS RESPONSE WITH NEW REVIEW', response);
@@ -85,31 +87,16 @@ class Shows extends React.Component {
       .then(() => this.getReviews());
   }
 
-  // user_id integer NOT NULL,
-  // show_rating numeric NOT NULL,
-  // text character varying NOT NULL,
-  // date bigint NOT NULL,
-  // rating
-
-  // handleFilterReviews(types) {
-  //   // console.log("TYPES", types)
-  //   axios.get('/reviews', {params: types})
-  //     .then(({ data }) => {
-  //       // console.log(data);
-  //       this.setState({
-  //         reviews: data
-  //       });
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
   componentDidMount() {
     this.getReviews();
   }
 
   render() {
+    // if (this.state) {
+    // (
     return (
       <div>
+        {console.log('THIS IS STATE', this.state)}
         <ShowInfo showData={this.state.showInfo} />
         <AddReview
           handleAddNewReview={this.handleAddNewReview}
@@ -119,15 +106,16 @@ class Shows extends React.Component {
         <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
 
         {/* <AddComment
-          user_id={this.state.showInfo.user_id}
-          showInfo={this.state.showInfo}
-          handleAddNewComment={this.handleAddNewComment}
-        /> */}
+            user_id={this.state.showInfo.user_id}
+            // showInfo={this.state.showInfo}
+            handleAddNewComment={this.handleAddNewComment}
+          /> */}
       </div>
     );
+    // } else {
+    //   return null;
+    // }
   }
 }
-//add
-export default Shows;
 
-// ReactDOM.render(<App />, document.getElementById("app"));
+export default Shows;

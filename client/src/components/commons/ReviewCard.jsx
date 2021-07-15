@@ -25,6 +25,7 @@ const {
   commentTime,
   textTime,
 } = styles;
+import Shows from './../showsView/Shows';
 
 export default function ReviewCard({
   id,
@@ -118,6 +119,9 @@ export default function ReviewCard({
           </div>
           <div className={footer}>
             <DisplayComments comments={comments} />
+          </div>
+          <div>
+            <Shows review_id={id} />
           </div>
         </div>
       </div>
