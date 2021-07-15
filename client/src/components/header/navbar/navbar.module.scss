@@ -5,7 +5,11 @@
 }
 
 .toolBar {
-  background-color: #cc0014;
+  // background-color: #cc0014;
+}
+
+.appBar {
+  background-color: #000000;
 }
 
 .menuButton {
@@ -18,6 +22,8 @@
 
 .sectionDesktop{
   display: 'none';
+  padding-right: 25px;
+  padding-left: 25px;
 }
 
 .sectionMobile {

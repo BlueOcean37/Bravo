@@ -20,7 +20,7 @@ export default function ShowForm() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(null);
   const [website, setWebsite] = useState('');
   const [cast, setCast] = useState('');
   const [description, setDescription] = useState('');
@@ -126,6 +126,7 @@ export default function ShowForm() {
           <TextField
             id="date"
             label="Dates"
+            InputLabelProps={{ shrink: true }}
             value={date}
             required={true}
             type="date"

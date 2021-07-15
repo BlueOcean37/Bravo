@@ -46,7 +46,7 @@ export default function Search() {
   return (
     <Autocomplete
       id="asynchronous-demo"
-      style={{ width: 300 }}
+      style={{ width: 300, background: 'white' }}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -75,7 +75,7 @@ export default function Search() {
             ...params.InputProps,
             endAdornment: (
               <>
-                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                {loading ? <CircularProgress color="primary" size={20} /> : null}
                 {params.InputProps.endAdornment}
               </>
             ),
