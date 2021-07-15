@@ -2,6 +2,7 @@
 import React from 'react';
 import Review from './Review.jsx';
 import axios from 'axios';
+import ReviewCard from '../commons/ReviewCard';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -32,8 +33,10 @@ class Reviews extends React.Component {
       <h1> Reviews  </h1>
 
  {this.props.reviewData ? this.props.reviewData.map(review => {
+   console.log(review)
  return (
-    <Review reviewData ={review} comments={this.props.comments}/>
+   <ReviewCard username={review.username} date={review.date} text={review.text} rating={review.rating} />
+    // <Review reviewData ={review} comments={this.props.comments}/>
  )}) : null
   }
 
