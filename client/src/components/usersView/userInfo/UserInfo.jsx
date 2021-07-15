@@ -3,8 +3,7 @@ import axios from 'axios';
 import styles from './userInfo.module';
 const { container, photoContainer, photo, name } = styles;
 
-export default function UserInfo() {
-  const id = 8;
+export default function UserInfo({id}) {
   const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
     axios

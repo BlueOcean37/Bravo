@@ -4,11 +4,11 @@ import UserInfo from './userInfo/UserInfo.jsx';
 import UserReviews from './userReviews/UserReviews';
 import styles from './users.module';
 const { container } = styles;
-export default function Users(id) {
+export default function Users({location}) {
   return (
     <div className={container}>
-      <UserInfo id={id} />
-      <UserReviews id={id} />
+      <UserInfo id={location.state} />
+      <UserReviews id={location.state} />
     </div>
   );
 }
