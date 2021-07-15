@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from '../../contexts/AuthContext';
 import styles from './home.module.scss';
 import ReviewCard from '../commons/ReviewCard';
 import HomeShows from './HomeShows';
@@ -8,7 +7,6 @@ import HomeShows from './HomeShows';
 export default function Home() {
   const [reviews, setReviews] = useState([]);
   const [reviewsDisplay, setReviewsDisplay] = useState(4);
-  const { currentUser } = useAuth();
 
   useEffect(() => {
     axios.get('/api/reviews')
@@ -21,10 +19,9 @@ export default function Home() {
       setReviewsDisplay(reviewsDisplay + 3);
     }
   }
-
   return (
-    reviews
-      ? <section id={styles.shows_reviews}>
+    <div className={styles.layoutSize}>
+      <section id={styles.reviews}>
           <h2>
             Trending
           </h2>
@@ -42,11 +39,11 @@ export default function Home() {
                 <div key={index}>
                   {index <= reviewsDisplay ? 
                   <div>
-                    {console.log(review)}
                     <ReviewCard
                       key={index}
                       id={review.id}
                       user_id={review.user_id}
+                      user_photo={review.user[0].photo}
                       username={review.user[0].username}
                       title={review.show[0].title}
                       show_photo={review.show[0].photo}
@@ -64,6 +61,6 @@ export default function Home() {
             </div>
         </section>
       </section>
-      : null
+    </div>
   )
 }

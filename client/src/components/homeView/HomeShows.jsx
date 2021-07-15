@@ -35,28 +35,26 @@ export default function HomeShows({query}) {
   }
 
   return (
-    shows ?  
-      <div className={styles.showsContainer}>
-        <Button onClick={() => displayMoreShows('back')}>
-          <ArrowBack/>
-        </Button>
-          {shows.map((show, index) => (
-            <div key={index}>
-              {index >= start && index <= start + 3 ? 
-              <div className={styles.imgContainer}>
-                {/* <h3>{show.title}</h3> */}
-                <img 
-                  className={styles.showsPhoto} 
-                  src={show.photo}
-                />
-              </div>
-              : null}
-            </div>))} 
-        <Button onClick={() => displayMoreShows('forward')}>
-          <ArrowForward/>
-        </Button>
-      </div> 
-    : null
+    <div className={styles.showsContainer}>
+      <Button onClick={() => displayMoreShows('back')}>
+        <ArrowBack/>
+      </Button>
+        {shows.map((show, index) => (
+          <div key={index}>
+            {index >= start && index <= start + 3 ? 
+            <div className={styles.imgContainer}>
+              {/* <h3>{show.title}</h3> */}
+              <img 
+                className={styles.showsPhoto} 
+                src={show.photo}
+              />
+            </div>
+            : null}
+          </div>))} 
+      <Button onClick={() => displayMoreShows('forward')}>
+        <ArrowForward/>
+      </Button>
+    </div> 
   ) 
 }
 
