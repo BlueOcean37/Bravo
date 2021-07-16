@@ -158,7 +158,6 @@ export default function ReviewCard({
     </div>
   );
 }
-
 const ReadMore = ({ text }) => {
   const [isReadMore, setIsReadMore] = useState(true);
   const toggleReadMore = () => {

@@ -84,7 +84,7 @@ export default function Search() {
 
   return (
     <Autocomplete
-      id="search"
+      id="standard-basic"
       style={{ width: 500, background: 'white' }}
       open={open}
       onOpen={() => {
@@ -100,7 +100,7 @@ export default function Search() {
       filterOptions={filterOptions}
       renderOption={(option) => (
         <>
-          <Link to={`/shows/${option.id}`}>
+          <Link to={{ pathname: `/shows`, state: option.id }}>
             <Card className={classes.root} variant="outlined">
               <CardMedia className={classes.cover} image={`${option.photo}`} title={option.title} />
               <div className={classes.details}>
@@ -125,8 +125,6 @@ export default function Search() {
         <TextField
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...params}
-          label="Search for shows or users"
-          variant="outlined"
           InputProps={{
             ...params.InputProps,
             endAdornment: (
