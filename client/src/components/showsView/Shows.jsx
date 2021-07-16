@@ -3,6 +3,7 @@ import axios from 'axios';
 import ShowInfo from './ShowInfo';
 import Reviews from './Reviews';
 import AddReview from './AddReview';
+import styles from './shows.module.scss';
 
 class Shows extends React.Component {
   constructor(props) {
@@ -58,17 +59,18 @@ class Shows extends React.Component {
       })
       .catch((err) => console.log(err));
   }
-
   render() {
     return (
-      <div>
+      <div className={styles.container}>
         <ShowInfo showData={this.state.showInfo} />
-        <AddReview
-          handleAddNewReview={this.handleAddNewReview}
-          userId={13}
-          id={this.state.showInfo.id}
-        />
-        <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
+        <div className={styles.reviewsContainer}>
+          <AddReview
+            handleAddNewReview={this.handleAddNewReview}
+            userId={13}
+            id={this.state.showInfo.id}
+          />
+          <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
+        </div>
       </div>
     );
   }

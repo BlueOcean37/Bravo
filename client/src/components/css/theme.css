@@ -1,6 +1,12 @@
 :root {
-  --bg-color: #eef7fc;
+  --bg-color: #121212;
   --border-color: #c7c7c4;
   --brand-color: #2274a5;
-  --font-color: #030c11;
+  --font-color: #fcf6ed;
+}
+
+body {
+  margin: 0px;
+  background-color: var(--bg-color);
+  color: var(--font-color);
 }

@@ -1,24 +1,23 @@
 import React from 'react';
 import { Rating } from '@material-ui/lab';
+import styles from './showinfo.module.scss';
 
 const ShowInfo = ({ showData }) => (
-  <div>
+  <div className={styles.showInfoContainer}>
     <h1> Show Info </h1>
-    <p className="showTitle">{showData.showTitle}</p>
-    <div className="showInfo">
-      <img className="showPhoto" src={showData.showPhoto} />
-      {showData.showRating ? <Rating value={showData.showRating} readOnly /> : null}
-      <p className="showDates">{new Date(Number(showData.showDate)).toLocaleDateString('en-US')}</p>
-      <a href={showData.showWebsite} className="showWeb">
-        Show's Website
-      </a>
-      <p className="showDescript"> {showData.showDescription} </p>
-      <p className="showCast"> {showData.showCast} </p>
-      <p className="showLocation">
-        Theatre Address: {showData.showStreet}
-        {showData.showCity} {showData.showZip} {showData.showState}
-      </p>
-    </div>
+    <img src={showData.showPhoto} />
+    <p>{showData.showTitle}</p>
+    {showData.showRating ? <Rating value={showData.showRating} readOnly /> : null}
+    <p>{new Date(Number(showData.showDate)).toLocaleDateString('en-US')}</p>
+    <a href={showData.showWebsite} className={styles.link}>
+      Go to Website
+    </a>
+    <p className={styles.description}> {showData.showDescription} </p>
+    <p> {showData.showCast} </p>
+    <p>
+      Theatre Address: {showData.showStreet}
+      {showData.showCity} {showData.showZip} {showData.showState}
+    </p>
   </div>
 );
 
