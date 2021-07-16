@@ -4,5 +4,3 @@ SELECT setval('shows_id_seq', max(id)) FROM shows;
 SELECT setval('users_id_seq', max(id)) FROM users;
 
 
--- \i filepath
--- /Users/VonEve/Desktop/HackReactor/HR37/Bravo/server/db/resequence.sql

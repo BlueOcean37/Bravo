@@ -80,6 +80,3 @@ ALTER TABLE public.shows
 
 END;
 
-
--- \i filepath
--- /Users/VonEve/Desktop/HackReactor/HR37/Bravo/server/db/schema.sql

@@ -1,4 +1,5 @@
 import React from 'react';
+
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +42,7 @@ class AddReview extends React.Component {
             />
           </div>
           <div className="addShowRatingBox">
-            Rate Show 1-10:
+            Rate Show 1-5:
             <input
               type="number"
               name="show_rating"

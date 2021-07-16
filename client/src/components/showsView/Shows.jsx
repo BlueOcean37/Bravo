@@ -4,7 +4,6 @@ import axios from 'axios';
 import ShowInfo from './ShowInfo.jsx';
 import Reviews from './Reviews.jsx';
 import AddReview from './AddReview.jsx';
-// import AddComment from './AddComment.jsx';
 
 class Shows extends React.Component {
   constructor(props) {
@@ -16,16 +15,12 @@ class Shows extends React.Component {
     };
     this.getReviews = this.getReviews.bind(this);
     this.handleAddNewReview = this.handleAddNewReview.bind(this);
-    // this.handleAddNewComment = this.handleAddNewComment.bind(this);
   }
 
-  // ${this.props.location.state}
   getReviews() {
     axios
       .get(`/api/shows/${this.props.location.state}`)
       .then(({ data }) => {
-        // console.log("THIS IS DATA RESPONSE", data);
-        // console.log("THIS IS REVIEWS RESPONSE", data[0].reviews);
         console.log('THIS IS SHOW INFO', data[0].title);
         this.setState({
           reviews: data[0].reviews,
@@ -48,23 +43,6 @@ class Shows extends React.Component {
       })
       .catch((err) => console.log(err));
   }
-
-  // handleAddNewComment(commentData) {
-  //   console.log('THIS IS REVIEW ID', this.props.review_id);
-  //   axios
-  //     .post(`/api/reviews/${this.props.review_id}/comment`, {
-  //       id: this.props.review_id,
-  //       user_id: commentData.user_id,
-  //       text: commentData.text,
-  //     })
-  //     .then((response) => {
-  //       console.log('THIS IS RESPONSE WITH NEW REVIEW', response);
-  //     })
-  //     .catch((error) => {
-  //       console.log('THIS IS RESPONSE WITH NEW review', error);
-  //     })
-  //     .then(() => this.getReviews());
-  // }
 
   handleAddNewReview(reviewData) {
     axios
@@ -98,12 +76,6 @@ class Shows extends React.Component {
           id={this.state.showInfo.id}
         />
         <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
-
-        {/* <AddComment
-            user_id={this.state.showInfo.user_id}
-            // showInfo={this.state.showInfo}
-            handleAddNewComment={this.handleAddNewComment}
-          /> */}
       </div>
     );
   }
