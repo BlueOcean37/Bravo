@@ -162,10 +162,10 @@ npm start
 <table>
   <tr>
     <td align="center"><a href="https://github.com/WarrenWongCodes"><img src="https://avatars.githubusercontent.com/u/8570718?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Warren Wong</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/timapar"><img src="https://avatars.githubusercontent.com/u/8570718?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Timothy Parrish</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/diegochamilton"><img src="https://avatars.githubusercontent.com/u/8570718?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Diego Coronel</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/lerisse"><img src="https://avatars.githubusercontent.com/u/8570718?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Tristan Lerisse</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/AndrewHuang123"><img src="https://avatars.githubusercontent.com/u/8570718?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Andrew Huang</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/ivapier"><img src="https://avatars.githubusercontent.com/u/8570718?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Iva Pierotic</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/timapar"><img src="https://avatars.githubusercontent.com/u/80130247?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Timothy Parrish</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/diegochamilton"><img src="https://avatars.githubusercontent.com/u/80371371?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Diego Coronel</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/lerisse"><img src="https://avatars.githubusercontent.com/u/10137509?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Tristan Lerisse</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/AndrewHuang123"><img src="https://avatars.githubusercontent.com/u/72996015?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Andrew Huang</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/ivapier"><img src="https://avatars.githubusercontent.com/u/71906102?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Iva Pierotic</b></sub></a><br /></td>
   </tr>
 </table>
