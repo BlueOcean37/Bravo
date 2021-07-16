@@ -37,7 +37,7 @@ npm start
 
 ```
 
-![readme dependency logos](client/assets/readme-logo.png 'readme dependency logos')
+![readme dependency logos](client/src/assets/readme-logo.png 'readme dependency logos')
 
 ## Technologies Used
 
@@ -72,7 +72,7 @@ npm start
 
 - Bullet point 2
 
-![Navigation Bar](client/assets/navigation.png 'Search bar feature')
+![Navigation Bar](client/src/assets/searchbar.png 'Navigation bar feature')
 
 ---
 
@@ -82,7 +82,7 @@ npm start
 
 - Bullet point 1
 
-![Pagination](client/assets/pagination.png 'pagination feature')
+![Authentication](client/src/assets/authentication.png 'Authentication feature')
 
 ---
 
@@ -112,7 +112,7 @@ npm start
 
 - Bullet point 2
 
-![accessibility report](client/assets/accessibility-report.png 'accessibility report')
+![Home Page Carousel](client/src/assets/homepagecarousel.png 'Home Page Carousel')
 
 ### Production Page
 
@@ -120,7 +120,7 @@ npm start
 
 - Bullet point 2
 
-![accessibility report](client/assets/accessibility-report.png 'accessibility report')
+![Production Page](client/src/assets/showinfo.png 'Production Page')
 
 ---
 
@@ -130,7 +130,7 @@ npm start
 
 - Bullet point 2
 
-![accessibility report](client/assets/accessibility-report.png 'accessibility report')
+![User Page](client/src/assets/userpage.png 'User Page')
 
 ---
 
@@ -138,15 +138,15 @@ npm start
 
 ### Trello
 
-- Picture
-
 - Small blurb of workflow
+
+![Trello Work Flow](client/src/assets/trello.png 'Trello Work Flow')
 
 ### Version Control
 
-- Picture
-
 - Small blurb of workflow
+
+![Git Work Flow](client/src/assets/gitworkflow.png 'Git Work Flow')
 
 ## Challenges and Learning
 
