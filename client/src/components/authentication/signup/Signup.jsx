@@ -58,7 +58,8 @@ export default function Signup() {
           email,
           first_name: firstName,
           last_name: lastName,
-          photo: 'http:123',
+          photo:
+            'https://images.unsplash.com/photo-1519689680058-324335c77eba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80',
         };
         return axios.post('/api/users', userData);
       })
