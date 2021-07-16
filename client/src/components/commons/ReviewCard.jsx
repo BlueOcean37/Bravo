@@ -5,6 +5,8 @@ import { ExpandLessOutlined, ExpandMoreOutlined } from '@material-ui/icons';
 import axios from 'axios';
 import styles from './reviewcard.module';
 import { useAuth } from '../../contexts/AuthContext';
+import LockedFeatureDialog from './lockedFeatureDialog';
+
 const {
   ratingContainer,
   cardContainer,
@@ -42,6 +44,9 @@ export default function ReviewCard({
   comments,
 }) {
   const [vote, setVote] = useState(rating);
+  const [upVote, setUpVote] = useState(true);
+  const [downVote, setDownVote] = useState(true);
+  const [showLockedFeatureDialog, setShowLockedFeatureDialog] = useState(false);
   const { currentUser } = useAuth();
 
   const onVote = (direction) => {
@@ -57,34 +62,63 @@ export default function ReviewCard({
         .catch((err) => console.log(err));
     }
   };
+
+  const upVoteDisplayHandler = (direction) => {
+    onVote(direction);
+    setUpVote(false);
+    setDownVote(false);
+  };
+
+  const downVoteDisplayHandler = (direction) => {
+    onVote(direction);
+    setDownVote(false);
+    setUpVote(false);
+  };
+
   date = new Date(Number(date)).toLocaleDateString('en-US');
   return (
     <div className={reviewContainer}>
       <div className={ratingContainer}>
+        <LockedFeatureDialog
+          showLockedFeatureDialog={showLockedFeatureDialog}
+          setShowLockedFeatureDialog={setShowLockedFeatureDialog}
+        />
         {currentUser ? (
-          <Button
-            onClick={() => {
-              onVote('up');
-            }}
-          >
-            <ExpandLessOutlined id={upVote} />
-          </Button>
+          upVote ? (
+            <Button
+              onClick={() => {
+                upVoteDisplayHandler('up');
+              }}
+            >
+              <ExpandLessOutlined id={upVote} />
+            </Button>
+          ) : (
+            <Button>
+              <ExpandLessOutlined id={upVote} />
+            </Button>
+          )
         ) : (
-          <Button>
+          <Button onClick={() => setShowLockedFeatureDialog(true)}>
             <ExpandLessOutlined id={upVote} />
           </Button>
         )}
         <h2>{vote}</h2>
         {currentUser ? (
-          <Button
-            onClick={() => {
-              onVote('down');
-            }}
-          >
-            <ExpandMoreOutlined id={downVote} />
-          </Button>
+          downVote ? (
+            <Button
+              onClick={() => {
+                downVoteDisplayHandler('down');
+              }}
+            >
+              <ExpandMoreOutlined id={downVote} />
+            </Button>
+          ) : (
+            <Button>
+              <ExpandMoreOutlined id={downVote} />
+            </Button>
+          )
         ) : (
-          <Button>
+          <Button onClick={() => setShowLockedFeatureDialog(true)}>
             <ExpandMoreOutlined id={downVote} />
           </Button>
         )}
@@ -93,7 +127,7 @@ export default function ReviewCard({
         <div className={flexShow}>
           {show_photo ? (
             <div className={showPhotoContainer}>
-              <img src={show_photo} className={showPhoto} alt="show photo"></img>
+              <img src={show_photo} className={showPhoto} alt="show photo" />
             </div>
           ) : null}
         </div>
@@ -139,9 +173,8 @@ const ReadMore = ({ text }) => {
         </span>
       </p>
     );
-  } else {
-    return <p>{text}</p>;
   }
+  return <p>{text}</p>;
 };
 
 const DisplayComments = ({ comments }) => {
