@@ -1,27 +1,42 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
-import ShowInfo from './ShowInfo.jsx';
-import Reviews from './Reviews.jsx';
-import AddReview from './AddReview.jsx';
+import ShowInfo from './ShowInfo';
+import Reviews from './Reviews';
+import AddReview from './AddReview';
 
 class Shows extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       reviews: [],
-
       showInfo: {},
     };
     this.getReviews = this.getReviews.bind(this);
     this.handleAddNewReview = this.handleAddNewReview.bind(this);
   }
 
+  componentDidMount() {
+    this.getReviews();
+  }
+
+  handleAddNewReview(reviewData) {
+    axios
+      .post('/api/reviews', {
+        show_id: reviewData.show_id,
+        user_id: 12,
+        show_rating: reviewData.show_rating,
+        text: reviewData.text,
+      })
+      .then(() => this.getReviews())
+      .catch((error) => {
+        console.error('error adding new review', error);
+      });
+  }
+
   getReviews() {
     axios
       .get(`/api/shows/${this.props.location.state}`)
       .then(({ data }) => {
-        console.log('THIS IS SHOW INFO', data[0].title);
         this.setState({
           reviews: data[0].reviews,
           showInfo: {
@@ -44,35 +59,13 @@ class Shows extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  handleAddNewReview(reviewData) {
-    axios
-      .post('/api/reviews', {
-        show_id: reviewData.show_id,
-        user_id: reviewData.user_id,
-        show_rating: reviewData.show_rating,
-        text: reviewData.text,
-      })
-      .then((response) => {
-        console.log('THIS IS RESPONSE WITH NEW REVIEW', response);
-      })
-      .catch((error) => {
-        console.log('THIS IS RESPONSE WITH NEW review', error);
-      })
-      .then(() => this.getReviews());
-  }
-
-  componentDidMount() {
-    this.getReviews();
-  }
-
   render() {
     return (
       <div>
-        {console.log('THIS IS STATE', this.state)}
         <ShowInfo showData={this.state.showInfo} />
         <AddReview
           handleAddNewReview={this.handleAddNewReview}
-          userId={this.state.showInfo.user_id}
+          userId={12}
           id={this.state.showInfo.id}
         />
         <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
