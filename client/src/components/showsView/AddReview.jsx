@@ -25,7 +25,6 @@ class AddReview extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('clicked');
     this.props.handleAddNewReview({
       show_id: this.props.id,
       user_id: this.props.userId,

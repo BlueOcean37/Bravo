@@ -2,8 +2,18 @@
 const pool = require('../../db/index');
 
 const addShow = (req, res) => {
-  console.log('this is the body:', req.body);
-  const { title, street, city, zip, state, website, description, photo, user_id, date } = req.body;
+  const {
+    title,
+    street,
+    city,
+    zip,
+    state,
+    website,
+    description,
+    photo,
+    user_id,
+    date,
+  } = req.body;
 
   const queryString = `
   INSERT INTO shows
