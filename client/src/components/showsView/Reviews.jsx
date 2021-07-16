@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ReviewCard from '../commons/ReviewCard';
 
 class Reviews extends React.Component {
@@ -16,11 +15,11 @@ class Reviews extends React.Component {
   render() {
     return (
       <div>
-        <h1> Reviews </h1>
         {this.props.reviewData
           ? this.props.reviewData.map((review) => (
               <ReviewCard
                 key={review.id}
+                user_id={this.props.showInfo.user_id}
                 user_photo={review.photo}
                 username={review.username}
                 date={review.date}

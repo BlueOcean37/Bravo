@@ -1,8 +1,9 @@
 #mainContainer {
   height: 0;
   padding-bottom: calc(56.25%);
-  position:relative;
+  position: relative;
   width: 100%;
+  pointer-events: unset;
 }
 
 #videoContainer {

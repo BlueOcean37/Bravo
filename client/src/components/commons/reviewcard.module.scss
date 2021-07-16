@@ -9,12 +9,18 @@
   flex-direction: column;
 }
 
-#upVote{
-  color: green
+.upIcon {
+  color: var(--font-color);
+  &:hover {
+    color: green;
+  }
 }
 
-#downVote {
-  color: red;
+.downIcon {
+  color: var(--font-color);
+  &:hover {
+    color: red;
+  }
 }
 .cardContainer {
   display: flex;
@@ -25,11 +31,10 @@
   width: 100%;
 }
 
-.rightSideContainer{
+.rightSideContainer {
   display: flex;
   width: 100%;
 }
-
 
 .header {
   display: flex;
@@ -53,18 +58,21 @@
   align-items: center;
   font-size: 14px;
 }
-.showPhotoContainer{
+
+.showPhotoContainer {
   display: flex;
   align-items: center;
   height: 140px;
   width: 140px;
 }
-.showPhoto{
+
+.showPhoto {
   width: 100%;
   height: 100%;
   object-fit: scale-down;
 }
-.commentsContainer{
+
+.commentsContainer {
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -73,7 +81,8 @@
   width: 30px;
   height: 30px;
 }
-.flexShow{
+
+.flexShow {
   display: flex;
   align-items: center;
   flex-direction: column;

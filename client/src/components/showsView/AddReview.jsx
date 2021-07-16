@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
+import styles from './addreview.module.scss';
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class AddReview extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.addReviewContainer}>
         <TextField
           label="Write Review"
           id="text"

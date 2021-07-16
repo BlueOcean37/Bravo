@@ -11,3 +11,14 @@ $slineheight: 1.6;
 $mlineheight: 1.4;
 $llineheight: 1.2;
 $xllineheight: 1;
+
+h1 {
+  font: $lfont;
+  line-height: $llineheight;
+}
+
+body {
+  font: $mfont;
+  line-height: $mlineheight;
+  // color: $fontcolor;
+}
