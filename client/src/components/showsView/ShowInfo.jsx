@@ -9,15 +9,21 @@ const ShowInfo = ({ showData }) => (
       <img className="showPhoto" src={showData.showPhoto} />
       <p className="showRating"> Rating: {showData.showRating}</p>
 
-      <p className="showDates"> Dates: {showData.showDate} </p>
-      <p className="showWeb"> {showData.showWebsite} </p>
+      <p className="showDates">
+        {' '}
+        {new Date(Number(showData.showDate)).toLocaleDateString('en-US')}{' '}
+      </p>
+      <a href={showData.showWebsite} className="showWeb">
+        {' '}
+        Show's Website{' '}
+      </a>
 
-      <p className="showDescript"> Description: {showData.showDescription} </p>
+      <p className="showDescript"> {showData.showDescription} </p>
       <p className="showCast"> {showData.showCast} </p>
 
       <p className="showLocation">
         {' '}
-        Address: {showData.showStreet}
+        Theatre Address: {showData.showStreet}
         {showData.showCity} {showData.showZip} {showData.showState}{' '}
       </p>
     </div>

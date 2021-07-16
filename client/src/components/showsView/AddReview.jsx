@@ -1,21 +1,29 @@
 import React from 'react';
+import { TextField, Button } from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
 
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show_rating: '',
+      show_rating: 0,
       text: '',
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleRatingChange = this.handleRatingChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ text: e.target.value });
+  }
+
+  handleRatingChange(newValue) {
+    this.setState({ show_rating: newValue });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-
     this.props.handleAddNewReview({
       show_id: this.props.id,
       user_id: this.props.userId,
@@ -23,37 +31,33 @@ class AddReview extends React.Component {
       text: this.state.text,
     });
     this.setState({
-      show_rating: '',
+      show_rating: 0,
       text: '',
     });
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <div>
-          <div className="addReviewBox">
-            Write Review:
-            <input
-              type="text"
-              name="text"
-              value={this.state.text}
-              onChange={this.handleInputChange.bind(this)}
-            />
-          </div>
-          <div className="addShowRatingBox">
-            Rate Show 1-5:
-            <input
-              type="number"
-              name="show_rating"
-              value={this.state.show_rating}
-              onChange={this.handleInputChange.bind(this)}
-            />
-          </div>
+      <div>
+        <TextField
+          label="Write Review"
+          id="text"
+          value={this.state.text}
+          required
+          onChange={(e) => {
+            this.handleInputChange(e);
+          }}
+        />
 
-          <input type="submit" value="Submit Review" />
-        </div>
-      </form>
+        <Rating
+          id="show_rating"
+          value={this.state.show_rating}
+          onChange={(e, newValue) => {
+            this.handleRatingChange(newValue);
+          }}
+        />
+        <Button onClick={this.handleSubmit}>Submit</Button>
+      </div>
     );
   }
 }
