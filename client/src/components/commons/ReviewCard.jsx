@@ -5,6 +5,7 @@ import { ExpandLessOutlined, ExpandMoreOutlined } from '@material-ui/icons';
 import axios from 'axios';
 import styles from './reviewcard.module';
 import { useAuth } from '../../contexts/AuthContext';
+import LockedFeatureDialog from './lockedFeatureDialog';
 
 const {
   ratingContainer,
@@ -44,6 +45,7 @@ export default function ReviewCard({
   const [vote, setVote] = useState(rating);
   const [upVote, setUpVote] = useState(true);
   const [downVote, setDownVote] = useState(true);
+  const [showLockedFeatureDialog, setShowLockedFeatureDialog] = useState(false);
   const { currentUser } = useAuth();
 
   const onVote = (direction) => {
@@ -76,6 +78,10 @@ export default function ReviewCard({
   return (
     <div className={reviewContainer}>
       <div className={ratingContainer}>
+        <LockedFeatureDialog
+          showLockedFeatureDialog={showLockedFeatureDialog}
+          setShowLockedFeatureDialog={setShowLockedFeatureDialog}
+        />
         {currentUser ? (
           upVote ? (
             <Button
@@ -91,7 +97,7 @@ export default function ReviewCard({
             </Button>
           )
         ) : (
-          <Button>
+          <Button onClick={() => setShowLockedFeatureDialog(true)}>
             <ExpandLessOutlined id={upVote} />
           </Button>
         )}
@@ -111,7 +117,7 @@ export default function ReviewCard({
             </Button>
           )
         ) : (
-          <Button>
+          <Button onClick={() => setShowLockedFeatureDialog(true)}>
             <ExpandMoreOutlined id={downVote} />
           </Button>
         )}
@@ -120,7 +126,7 @@ export default function ReviewCard({
         <div className={flexShow}>
           {show_photo ? (
             <div className={showPhotoContainer}>
-              <img src={show_photo} className={showPhoto} alt="show photo"></img>
+              <img src={show_photo} className={showPhoto} alt="show photo" />
             </div>
           ) : null}
         </div>
@@ -167,9 +173,8 @@ const ReadMore = ({ text }) => {
         </span>
       </p>
     );
-  } else {
-    return <p>{text}</p>;
   }
+  return <p>{text}</p>;
 };
 
 const DisplayComments = ({ comments }) => {
