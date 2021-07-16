@@ -1,31 +1,17 @@
 @import '../styles/global';
 
-#reviews {
+#home {
+  width: 90%;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  background-color: $bgcolor;
-  color: $fontcolor;
+  align-items: center;
 }
 
-#outerReviewsContainer {
-  display: flex;
-  flex-direction: column;
+#carousel {
+  width: 100%;
 }
 
-#innerReviewsContainer {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
+.showsContainer {
   overflow: scroll;
-  scroll-behavior: smooth;
-  height: 950px;
-  width: 1500px;
-}
-
-.layoutSize {
-  width: 60%;
-  margin: 0 auto;
-  max-width: 1000px;
-  display: flex;
-  flex-direction: column;
 }

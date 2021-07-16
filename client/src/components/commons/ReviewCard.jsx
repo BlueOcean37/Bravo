@@ -18,8 +18,8 @@ const {
   footer,
   showPhotoContainer,
   showPhoto,
-  upVote,
-  downVote,
+  upIcon,
+  downIcon,
   commentsContainer,
   userPhoto,
   rightSideContainer,
@@ -89,16 +89,16 @@ export default function ReviewCard({
                 upVoteDisplayHandler('up');
               }}
             >
-              <ExpandLessOutlined id={upVote} />
+              <ExpandLessOutlined className={upIcon} />
             </Button>
           ) : (
             <Button>
-              <ExpandLessOutlined id={upVote} />
+              <ExpandLessOutlined className={upIcon} />
             </Button>
           )
         ) : (
           <Button onClick={() => setShowLockedFeatureDialog(true)}>
-            <ExpandLessOutlined id={upVote} />
+            <ExpandLessOutlined className={upIcon} />
           </Button>
         )}
         <h2>{vote}</h2>
@@ -109,16 +109,16 @@ export default function ReviewCard({
                 downVoteDisplayHandler('down');
               }}
             >
-              <ExpandMoreOutlined id={downVote} />
+              <ExpandMoreOutlined className={downIcon} />
             </Button>
           ) : (
             <Button>
-              <ExpandMoreOutlined id={downVote} />
+              <ExpandMoreOutlined className={downIcon} />
             </Button>
           )
         ) : (
           <Button onClick={() => setShowLockedFeatureDialog(true)}>
-            <ExpandMoreOutlined id={downVote} />
+            <ExpandMoreOutlined className={downIcon} />
           </Button>
         )}
       </div>

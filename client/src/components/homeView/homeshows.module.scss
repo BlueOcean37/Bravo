@@ -3,7 +3,7 @@
   align-self: center;
 }
 
-.imgContainer{
+.imgContainer {
   display: flex;
   justify-content: space-between;
   width: 250px;
@@ -16,4 +16,8 @@
   width: 100%;
   border-radius: 20px;
   object-fit: cover;
+}
+
+.showsButton {
+  color: var(--font-color);
 }

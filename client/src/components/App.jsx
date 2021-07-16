@@ -9,15 +9,11 @@ import ShowForm from './showForm/ShowForm';
 import Signup from './authentication/signup/Signup';
 import NavBar from './header/navbar/NavBar';
 import NotFound from './notFound/NotFound';
-import styles from './app.module.scss';
 
 export default function App() {
   return (
     <Router>
       <div id="mainContainer">
-        <div id={styles.test}>
-          <div id={styles.son} />
-        </div>
         <header id="mainHeader">
           <Header />
         </header>
