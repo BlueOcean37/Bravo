@@ -14,12 +14,11 @@ class Shows extends React.Component {
 
       showInfo: {},
     };
-    // console.log('THIS IS PROPS', this.props);
-    // console.log("THIS IS REVIEWS RESPONSE", this.state.reviews);
     this.getReviews = this.getReviews.bind(this);
     this.handleAddNewReview = this.handleAddNewReview.bind(this);
     // this.handleAddNewComment = this.handleAddNewComment.bind(this);
   }
+
   // ${this.props.location.state}
   getReviews() {
     axios
@@ -68,9 +67,6 @@ class Shows extends React.Component {
   // }
 
   handleAddNewReview(reviewData) {
-    // console.log("THIS IS NEW REVIEW", state)
-    // console.log("THIS IS NUMBER OF REVIEWS", this.state.reviews.length + 1);
-    // console.log("THIS IS NAME OF NEW REVIEW", newstate.name);
     axios
       .post('/api/reviews', {
         show_id: reviewData.show_id,
@@ -92,8 +88,6 @@ class Shows extends React.Component {
   }
 
   render() {
-    // if (this.state) {
-    // (
     return (
       <div>
         {console.log('THIS IS STATE', this.state)}
@@ -112,9 +106,6 @@ class Shows extends React.Component {
           /> */}
       </div>
     );
-    // } else {
-    //   return null;
-    // }
   }
 }
 

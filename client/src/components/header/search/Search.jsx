@@ -100,7 +100,7 @@ export default function Search() {
       filterOptions={filterOptions}
       renderOption={(option) => (
         <>
-          <Link to={`/shows/${option.id}`}>
+          <Link to={{ pathname: `/shows`, state: option.id }}>
             <Card className={classes.root} variant="outlined">
               <CardMedia className={classes.cover} image={`${option.photo}`} title={option.title} />
               <div className={classes.details}>
