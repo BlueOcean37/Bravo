@@ -11,11 +11,17 @@
 }
 
 .upIcon {
-  color: green;
+  color: var(--font-color);
+  &:hover {
+    color: green;
+  }
 }
 
 .downIcon {
-  color: red;
+  color: var(--font-color);
+  &:hover {
+    color: red;
+  }
 }
 
 .cardContainer {
