@@ -22,7 +22,6 @@ export default function ShowForm() {
   const [zip, setZip] = useState('');
   const [date, setDate] = useState('');
   const [website, setWebsite] = useState('');
-  const [cast, setCast] = useState('');
   const [description, setDescription] = useState('');
   const [photoForm, setPhotoForm] = useState('');
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
@@ -64,7 +63,6 @@ export default function ShowForm() {
       zip,
       date: epochDate,
       website,
-      cast,
       description,
       photo,
     };
@@ -107,7 +105,7 @@ export default function ShowForm() {
       <div className={styles.form}>
         <div className={styles.input}>
           <TextField
-            autoFocus
+            autoFocus={true}
             id="title"
             label="Show Title"
             value={title}
@@ -153,19 +151,11 @@ export default function ShowForm() {
           />
           <TextField id="website" label="Website" onChange={(e) => setWebsite(e.target.value)} />
           <TextField
-            id="cast"
-            label="Cast/Crew"
-            value={cast}
-            multiline
-            rows={5}
-            onChange={(e) => setCast(e.target.value)}
-          />
-          <TextField
             id="description"
             label="Description"
             value={description}
             multiline
-            rows={5}
+            rows={6}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
