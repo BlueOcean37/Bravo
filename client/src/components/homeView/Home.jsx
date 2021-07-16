@@ -27,11 +27,11 @@ export default function Home() {
       <HomeBanner />
       <section id={styles.reviews}>
         <h2>Trending</h2>
-        <HomeShows sort={'rating'} />
+        <HomeShows sort="rating" />
         <h2>Most Recent</h2>
-        <HomeShows sort={'date'} />
+        <HomeShows sort="date" />
         <section id={styles.outerReviewsContainer}>
-          <h2>REVIEWS</h2>
+          <h2>Reviews</h2>
           <div id={styles.innerReviewsContainer} onScroll={displayMoreReviews}>
             {reviews.map((review, index) => (
               <div key={index}>

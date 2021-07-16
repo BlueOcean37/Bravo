@@ -15,7 +15,7 @@ export default function LockedFeatureDialog({
   setShowLockedFeatureDialog,
 }) {
   {
-    /**To use this component, you must create this state and setState
+    /** To use this component, you must create this state and setState
      * function in the parent component and pass them down as props.
      * ShowLockedFeatureDialog should be created with the default state
      * of FALSE. To trigger the pop up, set it to TRUE. */
