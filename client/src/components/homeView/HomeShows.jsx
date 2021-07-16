@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { ArrowForward, ArrowBack } from '@material-ui/icons';
-import styles from './homeshows.module';
 import axios from 'axios';
+import styles from './homeshows.module';
 
 export default function HomeShows({ sort }) {
   const [shows, setShows] = useState([]);
