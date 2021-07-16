@@ -1,24 +1,16 @@
-.heroImage {
-  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  display: flex;
-  flex-direction: row;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)), url("../../../assets/homeBanner.png");
-  height: 60vh;
-  padding-top: 100px;
-
-  /* Position and center the image to scale nicely on all screens */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+#mainContainer {
+  height: 0;
+  padding-bottom: calc(56.25%);
+  position:relative;
+  width: 100%;
 }
 
-/* Place text in the middle of the image */
-.heroText {
-  text-align: center;
+#videoContainer {
+  border: 0;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
+  top: 0;
+  width: 100%;
 }
