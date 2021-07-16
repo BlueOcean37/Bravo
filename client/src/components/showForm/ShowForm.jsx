@@ -24,15 +24,15 @@ export default function ShowForm() {
   const [website, setWebsite] = useState('');
   const [cast, setCast] = useState('');
   const [description, setDescription] = useState('');
-  const [photo, setPhoto] = useState('');
+  const [photoForm, setPhotoForm] = useState('');
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
   const [newShowID, setNewShowID] = useState('');
   const [redirectToShowPage, setRedirectToShowPage] = useState(false);
   const [counter, setCounter] = useState(6);
+  const [user, setUser] = useState('');
+  const { currentUser } = useAuth();
 
-  const formValidation = () => {
-    return title && street && city && state && zip && date;
-  };
+  const formValidation = () => title && street && city && state && zip && date;
 
   useEffect(() => {
     if (counter < 6) {
@@ -46,10 +46,17 @@ export default function ShowForm() {
     }
   }, [counter]);
 
+  useEffect(() => {
+    axios
+      .put('/api/users/', { email: currentUser.email })
+      .then((res) => setUser(res.data.id))
+      .catch((err) => console.error('error getting userid from db', err));
+  }, []);
+
   const createBodyObject = (photo) => {
     const epochDate = Date.parse(date);
     return {
-      user_id: 1,
+      user_id: user,
       title,
       street,
       city,
@@ -67,10 +74,11 @@ export default function ShowForm() {
     e.preventDefault();
     if (formValidation()) {
       axios
-        .post('/api/image-upload', photo, { headers: { 'Content-Type': 'multipart/form-data' } })
+        .post('/api/image-upload', photoForm, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        })
         .then((res) => {
           const newShow = createBodyObject(res.data);
-          console.log('newshow', newShow);
           axios
             .post('/api/shows/', newShow)
             .then((res) => {
@@ -99,39 +107,39 @@ export default function ShowForm() {
       <div className={styles.form}>
         <div className={styles.input}>
           <TextField
-            autoFocus={true}
+            autoFocus
             id="title"
             label="Show Title"
             value={title}
-            required={true}
+            required
             onChange={(e) => setTitle(e.target.value)}
           />
           <TextField
             id="street"
             label="Street Address"
             value={street}
-            required={true}
+            required
             onChange={(e) => setStreet(e.target.value)}
           />
           <TextField
             id="city"
             label="City"
             value={city}
-            required={true}
+            required
             onChange={(e) => setCity(e.target.value)}
           />
           <TextField
             id="state"
             label="State"
             value={state}
-            required={true}
+            required
             onChange={(e) => setState(e.target.value)}
           />
           <TextField
             id="zip"
             label="Zipcode"
             value={zip}
-            required={true}
+            required
             onChange={(e) => setZip(e.target.value)}
           />
           <TextField
@@ -139,7 +147,7 @@ export default function ShowForm() {
             label="Dates"
             InputLabelProps={{ shrink: true }}
             value={date}
-            required={true}
+            required
             type="date"
             onChange={(e) => setDate(e.target.value)}
           />
@@ -168,9 +176,9 @@ export default function ShowForm() {
             onChange={(files) => {
               const form = new FormData();
               form.append('show', files[0]);
-              setPhoto(form);
+              setPhotoForm(form);
             }}
-            dropzoneText={'Drag and drop an image here or click'}
+            dropzoneText="Drag and drop an image here or click"
           />
           <div>
             <Button className={styles.btn} onClick={handleSubmit}>
@@ -181,7 +189,7 @@ export default function ShowForm() {
               aria-labelledby="submit-dialog-title"
               aria-describedby="submit-dialog-description"
             >
-              <DialogTitle id="submit-dialog-title">{'Your show has been submitted'}</DialogTitle>
+              <DialogTitle id="submit-dialog-title">Your show has been submitted</DialogTitle>
               <DialogContent>
                 <DialogContentText id="submit-dialog-description">
                   Your show has successfully been submitted. You will be redirected to your new
