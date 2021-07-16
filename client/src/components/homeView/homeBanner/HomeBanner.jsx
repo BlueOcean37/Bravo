@@ -1,14 +1,19 @@
 import React from 'react';
-import styles from './homeBanner.module';
+import styles from './homeBanner.module.scss';
 
 export default function HomeBanner() {
   return (
-    <div className={styles.heroImage}>
-      <div className={styles.heroText}>
-        <h1>Teatro</h1>
-        <h2>Latest productions and the hottest reviews</h2>
-        {/* <button>Learn More</button> */}
-      </div>
+    <div id={styles.mainContainer}>
+      <iframe
+        id={styles.videoContainer}
+        allow="autoplay; gyroscope;"
+        allowFullScreen
+        height="100%"
+        referrerPolicy="strict-origin"
+        src="https://www.kapwing.com/e/60f116c1d495320029dc3044?autoplay=true&loop=1"
+        title="Teatro Show Carousel"
+        width="100%"
+      />
     </div>
   );
 }

@@ -49,7 +49,8 @@ export default function HomeShows({ sort }) {
           {index >= start && index <= start + 4 ? (
             <Link to={{ pathname: '/shows', state: show.id }}>
               <div className={styles.imgContainer}>
-                <img className={styles.showsPhoto} src={show.photo} />
+                <img className={styles.showsPhoto} src={show.photo} alt="showPhoto" />
+                {/* <p className={styles.imgDescription}>{show.title}</p> */}
               </div>
             </Link>
           ) : null}
