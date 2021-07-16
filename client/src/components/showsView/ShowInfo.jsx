@@ -7,16 +7,21 @@ const ShowInfo = ({ showData }) => (
     <h1> Show Info </h1>
     <img src={showData.showPhoto} />
     <p>{showData.showTitle}</p>
-    {showData.showRating ? <Rating value={showData.showRating} readOnly /> : null}
-    <p>{new Date(Number(showData.showDate)).toLocaleDateString('en-US')}</p>
+    {/* {showData.showRating ? (
+      <Rating value={showData.showRating} readOnly className={styles.showRating} />
+    ) : null}
+    <p>{new Date(Number(showData.showDate)).toLocaleDateString('en-US')}</p> */}
+    <div className={styles.rating_date}>
+      {showData.showRating ? <Rating value={showData.showRating} readOnly /> : null}
+      <p>{new Date(Number(showData.showDate)).toLocaleDateString('en-US')}</p>
+    </div>
     <a href={showData.showWebsite} className={styles.link}>
       Go to Website
     </a>
     <p className={styles.description}> {showData.showDescription} </p>
     <p> {showData.showCast} </p>
     <p>
-      Theatre Address: {showData.showStreet}
-      {showData.showCity} {showData.showZip} {showData.showState}
+      {`Theatre Address: ${showData.showStreet}, ${showData.showCity}, ${showData.showState}, ${showData.showZip}`}
     </p>
   </div>
 );
