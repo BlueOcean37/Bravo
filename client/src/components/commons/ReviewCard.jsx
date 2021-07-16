@@ -42,6 +42,8 @@ export default function ReviewCard({
   comments,
 }) {
   const [vote, setVote] = useState(rating);
+  const [upVote, setUpVote] = useState(true);
+  const [downVote, setDownVote] = useState(true);
   const { currentUser } = useAuth();
 
   const onVote = (direction) => {
@@ -58,18 +60,36 @@ export default function ReviewCard({
     }
   };
 
+  const upVoteDisplayHandler = (direction) => {
+    onVote(direction);
+    setUpVote(false);
+    setDownVote(false);
+  };
+
+  const downVoteDisplayHandler = (direction) => {
+    onVote(direction);
+    setDownVote(false);
+    setUpVote(false);
+  };
+
   date = new Date(Number(date)).toLocaleDateString('en-US');
   return (
     <div className={reviewContainer}>
       <div className={ratingContainer}>
         {currentUser ? (
-          <Button
-            onClick={() => {
-              onVote('up');
-            }}
-          >
-            <ExpandLessOutlined id={upVote} />
-          </Button>
+          upVote ? (
+            <Button
+              onClick={() => {
+                upVoteDisplayHandler('up');
+              }}
+            >
+              <ExpandLessOutlined id={upVote} />
+            </Button>
+          ) : (
+            <Button>
+              <ExpandLessOutlined id={upVote} />
+            </Button>
+          )
         ) : (
           <Button>
             <ExpandLessOutlined id={upVote} />
@@ -77,13 +97,19 @@ export default function ReviewCard({
         )}
         <h2>{vote}</h2>
         {currentUser ? (
-          <Button
-            onClick={() => {
-              onVote('down');
-            }}
-          >
-            <ExpandMoreOutlined id={downVote} />
-          </Button>
+          downVote ? (
+            <Button
+              onClick={() => {
+                downVoteDisplayHandler('down');
+              }}
+            >
+              <ExpandMoreOutlined id={downVote} />
+            </Button>
+          ) : (
+            <Button>
+              <ExpandMoreOutlined id={downVote} />
+            </Button>
+          )
         ) : (
           <Button>
             <ExpandMoreOutlined id={downVote} />
