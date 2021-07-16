@@ -19,7 +19,7 @@ class Reviews extends React.Component {
           ? this.props.reviewData.map((review) => (
               <ReviewCard
                 key={review.id}
-                user_id={this.props.showInfo.user_id}
+                user_id={review.user_id}
                 user_photo={review.photo}
                 username={review.username}
                 date={review.date}

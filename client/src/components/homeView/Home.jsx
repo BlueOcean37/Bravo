@@ -33,7 +33,7 @@ export default function Home() {
           </div>
           <h2>Most Recent</h2>
           <div className={styles.showsContainer}>
-            <HomeShows sort="rating" />
+            <HomeShows sort="date" />
           </div>
         </section>
         <section>
