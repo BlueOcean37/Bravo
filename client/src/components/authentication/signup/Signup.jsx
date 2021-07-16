@@ -1,31 +1,29 @@
-import React, { useRef, useState } from 'react';
+/* eslint-disable react/jsx-boolean-value */
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../../../contexts/AuthContext';
-import styles from './signup.module';
+import styles from './signup.module.scss';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [first_name, setFirstName] = useState('');
-  const [last_name, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { signup, currentUser } = useAuth();
+  const { signup, currentUser, addUserName } = useAuth();
   const history = useHistory();
-
-  const formValidation = () =>
-    username && email && password && passwordConfirm && first_name && last_name;
 
   const formChangeHandler = (e) => {
     const targetId = e.target.id;
-    const value = e.target.value;
+    const { value } = e.target;
 
     if (targetId === 'email') {
       setEmail(value);
@@ -52,26 +50,21 @@ export default function Signup() {
     setError('');
     setLoading(true);
     signup(email, password)
+      .then(() => addUserName(currentUser, username))
       .then(() => {
-        let userData = {
+        const userData = {
           username,
           password,
           email,
-          first_name,
-          last_name,
+          first_name: firstName,
+          last_name: lastName,
           photo: 'http:123',
         };
         return axios.post('/api/users', userData);
       })
-      .then(() => {
-        console.log('Successfully created an account!');
-        history.push('/');
-      })
-      .catch((err) => {
-        console.log(err);
-        setError('Failed to create an account');
-      });
-    setLoading(false);
+      .then(() => history.push('/'))
+      .catch(() => setError('Failed to create an account'));
+    return setLoading(false);
   };
 
   return (
@@ -127,7 +120,7 @@ export default function Signup() {
           <FormControl>
             <InputLabel htmlFor="password-confirm">Confirm Password *</InputLabel>
             <Input
-              required={true}
+              required
               inputProps={{ type: 'password' }}
               id="password-confirm"
               aria-describedby="password-confirm-text"
