@@ -5,7 +5,6 @@ import { ExpandLessOutlined, ExpandMoreOutlined } from '@material-ui/icons';
 import axios from 'axios';
 import styles from './reviewcard.module';
 import { useAuth } from '../../contexts/AuthContext';
-
 const {
   ratingContainer,
   cardContainer,
@@ -26,6 +25,7 @@ const {
   commentTime,
   textTime,
 } = styles;
+import Shows from './../showsView/Shows';
 
 export default function ReviewCard({
   id,
@@ -57,7 +57,6 @@ export default function ReviewCard({
         .catch((err) => console.log(err));
     }
   };
-
   date = new Date(Number(date)).toLocaleDateString('en-US');
   return (
     <div className={reviewContainer}>
@@ -126,7 +125,6 @@ export default function ReviewCard({
     </div>
   );
 }
-
 const ReadMore = ({ text }) => {
   const [isReadMore, setIsReadMore] = useState(true);
   const toggleReadMore = () => {
