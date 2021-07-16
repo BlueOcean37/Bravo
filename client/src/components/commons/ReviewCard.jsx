@@ -124,11 +124,13 @@ export default function ReviewCard({
       </div>
       <div className={rightSideContainer}>
         <div className={flexShow}>
-          {show_photo ? (
-            <div className={showPhotoContainer}>
-              <img src={show_photo} className={showPhoto} alt="show photo" />
-            </div>
-          ) : null}
+          <Link to={{ pathname: '/shows', state: show_id }} className={link}>
+            {show_photo ? (
+              <div className={showPhotoContainer}>
+                <img src={show_photo} className={showPhoto} alt="show photo" />
+              </div>
+            ) : null}
+          </Link>
         </div>
         <div className={cardContainer}>
           <div className={header}>
@@ -143,8 +145,8 @@ export default function ReviewCard({
               <span className={textTime}>{date}</span>
               <Link to={{ pathname: '/users', state: user_id }} className={link}>
                 <span>{username}</span>
+                {user_photo ? <img className={userPhoto} src={user_photo} /> : null}
               </Link>
-              {user_photo ? <img className={userPhoto} src={user_photo} /> : null}
             </div>
           </div>
           <div className={review}>
