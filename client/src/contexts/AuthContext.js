@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from 'react';
 import { auth } from '../firebase';
 
@@ -23,6 +24,12 @@ export function AuthProvider({ children }) {
     return auth.signOut();
   }
 
+  function addUserName(userName) {
+    return auth.currentUser.updateProfile({
+      displayName: userName,
+    });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -37,6 +44,7 @@ export function AuthProvider({ children }) {
     signup,
     logout,
     login,
+    addUserName,
   };
 
   // if not loading, then don't render anything until user is set

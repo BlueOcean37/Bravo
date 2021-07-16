@@ -50,7 +50,7 @@ export default function Signup() {
     setError('');
     setLoading(true);
     signup(email, password)
-      .then(() => addUserName(currentUser, username))
+      .then(() => addUserName(username))
       .then(() => {
         const userData = {
           username,
