@@ -2,8 +2,7 @@
 const pool = require('../../db/index');
 
 const addShow = (req, res) => {
-  const { title, street, city, zip, state, cast, website, description, photo, user_id, date } =
-    req.body;
+  const { title, street, city, zip, state, website, description, photo, user_id, date } = req.body;
 
   const queryString = `
   INSERT INTO shows
@@ -11,7 +10,7 @@ const addShow = (req, res) => {
   zip, state, date, website,
   description, photo)
   VALUES (
-  '${user_id}', '${title}', '${street}', '${city}',
+  ${user_id}, '${title}', '${street}', '${city}',
   '${zip}','${state}', '${date}', '${website}',
   '${description}', '${photo}'
   )
