@@ -25,6 +25,7 @@ class AddReview extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log('clicked');
     this.props.handleAddNewReview({
       show_id: this.props.id,
       user_id: this.props.userId,
@@ -52,7 +53,6 @@ class AddReview extends React.Component {
           }}
         />
         <div className={styles.ratingContainer}>
-          <span className={styles.rating}> Rate the show</span>
           <Rating
             id="show_rating"
             value={this.state.show_rating}
