@@ -2,19 +2,23 @@ import React from 'react';
 import { Rating } from '@material-ui/lab';
 import styles from './showinfo.module.scss';
 
+const { padding } = styles;
+
 const ShowInfo = ({ showData }) => (
   <div className={styles.showInfoContainer}>
-    <h1> Show Info </h1>
+    <h1 className={padding}> Show Info </h1>
     <img src={showData.showPhoto} />
-    <p>{showData.showTitle}</p>
-    {showData.showRating ? <Rating value={showData.showRating} readOnly /> : null}
-    <p>{new Date(Number(showData.showDate)).toLocaleDateString('en-US')}</p>
+    <h1 className={padding}>{showData.showTitle}</h1>
+    {showData.showRating ? (
+      <Rating value={showData.showRating} readOnly className={padding} />
+    ) : null}
+    <p className={padding}>{new Date(Number(showData.showDate)).toLocaleDateString('en-US')}</p>
     <a href={showData.showWebsite} className={styles.link}>
       Go to Website
     </a>
     <p className={styles.description}> {showData.showDescription} </p>
     <p> {showData.showCast} </p>
-    <p>
+    <p className={padding}>
       Theatre Address: {showData.showStreet}
       {showData.showCity} {showData.showZip} {showData.showState}
     </p>
