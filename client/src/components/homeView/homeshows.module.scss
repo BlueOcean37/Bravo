@@ -6,13 +6,14 @@
 .imgContainer{
   display: flex;
   justify-content: space-between;
-  width: 300px;
-  height: 200px;
+  width: 250px;
+  height: 400px;
   margin: 20px;
 }
 
 .showsPhoto {
   height: 100%;
   width: 100%;
+  border-radius: 20px;
   object-fit: cover;
 }

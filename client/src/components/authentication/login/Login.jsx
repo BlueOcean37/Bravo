@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react';
+/* eslint-disable react/jsx-boolean-value */
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useAuth } from '../../../contexts/AuthContext';
-import styles from './login.module';
+import styles from './login.module.scss';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -13,9 +14,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  const formChangeHandler = (e) => {
+  const formChangeHandler = (e) =>
     e.target.id === 'email' ? setEmail(e.target.value) : setPassword(e.target.value);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,14 +23,8 @@ export default function Login() {
     setError('');
     setLoading(true);
     login(email, password)
-      .then(() => {
-        console.log('Successfully logged!');
-        history.push('/');
-      })
-      .catch((err) => {
-        console.log(err);
-        setError('Failed to log in!');
-      });
+      .then(() => history.push('/'))
+      .catch(() => setError('Failed to log in!'));
     setLoading(false);
   };
 
@@ -60,7 +54,7 @@ export default function Login() {
             <Input
               onChange={formChangeHandler}
               name="password"
-              required={true}
+              required
               inputProps={{ type: 'password' }}
               id="password"
               aria-describedby="password-text"
