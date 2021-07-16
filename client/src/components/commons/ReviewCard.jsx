@@ -136,9 +136,7 @@ export default function ReviewCard({
           <div className={header}>
             <div>
               <Link to={{ pathname: '/shows', state: show_id }} className={link}>
-                <span>
-                  {title}: {location}
-                </span>
+                <span>{title}</span>
               </Link>
             </div>
             <div>

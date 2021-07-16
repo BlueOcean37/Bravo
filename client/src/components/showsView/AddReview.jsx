@@ -45,18 +45,22 @@ class AddReview extends React.Component {
           id="text"
           value={this.state.text}
           required
+          multiline
+          rows={6}
           onChange={(e) => {
             this.handleInputChange(e);
           }}
         />
-
-        <Rating
-          id="show_rating"
-          value={this.state.show_rating}
-          onChange={(e, newValue) => {
-            this.handleRatingChange(newValue);
-          }}
-        />
+        <div className={styles.ratingContainer}>
+          <span className={styles.rating}> Rate the show</span>
+          <Rating
+            id="show_rating"
+            value={this.state.show_rating}
+            onChange={(e, newValue) => {
+              this.handleRatingChange(newValue);
+            }}
+          />
+        </div>
         <Button onClick={this.handleSubmit}>Submit</Button>
       </div>
     );
