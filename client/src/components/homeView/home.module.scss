@@ -8,8 +8,12 @@
   align-items: center;
 }
 
+#carousel {
+  width: inherit;
+}
+
 .showsContainer {
-  // overflow: scroll;
+  overflow: scroll;
 }
 
 #reviewsContainer {
