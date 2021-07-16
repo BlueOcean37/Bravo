@@ -23,7 +23,7 @@ class Shows extends React.Component {
     axios
       .post('/api/reviews', {
         show_id: reviewData.show_id,
-        user_id: 12,
+        user_id: 13,
         show_rating: reviewData.show_rating,
         text: reviewData.text,
       })
@@ -65,7 +65,7 @@ class Shows extends React.Component {
         <ShowInfo showData={this.state.showInfo} />
         <AddReview
           handleAddNewReview={this.handleAddNewReview}
-          userId={12}
+          userId={13}
           id={this.state.showInfo.id}
         />
         <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
