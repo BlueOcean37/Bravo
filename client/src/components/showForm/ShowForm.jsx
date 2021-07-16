@@ -20,13 +20,13 @@ export default function ShowForm() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState('');
   const [website, setWebsite] = useState('');
   const [cast, setCast] = useState('');
   const [description, setDescription] = useState('');
   const [photo, setPhoto] = useState('');
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
-  const [newShowID, setNewShowID] = useState(null);
+  const [newShowID, setNewShowID] = useState('');
   const [redirectToShowPage, setRedirectToShowPage] = useState(false);
   const [counter, setCounter] = useState(6);
 
@@ -46,40 +46,51 @@ export default function ShowForm() {
     }
   }, [counter]);
 
+  const createBodyObject = (photo) => {
+    const epochDate = Date.parse(date);
+    return {
+      user_id: 1,
+      title,
+      street,
+      city,
+      state,
+      zip,
+      date: epochDate,
+      website,
+      cast,
+      description,
+      photo,
+    };
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formValidation()) {
-      const epochDate = Date.parse(date);
-      const newShow = {
-        user_id: 1,
-        title,
-        street,
-        city,
-        state,
-        zip,
-        date: epochDate,
-        website,
-        cast,
-        description,
-      };
       axios
-        .post('/api/shows/', newShow)
+        .post('/api/image-upload', photo, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((res) => {
-          setSubmitDialogOpen(true);
-          setNewShowID(res.data.id);
-          setCounter(5);
+          const newShow = createBodyObject(res.data);
+          console.log('newshow', newShow);
+          axios
+            .post('/api/shows/', newShow)
+            .then((res) => {
+              setSubmitDialogOpen(true);
+              setNewShowID(res.data.id);
+              setCounter(5);
+            })
+            .catch((err) => {
+              console.error('There was an error', err);
+              alert('There was a problem submitting your show, please try again');
+            });
         })
-        .catch((err) => {
-          console.error('There was an error', err);
-          alert('There was a problem submitting your show, please try again');
-        });
+        .catch((err) => console.error('error uploading the image', err));
     } else {
       alert('Please enter a value for all required fields');
     }
   };
 
   if (redirectToShowPage) {
-    return <Redirect to={{ pathname: '/shows', state: { show_id: newShowID } }} />;
+    return <Redirect to={{ pathname: '/shows', state: newShowID }} />;
   }
 
   return (
@@ -154,6 +165,11 @@ export default function ShowForm() {
           <DropzoneArea
             filesLimit={1}
             acceptedFiles={['image/*']}
+            onChange={(files) => {
+              const form = new FormData();
+              form.append('show', files[0]);
+              setPhoto(form);
+            }}
             dropzoneText={'Drag and drop an image here or click'}
           />
           <div>
