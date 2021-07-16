@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './homeBanner.module';
+import styles from './homeBanner.module.scss';
 
 export default function HomeBanner() {
   return (
@@ -7,7 +7,6 @@ export default function HomeBanner() {
       <div className={styles.heroText}>
         <h1>Teatro</h1>
         <h2>Latest productions and the hottest reviews</h2>
-        {/* <button>Learn More</button> */}
       </div>
     </div>
   );
