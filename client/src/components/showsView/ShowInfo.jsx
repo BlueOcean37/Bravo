@@ -15,8 +15,7 @@ const ShowInfo = ({ showData }) => (
     <p className={styles.description}> {showData.showDescription} </p>
     <p> {showData.showCast} </p>
     <p>
-      Theatre Address: {showData.showStreet}
-      {showData.showCity} {showData.showZip} {showData.showState}
+      {`Theatre Address: ${showData.showStreet}, ${showData.showCity}, ${showData.showState}, ${showData.showZip}`}
     </p>
   </div>
 );
