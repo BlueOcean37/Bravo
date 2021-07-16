@@ -16,7 +16,6 @@ class Reviews extends React.Component {
 
   render() {
     if (this.props.reviewData) {
-      console.log('=====>', this.props.reviewData);
       return (
         <div>
           <h1> Reviews </h1>

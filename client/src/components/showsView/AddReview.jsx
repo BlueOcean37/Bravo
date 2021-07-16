@@ -1,8 +1,4 @@
 import React from 'react';
-// import { useAuth } from '../../contexts/AuthContext';
-
-// const { currentUser } = useAuth();
-
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
@@ -13,14 +9,11 @@ class AddReview extends React.Component {
   }
 
   handleInputChange(e) {
-    // console.log("THIS IS THE NAME", selectedPokemon.name);
     this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-
-    // console.log("THIS IS NAME OF POKEMON FROM FORM", this.state.name);
 
     this.props.handleAddNewReview({
       show_id: this.props.id,
@@ -42,7 +35,6 @@ class AddReview extends React.Component {
             Write Review:
             <input
               type="text"
-              // addReview="addReview"
               name="text"
               value={this.state.text}
               onChange={this.handleInputChange.bind(this)}
@@ -53,8 +45,6 @@ class AddReview extends React.Component {
             <input
               type="number"
               name="show_rating"
-              // addReview="addReview"
-
               value={this.state.show_rating}
               onChange={this.handleInputChange.bind(this)}
             />
@@ -67,5 +57,3 @@ class AddReview extends React.Component {
   }
 }
 export default AddReview;
-
-//add

@@ -27,7 +27,6 @@ const {
   commentTime,
   textTime,
 } = styles;
-import Shows from './../showsView/Shows';
 
 export default function ReviewCard({
   id,
