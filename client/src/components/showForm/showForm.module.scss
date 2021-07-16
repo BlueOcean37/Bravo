@@ -1,0 +1,28 @@
+// show form scss
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  width: 60vw;
+  min-width: 400px;
+  max-width: 900px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.photoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}

@@ -1,6 +1,6 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
-// /Users/warrenwong/Desktop/bravo/frontend/client/src/index.jsx
 module.exports = {
   entry: path.resolve(__dirname, 'src/Index.jsx'),
   output: {
@@ -20,16 +20,43 @@ module.exports = {
         },
       },
       {
-        test: /\.(s*)css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.module\.s(a|c)ss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        exclude: /\.module.(s(a|c)ss)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf|woff2)$/,
         use: [{ loader: 'file-loader' }],
       },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.js', '.jsx', '.scss'],
   },
+  plugins: [new Dotenv()],
 };

@@ -1,0 +1,31 @@
+@import '../styles/global';
+
+#reviews {
+  display: flex;
+  flex-direction: column;
+  background-color: $bgcolor;
+  color: $fontcolor;
+}
+
+#outerReviewsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#innerReviewsContainer {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  height: 950px;
+  width: 1500px;
+}
+
+.layoutSize {
+  width: 60%;
+  margin: 0 auto;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+}

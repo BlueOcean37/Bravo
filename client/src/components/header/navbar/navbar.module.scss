@@ -1,0 +1,32 @@
+// nav bar scss
+
+.grow {
+  flex-grow: 1;
+}
+
+.toolBar {
+  // background-color: #cc0014;
+  width: auto;
+}
+
+.appBar {
+  background-color: #000000;
+}
+
+.menuButton {
+  margin-right: 20px;
+}
+
+// .title {
+//   display: 'block';
+// }
+
+.sectionDesktop{
+  display: 'none';
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.sectionMobile {
+  display: 'flex';
+}

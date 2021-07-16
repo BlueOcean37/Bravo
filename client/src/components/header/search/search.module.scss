@@ -1,0 +1,32 @@
+.search {
+  position: relative;
+  background-color: #fff;
+  margin-right: 50px;
+  margin-left: 0px;
+  width: '100%';
+}
+
+.photo {
+  width: 60px;
+  height: 60px;
+}
+
+.searchIcon {
+  // padding-left: 0px;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: right;
+  justify-content: center;
+}
+
+.inputRoot {
+  color: inherit;
+}
+
+.inputInput {
+  padding: 10px, 10px, 10px, 1px;
+  // vertical padding + font size from searchIcon
+  padding-left: 10px;
+  width: 100%;
+}

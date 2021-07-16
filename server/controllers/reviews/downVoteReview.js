@@ -1,7 +1,14 @@
 // put update a review down vote controller
+const pool = require('../../db/index');
 
 const downVoteReview = (req, res) => {
-  res.send('hello world');
+  const downVoteReview = `UPDATE reviews SET rating = rating - 1 WHERE id = ${req.params.id}`;
+  pool
+    .query(downVoteReview)
+    .then((result) => res.status(204).send('Review downvoted!'))
+    .catch((err) => {
+      res.sendStatus(500);
+    });
 };
 
 module.exports = downVoteReview;

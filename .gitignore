@@ -4,6 +4,8 @@ dist/*
 !dist/index.html
 node_modules/
 *.log
+client/public/bundle.js
+client/public/bundle.js.LICENSE.txt
 
 # OS generated files
 .DS_Store
@@ -15,6 +17,5 @@ ehthumbs.db
 Thumbs.db
 
 .env
-client/public
 .vscode
 dump.rdb

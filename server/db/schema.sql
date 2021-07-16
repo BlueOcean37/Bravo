@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS public.reviews
     show_rating numeric NOT NULL,
     text character varying NOT NULL,
     date bigint NOT NULL,
-    rating integer NOT NULL,
+    rating integer NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
 );
 
@@ -33,10 +33,9 @@ CREATE TABLE IF NOT EXISTS public.shows
     title character varying NOT NULL,
     street character varying NOT NULL,
     city character varying NOT NULL,
-    zip numeric NOT NULL,
+    zip integer NOT NULL,
     state character varying NOT NULL,
     date bigint NOT NULL,
-    "cast" character varying,
     website character varying,
     description character varying NOT NULL,
     photo character varying,
@@ -78,12 +77,5 @@ ALTER TABLE public.shows
     REFERENCES public.users (id)
     NOT VALID;
 
+
 END;
-
-
--- Command for setting sequences for tables
-
--- SELECT setval('comments_id_seq', max(id)) FROM comments;
--- SELECT setval('reviews_id_seq', max(id)) FROM reviews;
--- SELECT setval('shows_id_seq', max(id)) FROM shows;
--- SELECT setval('users_id_seq', max(id)) FROM users;
