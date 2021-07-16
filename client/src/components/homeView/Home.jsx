@@ -25,36 +25,36 @@ export default function Home() {
   return (
     <>
       <HomeBanner />
-      <section id={styles.reviews}>
-        <h2>Trending</h2>
-        <HomeShows sort="rating" />
-        <h2>Most Recent</h2>
-        <HomeShows sort="date" />
-        <section id={styles.outerReviewsContainer}>
+      <section id={styles.home}>
+        <section id={styles.carousel}>
+          <h2>Trending</h2>
+          <div className={styles.showsContainer}>
+            <HomeShows sort="rating" />
+          </div>
+          <h2>Most Recent</h2>
+          <div className={styles.showsContainer}>
+            <HomeShows sort="rating" />
+          </div>
+        </section>
+        <section>
           <h2>Reviews</h2>
-          <div id={styles.innerReviewsContainer} onScroll={displayMoreReviews}>
-            {reviews.map((review, index) => (
-              <div key={index}>
-                {index <= reviewsDisplay ? (
-                  <div>
-                    <ReviewCard
-                      key={index}
-                      id={review.id}
-                      user_id={review.user_id}
-                      user_photo={review.user[0].photo}
-                      username={review.user[0].username}
-                      title={review.show[0].title}
-                      show_photo={review.show[0].photo}
-                      location={review.show[0].location}
-                      rating={review.rating}
-                      text={review.text}
-                      show_id={review.show_id}
-                      date={review.date}
-                      comments={review.comments}
-                    />
-                  </div>
-                ) : null}
-              </div>
+          <div id={styles.reviewsContainer} onScroll={displayMoreReviews}>
+            {reviews.map((review) => (
+              <ReviewCard
+                key={review.id}
+                id={review.id}
+                user_id={review.user_id}
+                user_photo={review.user[0].photo}
+                username={review.user[0].username}
+                title={review.show[0].title}
+                show_photo={review.show[0].photo}
+                location={review.show[0].location}
+                rating={review.rating}
+                text={review.text}
+                show_id={review.show_id}
+                date={review.date}
+                comments={review.comments}
+              />
             ))}
           </div>
         </section>

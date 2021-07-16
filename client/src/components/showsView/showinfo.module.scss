@@ -1,0 +1,15 @@
+.showInfoContainer {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.link {
+  color: inherit;
+  // text-decoration: none;
+}
+
+.description {
+  text-align: justify;
+  text-justify: inter-word;
+}

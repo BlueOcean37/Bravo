@@ -1,38 +1,24 @@
 import React from 'react';
+import { Rating } from '@material-ui/lab';
+import styles from './showinfo.module.scss';
 
-const ShowInfo = ({ showData }) => {
-  // if(showData.showTitle !== undefined) {
-  return (
-    <div>
-      {/* <h1> Show Info
-    {data.title} {data.rating} {data.street}
-    {data.city} {data.zip} {data.state} {data.date} {data.website}
-    {data.description} {data.photo} {data["cast"]}
-
-    </h1> */}
-
-      <h1> Show Info </h1>
-      <p class="showTitle"> {showData.showTitle} </p>
-
-      <div class="showInfo">
-        <img class="showPhoto" src={showData.showPhoto} />
-        <p class="showRating"> Rating: {showData.showRating}</p>
-
-        <p class="showDates"> Dates: {showData.showDate} </p>
-        <p class="showWeb"> {showData.showWebsite} </p>
-
-        <p class="showDescript"> Description: {showData.showDescription} </p>
-        <p class="showCast"> {showData.showCast} </p>
-
-        <p class="showLocation">
-          {' '}
-          Address: {showData.showStreet}
-          {showData.showCity} {showData.showZip} {showData.showState}{' '}
-        </p>
-      </div>
-    </div>
-  );
-  // }
-};
+const ShowInfo = ({ showData }) => (
+  <div className={styles.showInfoContainer}>
+    <h1> Show Info </h1>
+    <img src={showData.showPhoto} />
+    <p>{showData.showTitle}</p>
+    {showData.showRating ? <Rating value={showData.showRating} readOnly /> : null}
+    <p>{new Date(Number(showData.showDate)).toLocaleDateString('en-US')}</p>
+    <a href={showData.showWebsite} className={styles.link}>
+      Go to Website
+    </a>
+    <p className={styles.description}> {showData.showDescription} </p>
+    <p> {showData.showCast} </p>
+    <p>
+      Theatre Address: {showData.showStreet}
+      {showData.showCity} {showData.showZip} {showData.showState}
+    </p>
+  </div>
+);
 
 export default ShowInfo;

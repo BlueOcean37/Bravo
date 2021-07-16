@@ -1,32 +1,43 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
-import ShowInfo from './ShowInfo.jsx';
-import Reviews from './Reviews.jsx';
-import AddReview from './AddReview.jsx';
-// import AddComment from './AddComment.jsx';
+import ShowInfo from './ShowInfo';
+import Reviews from './Reviews';
+import AddReview from './AddReview';
+import styles from './shows.module.scss';
 
 class Shows extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       reviews: [],
-
       showInfo: {},
     };
     this.getReviews = this.getReviews.bind(this);
     this.handleAddNewReview = this.handleAddNewReview.bind(this);
-    // this.handleAddNewComment = this.handleAddNewComment.bind(this);
   }
 
-  // ${this.props.location.state}
+  componentDidMount() {
+    this.getReviews();
+  }
+
+  handleAddNewReview(reviewData) {
+    axios
+      .post('/api/reviews', {
+        show_id: reviewData.show_id,
+        user_id: 13,
+        show_rating: reviewData.show_rating,
+        text: reviewData.text,
+      })
+      .then(() => this.getReviews())
+      .catch((error) => {
+        console.error('error adding new review', error);
+      });
+  }
+
   getReviews() {
     axios
       .get(`/api/shows/${this.props.location.state}`)
       .then(({ data }) => {
-        // console.log("THIS IS DATA RESPONSE", data);
-        // console.log("THIS IS REVIEWS RESPONSE", data[0].reviews);
-        console.log('THIS IS SHOW INFO', data[0].title);
         this.setState({
           reviews: data[0].reviews,
           showInfo: {
@@ -48,62 +59,18 @@ class Shows extends React.Component {
       })
       .catch((err) => console.log(err));
   }
-
-  // handleAddNewComment(commentData) {
-  //   console.log('THIS IS REVIEW ID', this.props.review_id);
-  //   axios
-  //     .post(`/api/reviews/${this.props.review_id}/comment`, {
-  //       id: this.props.review_id,
-  //       user_id: commentData.user_id,
-  //       text: commentData.text,
-  //     })
-  //     .then((response) => {
-  //       console.log('THIS IS RESPONSE WITH NEW REVIEW', response);
-  //     })
-  //     .catch((error) => {
-  //       console.log('THIS IS RESPONSE WITH NEW review', error);
-  //     })
-  //     .then(() => this.getReviews());
-  // }
-
-  handleAddNewReview(reviewData) {
-    axios
-      .post('/api/reviews', {
-        show_id: reviewData.show_id,
-        user_id: reviewData.user_id,
-        show_rating: reviewData.show_rating,
-        text: reviewData.text,
-      })
-      .then((response) => {
-        console.log('THIS IS RESPONSE WITH NEW REVIEW', response);
-      })
-      .catch((error) => {
-        console.log('THIS IS RESPONSE WITH NEW review', error);
-      })
-      .then(() => this.getReviews());
-  }
-
-  componentDidMount() {
-    this.getReviews();
-  }
-
   render() {
     return (
-      <div>
-        {console.log('THIS IS STATE', this.state)}
+      <div className={styles.container}>
         <ShowInfo showData={this.state.showInfo} />
-        <AddReview
-          handleAddNewReview={this.handleAddNewReview}
-          userId={this.state.showInfo.user_id}
-          id={this.state.showInfo.id}
-        />
-        <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
-
-        {/* <AddComment
-            user_id={this.state.showInfo.user_id}
-            // showInfo={this.state.showInfo}
-            handleAddNewComment={this.handleAddNewComment}
-          /> */}
+        <div className={styles.reviewsContainer}>
+          <AddReview
+            handleAddNewReview={this.handleAddNewReview}
+            userId={13}
+            id={this.state.showInfo.id}
+          />
+          <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
+        </div>
       </div>
     );
   }

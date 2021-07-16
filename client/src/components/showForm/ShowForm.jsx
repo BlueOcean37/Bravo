@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   TextField,
   Button,
@@ -11,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { DropzoneArea } from 'material-ui-dropzone';
 import axios from 'axios';
-import styles from './showForm.module';
+import styles from './showForm.module.scss';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function ShowForm() {
@@ -99,18 +100,39 @@ export default function ShowForm() {
     return <Redirect to={{ pathname: '/shows', state: newShowID }} />;
   }
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& .MuiFormLabel-root': {
+        // color: '#fcf6ed', // or black
+        borderColor: 'grey',
+        color: 'grey',
+      },
+      ' & .MuiFormControl-root': {
+        margin: '0px 8px',
+      },
+    },
+    input: {
+      color: 'grey',
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <div className={styles.container}>
       <h1>ADD YOUR SHOW!</h1>
       <div className={styles.form}>
         <div className={styles.input}>
           <TextField
-            autoFocus={true}
             id="title"
             label="Show Title"
             value={title}
             required
             onChange={(e) => setTitle(e.target.value)}
+            className={classes.root}
+            InputProps={{
+              className: classes.input,
+            }}
           />
           <TextField
             id="street"
@@ -118,6 +140,10 @@ export default function ShowForm() {
             value={street}
             required
             onChange={(e) => setStreet(e.target.value)}
+            className={classes.root}
+            InputProps={{
+              className: classes.input,
+            }}
           />
           <TextField
             id="city"
@@ -125,6 +151,10 @@ export default function ShowForm() {
             value={city}
             required
             onChange={(e) => setCity(e.target.value)}
+            className={classes.root}
+            InputProps={{
+              className: classes.input,
+            }}
           />
           <TextField
             id="state"
@@ -132,6 +162,10 @@ export default function ShowForm() {
             value={state}
             required
             onChange={(e) => setState(e.target.value)}
+            className={classes.root}
+            InputProps={{
+              className: classes.input,
+            }}
           />
           <TextField
             id="zip"
@@ -139,17 +173,33 @@ export default function ShowForm() {
             value={zip}
             required
             onChange={(e) => setZip(e.target.value)}
+            className={classes.root}
+            InputProps={{
+              className: classes.input,
+            }}
           />
           <TextField
             id="date"
             label="Dates"
-            InputLabelProps={{ shrink: true }}
+            InputLabelProps={{ shrink: true, className: { color: 'red' } }}
             value={date}
             required
             type="date"
             onChange={(e) => setDate(e.target.value)}
+            className={classes.root}
+            InputProps={{
+              className: classes.input,
+            }}
           />
-          <TextField id="website" label="Website" onChange={(e) => setWebsite(e.target.value)} />
+          <TextField
+            id="website"
+            label="Website"
+            onChange={(e) => setWebsite(e.target.value)}
+            className={classes.root}
+            InputProps={{
+              className: classes.input,
+            }}
+          />
           <TextField
             id="description"
             label="Description"
@@ -157,6 +207,10 @@ export default function ShowForm() {
             multiline
             rows={6}
             onChange={(e) => setDescription(e.target.value)}
+            className={classes.root}
+            InputProps={{
+              className: classes.input,
+            }}
           />
         </div>
         <div className={styles.photoContainer}>
@@ -171,7 +225,7 @@ export default function ShowForm() {
             dropzoneText="Drag and drop an image here or click"
           />
           <div>
-            <Button className={styles.btn} onClick={handleSubmit}>
+            <Button className={classes.root} onClick={handleSubmit}>
               Submit
             </Button>
             <Dialog

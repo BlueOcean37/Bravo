@@ -1,5 +1,5 @@
 // GET show By ID controller
-const pool = require('../../db/index');
+const pool = require("../../db/index");
 
 const getShow = (req, res) => {
   const id = req.params.id;
@@ -12,6 +12,7 @@ const getShow = (req, res) => {
       'show_rating', reviews.show_rating,
       'photo', (SELECT photo FROM users WHERE reviews.user_id = users.id),
       'username', (SELECT username FROM users WHERE reviews.user_id = users.id),
+      'user_id', (SELECT id FROM users WHERE reviews.user_id = users.id),
       'comments', (
         SELECT jsonb_agg(jsonb_build_object(
           'text', comments.text,
@@ -31,7 +32,7 @@ const getShow = (req, res) => {
     .query(queryString)
     .then((result) => res.status(200).send(result.rows))
     .catch((err) => {
-      console.error('error getting all reviews for a single show', err.stack);
+      console.error("error getting all reviews for a single show", err.stack);
       res.sendStatus(500);
     });
 };

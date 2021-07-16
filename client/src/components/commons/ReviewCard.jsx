@@ -18,8 +18,8 @@ const {
   footer,
   showPhotoContainer,
   showPhoto,
-  upVote,
-  downVote,
+  upIcon,
+  downIcon,
   commentsContainer,
   userPhoto,
   rightSideContainer,
@@ -89,16 +89,16 @@ export default function ReviewCard({
                 upVoteDisplayHandler('up');
               }}
             >
-              <ExpandLessOutlined id={upVote} />
+              <ExpandLessOutlined className={upIcon} />
             </Button>
           ) : (
             <Button>
-              <ExpandLessOutlined id={upVote} />
+              <ExpandLessOutlined className={upIcon} />
             </Button>
           )
         ) : (
           <Button onClick={() => setShowLockedFeatureDialog(true)}>
-            <ExpandLessOutlined id={upVote} />
+            <ExpandLessOutlined className={upIcon} />
           </Button>
         )}
         <h2>{vote}</h2>
@@ -109,26 +109,28 @@ export default function ReviewCard({
                 downVoteDisplayHandler('down');
               }}
             >
-              <ExpandMoreOutlined id={downVote} />
+              <ExpandMoreOutlined className={downIcon} />
             </Button>
           ) : (
             <Button>
-              <ExpandMoreOutlined id={downVote} />
+              <ExpandMoreOutlined className={downIcon} />
             </Button>
           )
         ) : (
           <Button onClick={() => setShowLockedFeatureDialog(true)}>
-            <ExpandMoreOutlined id={downVote} />
+            <ExpandMoreOutlined className={downIcon} />
           </Button>
         )}
       </div>
       <div className={rightSideContainer}>
         <div className={flexShow}>
-          {show_photo ? (
-            <div className={showPhotoContainer}>
-              <img src={show_photo} className={showPhoto} alt="show photo" />
-            </div>
-          ) : null}
+          <Link to={{ pathname: '/shows', state: show_id }} className={link}>
+            {show_photo ? (
+              <div className={showPhotoContainer}>
+                <img src={show_photo} className={showPhoto} alt="show photo" />
+              </div>
+            ) : null}
+          </Link>
         </div>
         <div className={cardContainer}>
           <div className={header}>
@@ -143,8 +145,8 @@ export default function ReviewCard({
               <span className={textTime}>{date}</span>
               <Link to={{ pathname: '/users', state: user_id }} className={link}>
                 <span>{username}</span>
+                {user_photo ? <img className={userPhoto} src={user_photo} /> : null}
               </Link>
-              {user_photo ? <img className={userPhoto} src={user_photo} /> : null}
             </div>
           </div>
           <div className={review}>

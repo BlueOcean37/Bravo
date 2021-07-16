@@ -1,39 +1,14 @@
-// // main show page scss
+.container {
+  width: 860%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  max-width: 1300px;
+  padding: 24px;
+}
 
-// //SHOW INFO
-// showInfo
-
-// showPhoto
-// showRating
-// showDates
-// showWeb
-// showDescript
-// showCast
-// showLocation
-
-
-// //REVIEW
-// reviewBox
-
-// reviewUsername
-// reviewDate
-// reviewShowRateing
-
-// reviewTextBox
-
-// reviewText
-// reviewRating
-
-
-// addComment
-// likeReview
-// dislikeReview
-
-
-// //COMMENTS
-// commentBox
-
-// commentUsername
-// commentDate
-// commentext
-
+.reviewsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}

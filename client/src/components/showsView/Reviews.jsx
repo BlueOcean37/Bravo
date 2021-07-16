@@ -1,6 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import Review from './Review.jsx';
 import ReviewCard from '../commons/ReviewCard';
 
 class Reviews extends React.Component {
@@ -15,14 +13,13 @@ class Reviews extends React.Component {
   }
 
   render() {
-    if (this.props.reviewData) {
-      return (
-        <div>
-          <h1> Reviews </h1>
-          {this.props.reviewData ? (
-            this.props.reviewData.map((review) => (
+    return (
+      <div>
+        {this.props.reviewData
+          ? this.props.reviewData.map((review) => (
               <ReviewCard
                 key={review.id}
+                user_id={this.props.showInfo.user_id}
                 user_photo={review.photo}
                 username={review.username}
                 date={review.date}
@@ -32,15 +29,10 @@ class Reviews extends React.Component {
                 location={`${this.props.showInfo.showCity}, ${this.props.showInfo.showState}`}
                 comments={review.comments}
               />
-              //  addition
-              // <Review reviewData ={review} comments={this.props.comments}/>
             ))
-          ) : (
-            <p>test</p>
-          )}
-        </div>
-      );
-    }
+          : null}
+      </div>
+    );
   }
 }
 export default Reviews;
