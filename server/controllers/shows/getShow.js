@@ -10,6 +10,7 @@ const getShow = (req, res) => {
       'date', reviews.date,
       'rating', reviews.rating,
       'show_rating', reviews.show_rating,
+      'photo', (SELECT photo FROM users WHERE reviews.user_id = users.id),
       'username', (SELECT username FROM users WHERE reviews.user_id = users.id),
       'comments', (
         SELECT jsonb_agg(jsonb_build_object(
