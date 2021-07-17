@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "jest",
-    "build": "webpack -w --mode production",
+    "build": "webpack --mode production",
     "build:dev": "webpack -w --mode development"
   },
   "author": "",

@@ -7,11 +7,9 @@ const getUserByEmail = (req, res) => {
   WHERE email = '${email}';`;
   pool
     .query(queryString)
-    .then((result) => {
-      console.log(result.rows[0]);
-      res.status(200).json(result.rows[0]);
-    })
+    .then((result) => res.status(200).json(result.rows[0]))
     .catch((err) => {
+      console.error(err.stack, 'Failed to get user by email');
       res.sendStatus(500);
     });
 };

@@ -2,7 +2,6 @@
 const pool = require("../../db/index");
 
 const addShow = (req, res) => {
-  console.log(req.body);
   const {
     title,
     street,
@@ -20,11 +19,11 @@ const addShow = (req, res) => {
   INSERT INTO shows
   (user_id, title, street, city,
   zip, state, date, website,
-  description, photo)
+  description, photo, rating)
   VALUES (
   ${user_id}, '${title}', '${street}', '${city}',
   '${zip}','${state}', '${date}', '${website}',
-  '${description}', '${photo}'
+  '${description}', '${photo}', 0
   )
   RETURNING id;`;
 
