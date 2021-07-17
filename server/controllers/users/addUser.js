@@ -1,11 +1,16 @@
-const pool = require('../../db/index');
+const { insertUser } = require('../../models/users');
 
 const addUser = (req, res) => {
-  const { username, password, email, first_name, last_name, photo } = req.body;
-  let queryString = `INSERT INTO users ( username, password, email, first_name, last_name, photo) VALUES ('${username}', '${password}', '${email}', '${first_name}', '${last_name}', '${photo}')`;
+  const userData = [
+    req.body.username,
+    req.body.password,
+    req.body.email,
+    req.body.first_name,
+    req.body.last_name,
+    req.body.photo,
+  ];
 
-  pool
-    .query(queryString)
+  insertUser(userData)
     .then((result) => res.sendStatus(201))
     .catch((err) => {
       console.error('error adding a user', err.stack);
