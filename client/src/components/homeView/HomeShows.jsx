@@ -4,7 +4,6 @@ import { Button } from '@material-ui/core';
 import { ArrowForward, ArrowBack } from '@material-ui/icons';
 import axios from 'axios';
 import styles from './homeshows.module.scss';
-console.log(styles);
 
 const { showsButton } = styles;
 

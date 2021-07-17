@@ -1,79 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ShowInfo from './ShowInfo';
 import Reviews from './Reviews';
 import AddReview from './AddReview';
 import styles from './shows.module.scss';
 
-class Shows extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      reviews: [],
-      showInfo: {},
-    };
-    this.getReviews = this.getReviews.bind(this);
-    this.handleAddNewReview = this.handleAddNewReview.bind(this);
-  }
+const { container, reviewsContainer } = styles;
 
-  componentDidMount() {
-    this.getReviews();
-  }
+const Shows = ({ location }) => {
+  const [id, setId] = useState(location.state);
+  const [reviewsCounter, setReviewsCounter] = useState(0);
+  const [reviewsInfo, setReviewsInfo] = useState([]);
 
-  handleAddNewReview(reviewData) {
+  useEffect(() => {
+    setId(location.state);
+  }, [location.state]);
+
+  useEffect(() => {
     axios
-      .post('/api/reviews', {
-        show_id: reviewData.show_id,
-        user_id: 13,
-        show_rating: reviewData.show_rating,
-        text: reviewData.text,
-      })
-      .then(() => this.getReviews())
-      .catch((error) => {
-        console.error('error adding new review', error);
-      });
-  }
-
-  getReviews() {
-    axios
-      .get(`/api/shows/${this.props.location.state}`)
+      .get(`/api/reviews/show/${id}`)
       .then(({ data }) => {
-        this.setState({
-          reviews: data[0].reviews,
-          showInfo: {
-            id: data[0].id,
-            user_id: data[0].user_id,
-            showTitle: data[0].title,
-            showPhoto: data[0].photo,
-            showDate: data[0].date,
-            showWebsite: data[0].website,
-            showDescription: data[0].description,
-            showCast: data[0].cast,
-            showStreet: data[0].street,
-            showCity: data[0].city,
-            showZip: data[0].zip,
-            showState: data[0].state,
-            showRating: data[0].rating,
-          },
-        });
+        setReviewsInfo(data);
       })
       .catch((err) => console.log(err));
-  }
-  render() {
-    return (
-      <div className={styles.container}>
-        <ShowInfo showData={this.state.showInfo} />
-        <div className={styles.reviewsContainer}>
-          <AddReview
-            handleAddNewReview={this.handleAddNewReview}
-            userId={13}
-            id={this.state.showInfo.id}
-          />
-          <Reviews reviewData={this.state.reviews} showInfo={this.state.showInfo} />
-        </div>
+  }, [id, reviewsCounter]);
+
+  return (
+    <div className={container}>
+      <ShowInfo id={id} />
+      <div className={reviewsContainer}>
+        <AddReview id={id} reviewsCounter={reviewsCounter} setReviewsCounter={setReviewsCounter} />
+        <Reviews reviewsInfo={reviewsInfo} />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Shows;

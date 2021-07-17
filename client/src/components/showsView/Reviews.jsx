@@ -1,38 +1,25 @@
 import React from 'react';
 import ReviewCard from '../commons/ReviewCard';
 
-class Reviews extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      reviews: [],
-      id: '',
-      downvote: '',
-      upvote: '',
-    };
-  }
+const Reviews = ({ reviewsInfo }) => (
+  <div>
+    {reviewsInfo.map((review) => (
+      <ReviewCard
+        key={review.id}
+        comments={review.comments}
+        id={review.id}
+        username={review.user.username}
+        title={review.show.title}
+        location={review.show.location}
+        rating={review.rating}
+        text={review.text}
+        user_photo={review.user.photo}
+        user_id={review.user_id}
+        show_id={review.show_id}
+        date={review.date}
+      />
+    ))}
+  </div>
+);
 
-  render() {
-    return (
-      <div>
-        {this.props.reviewData
-          ? this.props.reviewData.map((review) => (
-              <ReviewCard
-                key={review.id}
-                user_id={review.user_id}
-                user_photo={review.photo}
-                username={review.username}
-                date={review.date}
-                text={review.text}
-                rating={review.rating}
-                title={this.props.showInfo.showTitle}
-                location={`${this.props.showInfo.showCity}, ${this.props.showInfo.showState}`}
-                comments={review.comments}
-              />
-            ))
-          : null}
-      </div>
-    );
-  }
-}
 export default Reviews;
