@@ -1,12 +1,7 @@
-const pool = require('../../db/index');
+const { selectUserById } = require('../../models/users');
 
 const getUser = (req, res) => {
-  const { id } = req.params;
-  let queryString = `SELECT id, username, first_name, last_name, photo
-  FROM users
-  WHERE users.id = ${id}`;
-  pool
-    .query(queryString)
+  selectUserById(req.params.id)
     .then((result) => res.status(200).json(result.rows[0]))
     .catch((err) => {
       console.error(err.stack, 'Failed to get user');
