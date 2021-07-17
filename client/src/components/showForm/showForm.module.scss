@@ -8,10 +8,9 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 74%;
-  // width: 60vw;
-  min-width: 400px;
-  // max-width: 900px;
+  width: 60vw;
+  min-width: 200px;
+  max-width: 900px;
 }
 
 .input {

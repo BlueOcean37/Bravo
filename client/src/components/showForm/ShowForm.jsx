@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import { DropzoneArea } from 'material-ui-dropzone';
 import {
   TextField,
   Button,
@@ -10,7 +10,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core';
-import { DropzoneArea } from 'material-ui-dropzone';
+import { Alert } from '@material-ui/lab';
 import axios from 'axios';
 import styles from './showForm.module.scss';
 import { useAuth } from '../../contexts/AuthContext';
@@ -24,15 +24,14 @@ export default function ShowForm() {
   const [date, setDate] = useState('');
   const [website, setWebsite] = useState('');
   const [description, setDescription] = useState('');
-  const [photoForm, setPhotoForm] = useState('');
+  const [photoForm, setPhotoForm] = useState(false);
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
   const [newShowID, setNewShowID] = useState('');
   const [redirectToShowPage, setRedirectToShowPage] = useState(false);
   const [counter, setCounter] = useState(6);
   const [user, setUser] = useState('');
+  const [showPhotoAlert, setShowPhotoAlert] = useState(false);
   const { currentUser } = useAuth();
-
-  const formValidation = () => title && street && city && state && zip && date;
 
   useEffect(() => {
     if (counter < 6) {
@@ -71,7 +70,9 @@ export default function ShowForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formValidation()) {
+    const photoFormCheck = photoForm.get('show');
+    if (photoFormCheck !== 'undefined') {
+      setShowPhotoAlert(false);
       axios
         .post('/api/image-upload', photoForm, {
           headers: { 'Content-Type': 'multipart/form-data' },
@@ -80,9 +81,9 @@ export default function ShowForm() {
           const newShow = createBodyObject(res.data);
           axios
             .post('/api/shows/', newShow)
-            .then((res) => {
+            .then((result) => {
               setSubmitDialogOpen(true);
-              setNewShowID(res.data.id);
+              setNewShowID(result.data.id);
               setCounter(5);
             })
             .catch((err) => {
@@ -92,7 +93,7 @@ export default function ShowForm() {
         })
         .catch((err) => console.error('error uploading the image', err));
     } else {
-      alert('Please enter a value for all required fields');
+      setShowPhotoAlert(true);
     }
   };
 
@@ -103,9 +104,10 @@ export default function ShowForm() {
   return (
     <div className={styles.container}>
       <h1>ADD YOUR SHOW!</h1>
-      <div className={styles.form}>
+      <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
         <div className={styles.input}>
           <TextField
+            autoFocus
             id="title"
             label="Show Title"
             value={title}
@@ -143,7 +145,7 @@ export default function ShowForm() {
           <TextField
             id="date"
             label="Dates"
-            InputLabelProps={{ shrink: true, className: { color: 'red' } }}
+            InputLabelProps={{ shrink: true }}
             value={date}
             required
             type="date"
@@ -161,38 +163,46 @@ export default function ShowForm() {
         </div>
         <div className={styles.photoContainer}>
           <DropzoneArea
+            id="file-dropzone"
             filesLimit={1}
             acceptedFiles={['image/*']}
             onChange={(files) => {
               const form = new FormData();
-              form.append('show', files[0]);
+              form.set('show', files[0]);
               setPhotoForm(form);
             }}
-            dropzoneText="Drag and drop an image here or click"
+            dropzoneText="Drag and drop an image here or click (Required)"
           />
           <div>
-            <Button onClick={handleSubmit}>Submit</Button>
-            <Dialog
-              open={submitDialogOpen}
-              aria-labelledby="submit-dialog-title"
-              aria-describedby="submit-dialog-description"
-            >
-              <DialogTitle id="submit-dialog-title">Your show has been submitted</DialogTitle>
-              <DialogContent>
-                <DialogContentText id="submit-dialog-description">
-                  Your show has successfully been submitted. You will be redirected to your new
-                  show's page in {counter} seconds.
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={() => setSubmitDialogOpen(false)}>
-                  <Link to={{ pathname: '/shows', state: newShowID }}>Continue to show page</Link>
-                </Button>
-              </DialogActions>
-            </Dialog>
+            <div className={styles.container}>
+              {showPhotoAlert && (
+                <Alert variant="outlined" severity="error">
+                  You must enter an image for your show
+                </Alert>
+              )}
+              <Button type="submit">Submit</Button>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
+      <Dialog
+        open={submitDialogOpen}
+        aria-labelledby="submit-dialog-title"
+        aria-describedby="submit-dialog-description"
+      >
+        <DialogTitle id="submit-dialog-title">Your show has been submitted</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="submit-dialog-description">
+            Your show has successfully been submitted. You will be redirected to your new show's
+            page in {counter} seconds.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setSubmitDialogOpen(false)}>
+            <Link to={{ pathname: '/shows', state: newShowID }}>Continue to show page</Link>
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
