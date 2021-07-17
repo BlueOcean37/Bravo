@@ -17,7 +17,6 @@ const Shows = ({ location }) => {
   }, [location.state]);
 
   useEffect(() => {
-    console.log('Shows id', id);
     axios
       .get(`/api/reviews/show/${id}`)
       .then(({ data }) => {
