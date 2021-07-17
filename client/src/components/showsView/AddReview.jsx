@@ -12,12 +12,14 @@ const AddReview = ({ reviewsCounter, id, setReviewsCounter }) => {
   const [inputRating, setInputRating] = useState(0);
 
   useEffect(() => {
-    axios
-      .put('/api/users/', { email: currentUser.email })
-      .then(({ data }) => {
-        setUserId(data.id);
-      })
-      .catch((err) => console.log(err));
+    if (currentUser !== null) {
+      axios
+        .put('/api/users/', { email: currentUser.email })
+        .then(({ data }) => {
+          setUserId(data.id);
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   const addReview = (e) => {
@@ -30,9 +32,7 @@ const AddReview = ({ reviewsCounter, id, setReviewsCounter }) => {
         text: inputReview,
       })
       .then(() => setReviewsCounter(reviewsCounter + 1))
-      .catch((error) => {
-        console.error('error adding new review', error);
-      });
+      .catch((error) => console.error('error adding new review', error));
   };
 
   return (
