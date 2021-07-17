@@ -3,6 +3,7 @@ const insertReview = require('./insertReview');
 const updateReviewDownVote = require('./updateReviewDownVote');
 const selectAllReviews = require('./selectAllReviews');
 const selectComments = require('./selectComments');
+const selectReviewsByUser = require('./selectReviewsByUser');
 
 module.exports = {
   insertComment,
@@ -10,4 +11,5 @@ module.exports = {
   updateReviewDownVote,
   selectAllReviews,
   selectComments,
+  selectReviewsByUser,
 };
