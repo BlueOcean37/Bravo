@@ -1,10 +1,10 @@
-const { selectShowById } = require('../../models/shows');
+const { selectShowById } = require("../../models/shows");
 
 const getShow = (req, res) => {
   selectShowById(req.params.id)
-    .then((result) => res.status(200).send(result.rows))
+    .then((result) => res.status(200).send(result.rows[0]))
     .catch((err) => {
-      console.error('error getting all reviews for a single show', err.stack);
+      console.error("error getting all reviews for a single show", err.stack);
       res.sendStatus(500);
     });
 };

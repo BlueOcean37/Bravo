@@ -1,4 +1,4 @@
-const { insertShow } = require('../../models/shows');
+const { insertShow } = require("../../models/shows");
 
 const addShow = (req, res) => {
   const showData = [
@@ -17,7 +17,7 @@ const addShow = (req, res) => {
   insertShow(showData)
     .then((result) => res.status(201).send(result.rows[0]))
     .catch((err) => {
-      console.error('error adding a show to db', err.stack);
+      console.error("error adding a show to db", err.stack);
       res.sendStatus(500);
     });
 };

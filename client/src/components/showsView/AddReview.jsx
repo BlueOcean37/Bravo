@@ -1,68 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { TextField, Button } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import styles from './addreview.module.scss';
+import { useAuth } from '../../contexts/AuthContext';
 
-class AddReview extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show_rating: 0,
-      text: '',
-    };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleRatingChange = this.handleRatingChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const AddReview = ({ reviewsCounter, id, setReviewsCounter }) => {
+  const { currentUser } = useAuth();
+  const [userId, setUserId] = useState(null);
+  const [inputReview, setInputReview] = useState('');
+  const [inputRating, setInputRating] = useState(0);
 
-  handleInputChange(e) {
-    this.setState({ text: e.target.value });
-  }
+  useEffect(() => {
+    axios
+      .put('/api/users/', { email: currentUser.email })
+      .then(({ data }) => {
+        setUserId(data.id);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-  handleRatingChange(newValue) {
-    this.setState({ show_rating: newValue });
-  }
+  const addReview = (e) => {
+    e.preventDefault();
+    axios
+      .post('/api/reviews', {
+        show_id: id,
+        user_id: userId,
+        show_rating: inputRating,
+        text: inputReview,
+      })
+      .then(() => setReviewsCounter(reviewsCounter + 1))
+      .catch((error) => {
+        console.error('error adding new review', error);
+      });
+  };
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.handleAddNewReview({
-      show_id: this.props.id,
-      user_id: this.props.userId,
-      show_rating: this.state.show_rating,
-      text: this.state.text,
-    });
-    this.setState({
-      show_rating: 0,
-      text: '',
-    });
-  }
-
-  render() {
-    return (
-      <div className={styles.addReviewContainer}>
-        <TextField
-          label="Write Review"
-          id="text"
-          value={this.state.text}
-          required
-          multiline
-          rows={6}
-          onChange={(e) => {
-            this.handleInputChange(e);
+  return (
+    <div className={styles.addReviewContainer}>
+      <TextField
+        label="Write Review"
+        id="text"
+        value={inputReview}
+        required
+        multiline
+        rows={6}
+        onChange={(e) => {
+          setInputReview(e.target.value);
+        }}
+      />
+      <div className={styles.ratingContainer}>
+        <Rating
+          id="show_rating"
+          value={inputRating}
+          onChange={(e, newValue) => {
+            setInputRating(newValue);
           }}
         />
-        <div className={styles.ratingContainer}>
-          <Rating
-            id="show_rating"
-            value={this.state.show_rating}
-            onChange={(e, newValue) => {
-              this.handleRatingChange(newValue);
-            }}
-          />
-        </div>
-        <Button onClick={this.handleSubmit}>Submit</Button>
       </div>
-    );
-  }
-}
+      <Button onClick={(e) => addReview(e)}>Submit</Button>
+    </div>
+  );
+};
+
 export default AddReview;

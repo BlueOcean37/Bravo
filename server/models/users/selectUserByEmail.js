@@ -1,4 +1,4 @@
-const pool = require('../../db/index');
+const pool = require("../../db/index");
 
 const selectUserByEmail = (data) => {
   let queryString = `SELECT id

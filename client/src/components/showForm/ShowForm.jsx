@@ -48,7 +48,7 @@ export default function ShowForm() {
 
   useEffect(() => {
     axios
-      .put('/api/users/', { email: currentUser.email })
+      .get('/api/users/', { email: currentUser.email })
       .then((res) => setUser(res.data.id))
       .catch((err) => console.error('error getting userid from db', err));
   }, []);
