@@ -22,7 +22,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(true);
 
   const { logout, currentUser } = useAuth();
   const history = useHistory();
@@ -49,14 +49,12 @@ export default function NavBar() {
   };
 
   const changeColors = () => {
-    if (!theme) {
-      document.documentElement.style.setProperty('--bg-color', '#f9f9f9');
-      document.documentElement.style.setProperty('--font-color', '#130d03');
-      // document.documentElement.style.setProperty('--border-color', '#F6E5CB');
-    } else {
-      document.documentElement.style.setProperty('--bg-color', '#121212');
+    if (theme) {
+      document.documentElement.style.setProperty('--bg-color', '#0f0f0e');
       document.documentElement.style.setProperty('--font-color', '#fcf6ed');
-      // document.documentElement.style.setProperty('--border-color', '#c7c7c4');
+    } else {
+      document.documentElement.style.setProperty('--bg-color', '#e9e9e9');
+      document.documentElement.style.setProperty('--font-color', '#0f0f0e');
     }
   };
 
