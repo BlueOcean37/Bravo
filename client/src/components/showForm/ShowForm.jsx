@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import { DropzoneArea } from 'material-ui-dropzone';
 import {
   TextField,
   Button,
@@ -10,7 +10,6 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core';
-import { DropzoneArea } from 'material-ui-dropzone';
 import axios from 'axios';
 import styles from './showForm.module.scss';
 import { useAuth } from '../../contexts/AuthContext';
@@ -32,7 +31,7 @@ export default function ShowForm() {
   const [user, setUser] = useState('');
   const { currentUser } = useAuth();
 
-  const formValidation = () => title && street && city && state && zip && date;
+  const formValidation = () => title && street && city && state && zip && date && photoForm;
 
   useEffect(() => {
     if (counter < 6) {
@@ -168,7 +167,7 @@ export default function ShowForm() {
               form.append('show', files[0]);
               setPhotoForm(form);
             }}
-            dropzoneText="Drag and drop an image here or click"
+            dropzoneText="Drag and drop an image here or click (Required)"
           />
           <div>
             <Button onClick={handleSubmit}>Submit</Button>
