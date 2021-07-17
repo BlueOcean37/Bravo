@@ -100,24 +100,6 @@ export default function ShowForm() {
     return <Redirect to={{ pathname: '/shows', state: newShowID }} />;
   }
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      '& .MuiFormLabel-root': {
-        // color: '#fcf6ed', // or black
-        borderColor: 'grey',
-        color: 'grey',
-      },
-      ' & .MuiFormControl-root': {
-        margin: '0px 8px',
-      },
-    },
-    input: {
-      color: 'grey',
-    },
-  }));
-
-  const classes = useStyles();
-
   return (
     <div className={styles.container}>
       <h1>ADD YOUR SHOW!</h1>
@@ -129,10 +111,6 @@ export default function ShowForm() {
             value={title}
             required
             onChange={(e) => setTitle(e.target.value)}
-            className={classes.root}
-            InputProps={{
-              className: classes.input,
-            }}
           />
           <TextField
             id="street"
@@ -140,10 +118,6 @@ export default function ShowForm() {
             value={street}
             required
             onChange={(e) => setStreet(e.target.value)}
-            className={classes.root}
-            InputProps={{
-              className: classes.input,
-            }}
           />
           <TextField
             id="city"
@@ -151,10 +125,6 @@ export default function ShowForm() {
             value={city}
             required
             onChange={(e) => setCity(e.target.value)}
-            className={classes.root}
-            InputProps={{
-              className: classes.input,
-            }}
           />
           <TextField
             id="state"
@@ -162,10 +132,6 @@ export default function ShowForm() {
             value={state}
             required
             onChange={(e) => setState(e.target.value)}
-            className={classes.root}
-            InputProps={{
-              className: classes.input,
-            }}
           />
           <TextField
             id="zip"
@@ -173,10 +139,6 @@ export default function ShowForm() {
             value={zip}
             required
             onChange={(e) => setZip(e.target.value)}
-            className={classes.root}
-            InputProps={{
-              className: classes.input,
-            }}
           />
           <TextField
             id="date"
@@ -186,20 +148,8 @@ export default function ShowForm() {
             required
             type="date"
             onChange={(e) => setDate(e.target.value)}
-            className={classes.root}
-            InputProps={{
-              className: classes.input,
-            }}
           />
-          <TextField
-            id="website"
-            label="Website"
-            onChange={(e) => setWebsite(e.target.value)}
-            className={classes.root}
-            InputProps={{
-              className: classes.input,
-            }}
-          />
+          <TextField id="website" label="Website" onChange={(e) => setWebsite(e.target.value)} />
           <TextField
             id="description"
             label="Description"
@@ -207,10 +157,6 @@ export default function ShowForm() {
             multiline
             rows={6}
             onChange={(e) => setDescription(e.target.value)}
-            className={classes.root}
-            InputProps={{
-              className: classes.input,
-            }}
           />
         </div>
         <div className={styles.photoContainer}>
@@ -225,9 +171,7 @@ export default function ShowForm() {
             dropzoneText="Drag and drop an image here or click"
           />
           <div>
-            <Button className={classes.root} onClick={handleSubmit}>
-              Submit
-            </Button>
+            <Button onClick={handleSubmit}>Submit</Button>
             <Dialog
               open={submitDialogOpen}
               aria-labelledby="submit-dialog-title"
@@ -242,9 +186,7 @@ export default function ShowForm() {
               </DialogContent>
               <DialogActions>
                 <Button onClick={() => setSubmitDialogOpen(false)}>
-                  <Link to={{ pathname: '/shows', state: { show_id: newShowID } }}>
-                    Continue to show page
-                  </Link>
+                  <Link to={{ pathname: '/shows', state: newShowID }}>Continue to show page</Link>
                 </Button>
               </DialogActions>
             </Dialog>
