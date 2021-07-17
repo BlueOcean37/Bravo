@@ -9,7 +9,7 @@ const getUser = (req, res) => {
     .query(queryString)
     .then((result) => res.status(200).json(result.rows[0]))
     .catch((err) => {
-      console.error(err);
+      console.error(err.stack, 'Failed to get user');
       res.sendStatus(500);
     });
 };
