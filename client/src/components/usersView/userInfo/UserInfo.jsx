@@ -10,7 +10,7 @@ export default function UserInfo({ id }) {
       .get(`/api/users/${id}`)
       .then(({ data }) => setUserInfo(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
   return (
     <div className={container}>
       <div className={photoContainer}>

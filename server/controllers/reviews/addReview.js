@@ -1,15 +1,19 @@
-// POST add a review
-const pool = require('../../db/index');
+const { insertReview } = require('../../models/reviews');
 
 const addReview = (req, res) => {
   const timestamp = new Date().getTime();
-  const addReview = `
-    INSERT INTO reviews (show_id, user_id, show_rating, text, date)
-    VALUES (${req.body.show_id}, ${req.body.user_id}, ${req.body.show_rating}, '${req.body.text}', ${timestamp});`;
-  pool
-    .query(addReview)
+  const reviewData = [
+    req.body.show_id,
+    req.body.user_id,
+    req.body.show_rating,
+    req.body.text,
+    timestamp,
+  ];
+
+  insertReview(reviewData)
     .then((result) => res.sendStatus(201))
     .catch((err) => {
+      console.error('error adding review to db', err.stack);
       res.sendStatus(500);
     });
 };

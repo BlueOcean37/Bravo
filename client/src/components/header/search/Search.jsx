@@ -58,11 +58,15 @@ export default function Search() {
     }
 
     (async () => {
-      const response = await fetch('/api/shows?sort=rating');
+      const response = await fetch('/api/search');
       await sleep(1e3); // For demo purposes.
-      const shows = await response.json();
+      const searchResults = await response.json();
+      const showsResponse = searchResults[0].shows;
+      const usersResponse = searchResults[0].users;
       if (active) {
-        setOptions(Object.keys(shows).map((key) => shows[key]));
+        const showsResults = Object.keys(showsResponse).map((key) => showsResponse[key]);
+        const usersResults = Object.keys(usersResponse).map((key) => usersResponse[key]);
+        setOptions(showsResults.concat(usersResults));
       }
     })();
 
@@ -77,9 +81,9 @@ export default function Search() {
     }
   }, [open]);
 
-  const filterOptions = createFilterOptions({
+  const filterShows = createFilterOptions({
     limit: 5,
-    stringify: (option) => option.title,
+    stringify: (option) => option.username || option.title,
   });
 
   return (
@@ -94,31 +98,54 @@ export default function Search() {
         setOpen(false);
       }}
       getOptionSelected={(option, value) => option.id === value.id}
-      getOptionLabel={(option) => option.title}
+      getOptionLabel={(option) => option.username || option.title}
       options={options}
       loading={loading}
-      filterOptions={filterOptions}
+      filterOptions={filterShows}
       renderOption={(option) => (
         <>
-          <Link to={{ pathname: `/shows`, state: option.id }}>
-            <Card className={classes.root} variant="outlined">
-              <CardMedia className={classes.cover} image={`${option.photo}`} title={option.title} />
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography component="h5" variant="body1">
-                    {option.title}
-                  </Typography>
-                  <Rating
-                    name="half-rating-read"
-                    value={option.rating}
-                    precision={0.1}
-                    size="small"
-                    readOnly
-                  />
-                </CardContent>
-              </div>
-            </Card>
-          </Link>
+          {option.title ? (
+            <Link to={{ pathname: `/shows`, state: option.id }}>
+              <Card className={classes.root} variant="outlined">
+                <CardMedia
+                  className={classes.cover}
+                  image={`${option.photo}`}
+                  title={option.title}
+                />
+                <div className={classes.details}>
+                  <CardContent className={classes.content}>
+                    <Typography component="h5" variant="body1">
+                      {option.title}
+                    </Typography>
+                    <Rating
+                      name="half-rating-read"
+                      value={option.rating}
+                      precision={0.1}
+                      size="small"
+                      readOnly
+                    />
+                  </CardContent>
+                </div>
+              </Card>
+            </Link>
+          ) : (
+            <Link to={{ pathname: `/users`, state: option.id }}>
+              <Card className={classes.root} variant="outlined">
+                <CardMedia
+                  className={classes.cover}
+                  image={`${option.photo}`}
+                  title={option.username}
+                />
+                <div className={classes.details}>
+                  <CardContent className={classes.content}>
+                    <Typography component="h5" variant="body1">
+                      {option.username}
+                    </Typography>
+                  </CardContent>
+                </div>
+              </Card>
+            </Link>
+          )}
         </>
       )}
       renderInput={(params) => (

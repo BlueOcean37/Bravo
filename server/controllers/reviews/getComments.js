@@ -1,12 +1,10 @@
-// get all comments of a review
-const pool = require('../../db/index');
+const { selectComments } = require('../../models/reviews');
 
 const getComments = (req, res) => {
-  const getAllComments = `SELECT * from comments WHERE review_id = ${req.params.id} ORDER BY date DESC`;
-  pool
-    .query(getAllComments)
+  selectComments(req.params.id)
     .then((result) => res.status(200).json(result.rows))
     .catch((err) => {
+      console.error('error getting comments to db', err.stack);
       res.sendStatus(500);
     });
 };
