@@ -3,6 +3,7 @@ import ReviewCard from '../commons/ReviewCard';
 
 const Reviews = ({ reviewsInfo }) => (
   <div>
+    {console.log('ASDFASDFASDFASDFASdf', reviewsInfo)}
     {reviewsInfo.map((review) => (
       <ReviewCard
         key={review.id}

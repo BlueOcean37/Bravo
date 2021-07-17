@@ -104,29 +104,48 @@ export default function Search() {
       filterOptions={filterShows}
       renderOption={(option) => (
         <>
-          <Link to={{ pathname: `/shows`, state: option.id }}>
-            <Card className={classes.root} variant="outlined">
-              <CardMedia
-                className={classes.cover}
-                image={`${option.photo}`}
-                title={option.username || option.title}
-              />
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography component="h5" variant="body1">
-                    {option.username || option.title}
-                  </Typography>
-                  {/* <Rating
-                    name="half-rating-read"
-                    value={option.rating}
-                    precision={0.1}
-                    size="small"
-                    readOnly
-                  /> */}
-                </CardContent>
-              </div>
-            </Card>
-          </Link>
+          {option.title ? (
+            <Link to={{ pathname: `/shows`, state: option.id }}>
+              <Card className={classes.root} variant="outlined">
+                <CardMedia
+                  className={classes.cover}
+                  image={`${option.photo}`}
+                  title={option.title}
+                />
+                <div className={classes.details}>
+                  <CardContent className={classes.content}>
+                    <Typography component="h5" variant="body1">
+                      {option.title}
+                    </Typography>
+                    <Rating
+                      name="half-rating-read"
+                      value={option.rating}
+                      precision={0.1}
+                      size="small"
+                      readOnly
+                    />
+                  </CardContent>
+                </div>
+              </Card>
+            </Link>
+          ) : (
+            <Link to={{ pathname: `/users`, state: option.id }}>
+              <Card className={classes.root} variant="outlined">
+                <CardMedia
+                  className={classes.cover}
+                  image={`${option.photo}`}
+                  title={option.username}
+                />
+                <div className={classes.details}>
+                  <CardContent className={classes.content}>
+                    <Typography component="h5" variant="body1">
+                      {option.username}
+                    </Typography>
+                  </CardContent>
+                </div>
+              </Card>
+            </Link>
+          )}
         </>
       )}
       renderInput={(params) => (
