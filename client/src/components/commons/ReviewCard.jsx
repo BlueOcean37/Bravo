@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import { ExpandLessOutlined, ExpandMoreOutlined } from '@material-ui/icons';
 import axios from 'axios';
@@ -75,87 +76,96 @@ export default function ReviewCard({
   };
 
   date = new Date(Number(date)).toLocaleDateString('en-US');
+
+  const colorTheme = createTheme({
+    palette: {
+      type: window.theme ? 'light' : 'dark',
+    },
+  });
+
   return (
-    <div className={reviewContainer}>
-      <div className={ratingContainer}>
-        <LockedFeatureDialog
-          showLockedFeatureDialog={showLockedFeatureDialog}
-          setShowLockedFeatureDialog={setShowLockedFeatureDialog}
-        />
-        {currentUser ? (
-          upVote ? (
-            <Button
-              onClick={() => {
-                upVoteDisplayHandler('up');
-              }}
-            >
+    <ThemeProvider theme={colorTheme}>
+      <div className={reviewContainer}>
+        <div className={ratingContainer}>
+          <LockedFeatureDialog
+            showLockedFeatureDialog={showLockedFeatureDialog}
+            setShowLockedFeatureDialog={setShowLockedFeatureDialog}
+          />
+          {currentUser ? (
+            upVote ? (
+              <Button
+                onClick={() => {
+                  upVoteDisplayHandler('up');
+                }}
+              >
+                <ExpandLessOutlined className={upIcon} />
+              </Button>
+            ) : (
+              <Button>
+                <ExpandLessOutlined className={upIcon} />
+              </Button>
+            )
+          ) : (
+            <Button onClick={() => setShowLockedFeatureDialog(true)}>
               <ExpandLessOutlined className={upIcon} />
             </Button>
+          )}
+          <h2>{vote}</h2>
+          {currentUser ? (
+            downVote ? (
+              <Button
+                onClick={() => {
+                  downVoteDisplayHandler('down');
+                }}
+              >
+                <ExpandMoreOutlined className={downIcon} />
+              </Button>
+            ) : (
+              <Button>
+                <ExpandMoreOutlined className={downIcon} />
+              </Button>
+            )
           ) : (
-            <Button>
-              <ExpandLessOutlined className={upIcon} />
-            </Button>
-          )
-        ) : (
-          <Button onClick={() => setShowLockedFeatureDialog(true)}>
-            <ExpandLessOutlined className={upIcon} />
-          </Button>
-        )}
-        <h2>{vote}</h2>
-        {currentUser ? (
-          downVote ? (
-            <Button
-              onClick={() => {
-                downVoteDisplayHandler('down');
-              }}
-            >
+            <Button onClick={() => setShowLockedFeatureDialog(true)}>
               <ExpandMoreOutlined className={downIcon} />
             </Button>
-          ) : (
-            <Button>
-              <ExpandMoreOutlined className={downIcon} />
-            </Button>
-          )
-        ) : (
-          <Button onClick={() => setShowLockedFeatureDialog(true)}>
-            <ExpandMoreOutlined className={downIcon} />
-          </Button>
-        )}
-      </div>
-      <div className={rightSideContainer}>
-        <div className={flexShow}>
-          <Link to={{ pathname: '/shows', state: show_id }} className={link}>
-            {show_photo ? (
-              <div className={showPhotoContainer}>
-                <img src={show_photo} className={showPhoto} alt="show photo" />
+          )}
+        </div>
+        <div className={rightSideContainer}>
+          <div className={flexShow}>
+            <Link to={{ pathname: '/shows', state: show_id }} className={link}>
+              {show_photo ? (
+                <div className={showPhotoContainer}>
+                  <img src={show_photo} className={showPhoto} alt="show photo" />
+                </div>
+              ) : null}
+            </Link>
+          </div>
+          <div className={cardContainer}>
+            <div className={header}>
+              <div>
+                <Link to={{ pathname: '/shows', state: show_id }} className={link}>
+                  <span>{title}</span>
+                </Link>
               </div>
-            ) : null}
-          </Link>
-        </div>
-        <div className={cardContainer}>
-          <div className={header}>
-            <div>
-              <Link to={{ pathname: '/shows', state: show_id }} className={link}>
-                <span>{title}</span>
-              </Link>
+              <div>
+                <span className={textTime}>{date}</span>
+                <Link to={{ pathname: '/users', state: user_id }} className={link}>
+                  <span>{username}</span>
+                  {user_photo ? <img className={userPhoto} src={user_photo} /> : null}
+                </Link>
+              </div>
             </div>
-            <div>
-              <span className={textTime}>{date}</span>
-              <Link to={{ pathname: '/users', state: user_id }} className={link}>
-                <span>{username}</span>
-                {user_photo ? <img className={userPhoto} src={user_photo} /> : null}
-              </Link>
+            <div className={review}>
+              <ReadMore text={text} />
             </div>
-          </div>
-          <div className={review}>
-            <ReadMore text={text} />
-          </div>
-          <div className={footer}>
-            <DisplayComments comments={comments} />
+            <div className={footer}>
+              <DisplayComments comments={comments} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 const ReadMore = ({ text }) => {

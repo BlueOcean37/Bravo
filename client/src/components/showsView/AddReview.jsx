@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TextField, Button } from '@material-ui/core';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Rating } from '@material-ui/lab';
 import styles from './addreview.module.scss';
 import { useAuth } from '../../contexts/AuthContext';
@@ -12,6 +13,12 @@ const AddReview = ({ reviewsCounter, id, setReviewsCounter }) => {
   const [userId, setUserId] = useState(null);
   const [inputReview, setInputReview] = useState('');
   const [inputRating, setInputRating] = useState(0);
+
+  const colorTheme = createTheme({
+    palette: {
+      type: window.theme ? 'light' : 'dark',
+    },
+  });
 
   useEffect(() => {
     if (currentUser !== null) {
@@ -38,37 +45,39 @@ const AddReview = ({ reviewsCounter, id, setReviewsCounter }) => {
   };
 
   return (
-    <div className={styles.addReviewContainer}>
-      <TextField
-        label="Write Review"
-        id="text"
-        value={inputReview}
-        required
-        multiline
-        rows={6}
-        onChange={(e) => {
-          setInputReview(e.target.value);
-        }}
-      />
-      <div className={styles.ratingContainer}>
-        <Rating
-          id="show_rating"
-          value={inputRating}
-          onChange={(e, newValue) => {
-            setInputRating(newValue);
+    <ThemeProvider theme={colorTheme}>
+      <div className={styles.addReviewContainer}>
+        <TextField
+          label="Write Review"
+          id="text"
+          value={inputReview}
+          required
+          multiline
+          rows={6}
+          onChange={(e) => {
+            setInputReview(e.target.value);
           }}
         />
+        <div className={styles.ratingContainer}>
+          <Rating
+            id="show_rating"
+            value={inputRating}
+            onChange={(e, newValue) => {
+              setInputRating(newValue);
+            }}
+          />
+        </div>
+        <LockedFeatureDialog
+          showLockedFeatureDialog={showLockedFeatureDialog}
+          setShowLockedFeatureDialog={setShowLockedFeatureDialog}
+        />
+        {currentUser ? (
+          <Button onClick={(e) => addReview(e)}>Submit</Button>
+        ) : (
+          <Button onClick={() => setShowLockedFeatureDialog(true)}>Submit</Button>
+        )}
       </div>
-      <LockedFeatureDialog
-        showLockedFeatureDialog={showLockedFeatureDialog}
-        setShowLockedFeatureDialog={setShowLockedFeatureDialog}
-      />
-      {currentUser ? (
-        <Button onClick={(e) => addReview(e)}>Submit</Button>
-      ) : (
-        <Button onClick={() => setShowLockedFeatureDialog(true)}>Submit</Button>
-      )}
-    </div>
+    </ThemeProvider>
   );
 };
 

@@ -5,7 +5,7 @@ import Reviews from './Reviews';
 import AddReview from './AddReview';
 import styles from './shows.module.scss';
 
-const { container, reviewsContainer } = styles;
+const { container, reviewsContainer, theme } = styles;
 
 const Shows = ({ location }) => {
   const [id, setId] = useState(location.state);

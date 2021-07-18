@@ -83,10 +83,16 @@ export default function NavBar({ setTheme, theme }) {
       ) : (
         <div>
           <MenuItem onClick={handleMenuClose}>
-            <Link to="/signup"> Signup </Link>
+            <Link to="/signup" className={navstyle.link}>
+              {' '}
+              Signup{' '}
+            </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Link to="/login"> Login </Link>
+            <Link to="/login" className={navstyle.link}>
+              {' '}
+              Login{' '}
+            </Link>
           </MenuItem>
         </div>
       )}

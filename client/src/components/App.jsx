@@ -18,6 +18,8 @@ export default function App() {
     },
   });
 
+  window.theme = theme; //DO NOT TOUCH FOR NOW
+
   return (
     <Router>
       <div id="mainContainer">
@@ -37,8 +39,8 @@ export default function App() {
               <Route path="/" component={NotFound} />
             </Switch>
           </main>
+          <footer />
         </ThemeProvider>
-        <footer />
       </div>
     </Router>
   );
