@@ -114,6 +114,7 @@ export default function ShowForm() {
             required
             onChange={(e) => setTitle(e.target.value)}
           />
+
           <TextField
             id="street"
             label="Street Address"
@@ -149,7 +150,6 @@ export default function ShowForm() {
             value={date}
             required
             type="date"
-            onChange={(e) => setDate(e.target.value)}
           />
           <TextField id="website" label="Website" onChange={(e) => setWebsite(e.target.value)} />
           <TextField
