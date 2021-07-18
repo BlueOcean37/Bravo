@@ -4,9 +4,11 @@ import { TextField, Button } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import styles from './addreview.module.scss';
 import { useAuth } from '../../contexts/AuthContext';
+import LockedFeatureDialog from '../commons/lockedFeatureDialog';
 
 const AddReview = ({ reviewsCounter, id, setReviewsCounter }) => {
   const { currentUser } = useAuth();
+  const [showLockedFeatureDialog, setShowLockedFeatureDialog] = useState(false);
   const [userId, setUserId] = useState(null);
   const [inputReview, setInputReview] = useState('');
   const [inputRating, setInputRating] = useState(0);
@@ -57,7 +59,15 @@ const AddReview = ({ reviewsCounter, id, setReviewsCounter }) => {
           }}
         />
       </div>
-      <Button onClick={(e) => addReview(e)}>Submit</Button>
+      <LockedFeatureDialog
+        showLockedFeatureDialog={showLockedFeatureDialog}
+        setShowLockedFeatureDialog={setShowLockedFeatureDialog}
+      />
+      {currentUser ? (
+        <Button onClick={(e) => addReview(e)}>Submit</Button>
+      ) : (
+        <Button onClick={() => setShowLockedFeatureDialog(true)}>Submit</Button>
+      )}
     </div>
   );
 };
