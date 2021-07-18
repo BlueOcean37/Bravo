@@ -17,5 +17,7 @@
 }
 
 #reviewsContainer {
+  max-height: 150vh;
+  overflow: scroll;
   max-width: 80vw;
 }

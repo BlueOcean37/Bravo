@@ -27,6 +27,7 @@ const {
   flexShow,
   commentTime,
   textTime,
+  commentToggler,
 } = styles;
 
 export default function ReviewCard({
@@ -197,9 +198,13 @@ const DisplayComments = ({ comments }) => {
   return (
     <div>
       {displayComments ? (
-        <div onClick={toggleComments}>Hide All Comments</div>
+        <div onClick={toggleComments} className={commentToggler}>
+          Hide All Comments
+        </div>
       ) : (
-        <div onClick={toggleComments}>View All Comments</div>
+        <div onClick={toggleComments} className={commentToggler}>
+          View All Comments
+        </div>
       )}
       {displayComments ? (
         <div className={commentsContainer}>
