@@ -143,13 +143,13 @@ Our team utilized agile methodologies and best practices
 
 ### Trello
 
-- Small blurb of workflow
+- A trello board was utilized to create and track tickets for feature implementation. Daily scrum meetings were held and conducted by the Product Manager to discuss progress, challenges, accomplishment, and goals. Each team member ensured a ticket corresponded to the the current sprint and coordinated with each other to prevent conflicts and streamline workflow.
 
 ![Trello Work Flow](client/src/assets/trello.png 'Trello Work Flow')
 
 ### Version Control
 
-- Small blurb of workflow
+- Our team utilized GitHub's tools to conduct version control and ensure code uniformity, and reduce bugs. Each feature was linked to a separate branch and pull request. Each team member conducted code reviews prior to approving changes and merging code. A development branch was established to test for functionality as a final check, before utimately merging to the main branch for production.
 
 ![Git Work Flow](client/src/assets/gitworkflow.png 'Git Work Flow')
 
