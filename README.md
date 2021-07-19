@@ -53,13 +53,13 @@ npm start
 
 ### Scope of Work
 
-- Short description
+- Initial team planning consisted of establishing minimum viable product requirements, critical core features, and separation of responsibilties. 
 
 - A link
 
 ### Wire Diagram
 
-- Short description
+- Utilized Figma to create a wire diagram for user design and user experience considerations. Wire framing was integral for early stage planning and provided a visual representation of how user stories were created.
 
 - A photo
 
@@ -134,6 +134,8 @@ npm start
 ---
 
 ## Workflow
+
+Our team utilized agile methodologies and best practices
 
 ### Trello
 
