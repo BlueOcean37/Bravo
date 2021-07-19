@@ -77,9 +77,13 @@ npm start
 
 ### Authentication
 
-- Bullet point 1
+- Firebase Authentication uses the industry standard OAuth 2. OAuth2 is a protocol that lets applications know who has access to a website by providing authorization tokens which act as the messenger to verify who you are to provide security and a customized user experience.
 
-- Bullet point 1
+- Critical information such as email and password were captured by Firebase, and allowed our application to provides a persistent user session even after browser or application restarts.
+
+- Utilized React Context to provide the entire application access to specific user session data in order to enable or disable certain features, providing a customized user experience.
+
+- Features in the application requiring authentication such as add a review, up and down vote, and posting a show, prevents unauthorized users from accessing premium features, without disabling the core functionality of reading reviews and finding show information.
 
 ![Authentication](client/src/assets/authentication.png 'Authentication feature')
 
