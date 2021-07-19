@@ -5,8 +5,6 @@ import { ArrowForward, ArrowBack } from '@material-ui/icons';
 import axios from 'axios';
 import styles from './homeshows.module.scss';
 
-const { showsButton } = styles;
-
 export default function HomeShows({ sort }) {
   const [shows, setShows] = useState([]);
   const [start, setStart] = useState(0);
@@ -41,22 +39,19 @@ export default function HomeShows({ sort }) {
   return (
     <div className={styles.showsContainer}>
       <Button onClick={() => displayMoreShows('back')}>
-        <ArrowBack className={showsButton} />
+        <ArrowBack />
       </Button>
-      {shows.map((show, index) => (
-        <div key={index}>
-          {index >= start && index <= start + 4 ? (
-            <Link to={{ pathname: '/shows', state: show.id }}>
-              <div className={styles.imgContainer}>
-                <img className={styles.showsPhoto} src={show.photo} alt="showPhoto" />
-                {/* <p className={styles.imgDescription}>{show.title}</p> */}
-              </div>
-            </Link>
-          ) : null}
-        </div>
-      ))}
+      {shows.map((show, index) =>
+        index >= start && index <= start + 4 ? (
+          <Link to={{ pathname: '/shows', state: show.id }}>
+            <div className={styles.imgContainer}>
+              <img className={styles.showsPhoto} src={show.photo} alt="showPhoto" />
+            </div>
+          </Link>
+        ) : null
+      )}
       <Button onClick={() => displayMoreShows('forward')}>
-        <ArrowForward className={showsButton} />
+        <ArrowForward />
       </Button>
     </div>
   );

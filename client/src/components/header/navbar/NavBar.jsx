@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
-import { ThemeProvider } from '@material-ui/core';
 
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
@@ -22,7 +20,6 @@ import { useAuth } from '../../../contexts/AuthContext';
 
 export default function NavBar({ setTheme, theme }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [theme, setTheme] = useState(true);
 
   const { logout, currentUser } = useAuth();
   const history = useHistory();
@@ -100,7 +97,6 @@ export default function NavBar({ setTheme, theme }) {
   );
 
   return (
-    // <ThemeProvider>
     <div className={navstyle.grow}>
       <AppBar style={{ background: '#000000' }} position="relative">
         <Toolbar className={navstyle.toolBar}>
@@ -135,17 +131,5 @@ export default function NavBar({ setTheme, theme }) {
       </AppBar>
       {renderMenu}
     </div>
-    // </ThemeProvider>
   );
 }
-
-// export const light = {
-//   palette: {
-//     type: 'light',
-//   },
-// };
-// export const dark = {
-//   palette: {
-//     type: 'dark',
-//   },
-// };
