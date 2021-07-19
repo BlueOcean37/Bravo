@@ -18,14 +18,12 @@
 
 ## Overview
 
-- Some postgresSQL db query optimzation point here achieve XYZ optimization
-
--
--
--
--
--
--
+- User sessions managed via Google Firebase Authentication, and session data centralized via React Context providing application integrity and customized user experience
+- Established client side routing utilizing React Router library coupled with Node Express server for Server Side routing
+- Light and Dark mode implemented with SASS and CSS global variables and complied with Webpack
+- Optimized PostgreSQL database queries with smart indexing and aggregate functions
+- Model, View, Controller (MVC) architecture establishing separation of concerns and modularity, decreasing bugs, and increasing workflow
+- Implemented agile methodologies with daily stand ups, code reviews, and GitHub workflow tools
 
 ## Installation
 
