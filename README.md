@@ -155,12 +155,11 @@ Our team utilized agile methodologies and best practices
 
 ## Challenges and Learning
 
--
--
--
--
--
--
+- Utilizing SASS proved to be a challenge when implementing Light and Dark mode due to it being complied as CSS. In order to circumvent this, and properly configure a work around for accessing the CSS DOM to establish global variables, we utilized a CSS root file as a work around.
+- Firebase authentication led to managed sessions by Google's own servers, leading to a disconnect with our services own PostgreSQL database. In order to make sure our service's database was tracking user data specific to users with current accounts was important and not caught initially due to lack of knowledge on Firebase Auth.
+- Technical debt was accrued from not utilizing reusable components, leading to duplicate code and requiring refactor and consolidation later down the road. Prior planning could have avoided this issue.
+- Database environment setup issues were compounded due to team's different development configurations. In order to streamline database seeding, the team created a single source of truth to seed our database and ensure all endpoints were tested and working prior to moving to building the front end application. This problem could have been avoided by deploying a Dockerized database to handle uniformity.
+- Lacking code uniformity initially due to different or missing linting configurations with Eslint, Prettier, and Airbnb JavaScript Style Guide not properly implemented. After catching this mistake, we were able to clean up the code and enforce the style guide.
 
 ## Contributors
 
