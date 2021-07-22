@@ -67,9 +67,8 @@ npm start
 
 ### Navigation Bar
 
-- Bullet point 1
-
-- Bullet point 2
+- Utilizing React Router with Material-UI, the header was composed of a dynamic search bar to help users find any show or username in our database asynchronously
+- The user signup/login drop-down was conditionally rendered based on the state of an user being logged in or not. This helped in providing/limiting the use of certain global functionality and access to other pages, for example, the use of the show creation page. 
 
 ![Navigation Bar](client/src/assets/searchbar.png 'Navigation bar feature')
 
@@ -91,35 +90,31 @@ npm start
 
 ### Server Vs Client Routing
 
-- Bullet point 1
+- Leveraged React Router library to setup dynamic client side routing in order to build a Single Page Application with sleek UI and fast page load speeds.
 
-- Bullet point 1
-
-![favorite characters](client/assets/favorites.png 'favorite characters feature')
+- Built a dynamic Node Express server utilizing RESTful API endpoints for server side routing, providing a complete user experience with back and forward functionalities on the browser. 
 
 ---
 
 ### Light and Dark Mode
 
-- Bullet point 1
+- Configured Webpack in order to utilize Sass and CSS global variables that could be manipulated alongside the CSS DOM in order to product light and dark mode functionality.
 
-- Bullet point 2
+- The proper use of global variables proved to be a challenge at the start of the project as there were issues in compatability of Sass and Material-UI along with finding a work around with using a root CSS file. 
 
 ---
 
 ### Carousel
 
-- Bullet point 1
-
-- Bullet point 2
+- The carousel feature provides the user a way to access all the latest productions, sorted by popularity and those that are most recent. Productions are updated in real time as more shows are added to the database. 
 
 ![Home Page Carousel](client/src/assets/carousel.gif 'Home Page Carousel')
 
 ### Production Page
 
-- Bullet point 1
+- The production page provides detailed info on the clicked show. Accompanied with the details are user reviews that are sorted by popularity, which is determined by up votes and down votes. 
 
-- Bullet point 2
+- On the selected show a user can add a review, which provides verified users a change to create their own review and rate the show by a rating system of 5 stars. These data points are collected utilizing a PostgreSQL database management system and retrieved through a Node Express server that provides instant re-render of the added review onto the page.
 
 ![Production Page](client/src/assets/showinfo.png 'Production Page')
 
@@ -127,9 +122,7 @@ npm start
 
 ### User Page
 
-- Bullet point 1
-
-- Bullet point 2
+- The user page can be accessed through the search bar if a user wants to search for a specific user's reviews or through clicking on a user photo of a currently viewed review. The user page lists all of the most popular reviews a user has written along with the comments created by other users reading their reviews.
 
 ![User Page](client/src/assets/userpage.png 'User Page')
 
