@@ -90,19 +90,17 @@ npm start
 
 ### Server Vs Client Routing
 
-- Bullet point 1
+- Leveraged React Router library to setup dynamic client side routing in order to build a Single Page Application with sleek UI and fast page load speeds.
 
-- Bullet point 1
-
-![favorite characters](client/assets/favorites.png 'favorite characters feature')
+- Built a dynamic Node Express server utilizing RESTful API endpoints for server side routing, providing a complete user experience with back and forward functionalities on the browser. 
 
 ---
 
 ### Light and Dark Mode
 
-- Bullet point 1
+- Configured Webpack in order to utilize Sass and CSS global variables that could be manipulated alongside the CSS DOM in order to product light and dark mode functionality.
 
-- Bullet point 2
+- The proper use of global variables proved to be a challenge at the start of the project as there were issues in compatability of Sass and Material-UI along with finding a work around with using a root CSS file. 
 
 ---
 
