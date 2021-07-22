@@ -2,7 +2,7 @@
 </h1>
 
 <h2 align="center" style="font-size: 1.5rem;">A seamless, fun, community driven application to catch the latest productions and read the hottest reviews.<br><br>
-  <img src="./client/assets/site-overview.gif" width="800" alt="site overview gif">
+  <img src="./client/src/assets/site-overview.gif" width="800" alt="site overview gif">
   <br></h2>
 
 ## Table of Contents
@@ -113,7 +113,7 @@ npm start
 
 - Bullet point 2
 
-![Home Page Carousel](client/src/assets/homepagecarousel.png 'Home Page Carousel')
+![Home Page Carousel](client/src/assets/carousel.gif 'Home Page Carousel')
 
 ### Production Page
 
