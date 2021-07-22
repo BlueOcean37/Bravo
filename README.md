@@ -67,9 +67,8 @@ npm start
 
 ### Navigation Bar
 
-- Bullet point 1
-
-- Bullet point 2
+- Utilizing React Router with Material-UI, the header was composed of a dynamic search bar to help users find any show or username in our database asynchronously
+- The user signup/login drop-down was conditionally rendered based on the state of an user being logged in or not. This helped in providing/limiting the use of certain global functionality and access to other pages, for example, the use of the show creation page. 
 
 ![Navigation Bar](client/src/assets/searchbar.png 'Navigation bar feature')
 
