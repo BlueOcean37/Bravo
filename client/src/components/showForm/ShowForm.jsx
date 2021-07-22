@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { DropzoneArea } from 'material-ui-dropzone';
 import {
   TextField,
@@ -47,7 +48,7 @@ export default function ShowForm() {
 
   useEffect(() => {
     axios
-      .get('/api/users/', { email: currentUser.email })
+      .put('/api/users/', { email: currentUser.email })
       .then((res) => setUser(res.data.id))
       .catch((err) => console.error('error getting userid from db', err));
   }, []);
@@ -101,90 +102,100 @@ export default function ShowForm() {
     return <Redirect to={{ pathname: '/shows', state: newShowID }} />;
   }
 
+  const colorTheme = createTheme({
+    palette: {
+      type: window.theme ? 'light' : 'dark',
+    },
+  });
+
   return (
     <div className={styles.container}>
       <h1>ADD YOUR SHOW!</h1>
-      <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
-        <div className={styles.input}>
-          <TextField
-            autoFocus
-            id="title"
-            label="Show Title"
-            value={title}
-            required
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <TextField
-            id="street"
-            label="Street Address"
-            value={street}
-            required
-            onChange={(e) => setStreet(e.target.value)}
-          />
-          <TextField
-            id="city"
-            label="City"
-            value={city}
-            required
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <TextField
-            id="state"
-            label="State"
-            value={state}
-            required
-            onChange={(e) => setState(e.target.value)}
-          />
-          <TextField
-            id="zip"
-            label="Zipcode"
-            value={zip}
-            required
-            onChange={(e) => setZip(e.target.value)}
-          />
-          <TextField
-            id="date"
-            label="Dates"
-            InputLabelProps={{ shrink: true }}
-            value={date}
-            required
-            type="date"
-            onChange={(e) => setDate(e.target.value)}
-          />
-          <TextField id="website" label="Website" onChange={(e) => setWebsite(e.target.value)} />
-          <TextField
-            id="description"
-            label="Description"
-            value={description}
-            multiline
-            rows={6}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <div className={styles.photoContainer}>
-          <DropzoneArea
-            id="file-dropzone"
-            filesLimit={1}
-            acceptedFiles={['image/*']}
-            onChange={(files) => {
-              const form = new FormData();
-              form.set('show', files[0]);
-              setPhotoForm(form);
-            }}
-            dropzoneText="Drag and drop an image here or click (Required)"
-          />
-          <div>
-            <div className={styles.container}>
-              {showPhotoAlert && (
-                <Alert variant="outlined" severity="error">
-                  You must enter an image for your show
-                </Alert>
-              )}
-              <Button type="submit">Submit</Button>
+      <ThemeProvider theme={colorTheme}>
+        <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
+          <div className={styles.input}>
+            <TextField
+              autoFocus
+              id="title"
+              label="Show Title"
+              value={title}
+              required
+              onChange={(e) => setTitle(e.target.value)}
+            />
+
+            <TextField
+              id="street"
+              label="Street Address"
+              value={street}
+              required
+              onChange={(e) => setStreet(e.target.value)}
+            />
+            <TextField
+              id="city"
+              label="City"
+              value={city}
+              required
+              onChange={(e) => setCity(e.target.value)}
+            />
+            <TextField
+              id="state"
+              label="State"
+              value={state}
+              required
+              onChange={(e) => setState(e.target.value)}
+            />
+            <TextField
+              id="zip"
+              label="Zipcode"
+              value={zip}
+              required
+              onChange={(e) => setZip(e.target.value)}
+            />
+            <TextField
+              id="date"
+              label="Dates"
+              InputLabelProps={{ shrink: true }}
+              value={date}
+              required
+              type="date"
+              onChange={(e) => setDate(e.target.value)}
+            />
+            <TextField id="website" label="Website" onChange={(e) => setWebsite(e.target.value)} />
+            <TextField
+              id="description"
+              label="Description"
+              value={description}
+              multiline
+              rows={6}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className={styles.photoContainer}>
+            <DropzoneArea
+              id="file-dropzone"
+              filesLimit={1}
+              acceptedFiles={['image/*']}
+              onChange={(files) => {
+                const form = new FormData();
+                form.set('show', files[0]);
+                setPhotoForm(form);
+              }}
+              dropzoneText="Drag and drop an image here or click (Required)"
+            />
+            <div>
+              <div className={styles.container}>
+                {showPhotoAlert && (
+                  <Alert variant="outlined" severity="error">
+                    You must enter an image for your show
+                  </Alert>
+                )}
+                <Button type="submit">Submit</Button>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </ThemeProvider>
+
       <Dialog
         open={submitDialogOpen}
         aria-labelledby="submit-dialog-title"

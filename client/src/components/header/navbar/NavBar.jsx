@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
-import { ThemeProvider } from '@material-ui/core';
 
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
@@ -20,9 +18,8 @@ import Search from '../search/Search';
 
 import { useAuth } from '../../../contexts/AuthContext';
 
-export default function NavBar() {
+export default function NavBar({ setTheme, theme }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [theme, setTheme] = useState(true);
 
   const { logout, currentUser } = useAuth();
   const history = useHistory();
@@ -49,12 +46,12 @@ export default function NavBar() {
   };
 
   const changeColors = () => {
-    if (theme) {
-      document.documentElement.style.setProperty('--bg-color', '#0f0f0e');
-      document.documentElement.style.setProperty('--font-color', '#fcf6ed');
-    } else {
+    if (!theme) {
       document.documentElement.style.setProperty('--bg-color', '#e9e9e9');
       document.documentElement.style.setProperty('--font-color', '#0f0f0e');
+    } else {
+      document.documentElement.style.setProperty('--bg-color', '#0f0f0e');
+      document.documentElement.style.setProperty('--font-color', '#fcf6ed');
     }
   };
 
@@ -83,10 +80,16 @@ export default function NavBar() {
       ) : (
         <div>
           <MenuItem onClick={handleMenuClose}>
-            <Link to="/signup"> Signup </Link>
+            <Link to="/signup" className={navstyle.link}>
+              {' '}
+              Signup{' '}
+            </Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Link to="/login"> Login </Link>
+            <Link to="/login" className={navstyle.link}>
+              {' '}
+              Login{' '}
+            </Link>
           </MenuItem>
         </div>
       )}
@@ -94,52 +97,39 @@ export default function NavBar() {
   );
 
   return (
-    <ThemeProvider>
-      <div className={navstyle.grow}>
-        <AppBar style={{ background: '#000000' }} position="relative">
-          <Toolbar className={navstyle.toolBar}>
-            <Logo />
-            <AppMenu />
-            <div className={navstyle.grow} />
-            <Search />
-            <div className={navstyle.sectionDesktop}>
-              <IconButton
-                edge="end"
-                color="inherit"
-                aria-label="mode"
-                onClick={() => {
-                  changeColors();
-                  setTheme(!theme);
-                }}
-              >
-                {icon}
-              </IconButton>
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="primary"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </AppBar>
-        {renderMenu}
-      </div>
-    </ThemeProvider>
+    <div className={navstyle.grow}>
+      <AppBar style={{ background: '#000000' }} position="relative">
+        <Toolbar className={navstyle.toolBar}>
+          <Logo />
+          <AppMenu />
+          <div className={navstyle.grow} />
+          <Search />
+          <div className={navstyle.sectionDesktop}>
+            <IconButton
+              edge="end"
+              color="inherit"
+              aria-label="mode"
+              onClick={() => {
+                changeColors();
+                setTheme(!theme);
+              }}
+            >
+              {icon}
+            </IconButton>
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="primary"
+            >
+              <AccountCircle />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
+      {renderMenu}
+    </div>
   );
 }
-
-export const light = {
-  palette: {
-    type: 'light',
-  },
-};
-export const dark = {
-  palette: {
-    type: 'dark',
-  },
-};

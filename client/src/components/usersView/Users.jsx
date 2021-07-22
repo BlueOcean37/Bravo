@@ -1,8 +1,9 @@
 // users MAIN page, only import sub components here
 import React, { useState, useEffect } from 'react';
-import UserInfo from './userInfo/UserInfo.jsx';
+import UserInfo from './userInfo/UserInfo';
 import UserReviews from './userReviews/UserReviews';
-import styles from './users.module';
+import styles from './users.module.scss';
+
 const { container } = styles;
 export default function Users({ location }) {
   const [id, setId] = useState(location.state);

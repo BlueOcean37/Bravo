@@ -1,6 +1,5 @@
 import React from 'react';
 import fetch from 'cross-fetch';
-
 import { Link } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
