@@ -106,17 +106,15 @@ npm start
 
 ### Carousel
 
-- Bullet point 1
-
-- Bullet point 2
+- The carousel feature provides the user a way to access all the latest productions, sorted by popularity and those that are most recent. Productions are updated in real time as more shows are added to the database. 
 
 ![Home Page Carousel](client/src/assets/homepagecarousel.png 'Home Page Carousel')
 
 ### Production Page
 
-- Bullet point 1
+- The production page provides detailed info on the clicked show. Accompanied with the details are user reviews that are sorted by popularity, which is determined by up votes and down votes. 
 
-- Bullet point 2
+- On the selected show a user can add a review, which provides verified users a change to create their own review and rate the show by a rating system of 5 stars. These data points are collected utilizing a PostgreSQL database management system and retrieved through a Node Express server that provides instant re-render of the added review onto the page.
 
 ![Production Page](client/src/assets/showinfo.png 'Production Page')
 
@@ -124,9 +122,7 @@ npm start
 
 ### User Page
 
-- Bullet point 1
-
-- Bullet point 2
+- The user page can be accessed through the search bar if a user wants to search for a specific user's reviews or through clicking on a user photo of a currently viewed review. The user page lists all of the most popular reviews a user has written along with the comments created by other users reading their reviews.
 
 ![User Page](client/src/assets/userpage.png 'User Page')
 
