@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-boolean-value */
 import React, { useState } from 'react';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
@@ -28,47 +29,59 @@ export default function Login() {
     setLoading(false);
   };
 
+  const colorTheme = createTheme({
+    palette: {
+      type: window.theme ? 'light' : 'dark',
+    },
+  });
+
   return (
     <>
-      <div id={styles.loginContainer}>
-        <h2> Log In </h2>
-        {error && (
-          <Alert variant="outlined" severity="error">
-            {error}
-          </Alert>
-        )}
-        <form id={styles.formContainer} onSubmit={handleSubmit} autoComplete="off">
-          <FormControl>
-            <InputLabel htmlFor="email">Email address *</InputLabel>
-            <Input
-              autoFocus={true}
-              required={true}
-              onChange={formChangeHandler}
-              id="email"
-              aria-describedby="email-text"
-            />
-            <FormHelperText id="email-text">Enter a valid email address.</FormHelperText>
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="password">Password *</InputLabel>
-            <Input
-              onChange={formChangeHandler}
-              name="password"
-              required
-              inputProps={{ type: 'password' }}
-              id="password"
-              aria-describedby="password-text"
-            />
-            <FormHelperText id="password-text">Enter password</FormHelperText>
-          </FormControl>
-          <Button disabled={loading} type="submit">
-            Login
-          </Button>
-        </form>
-        <div>
-          Need have an account? <Link to="/signup"> Sign up </Link>{' '}
+      <ThemeProvider theme={colorTheme}>
+        <div id={styles.loginContainer}>
+          <h2> Log In </h2>
+          {error && (
+            <Alert variant="outlined" severity="error">
+              {error}
+            </Alert>
+          )}
+          <form id={styles.formContainer} onSubmit={handleSubmit} autoComplete="off">
+            <FormControl>
+              <InputLabel htmlFor="email">Email address *</InputLabel>
+              <Input
+                autoFocus={true}
+                required={true}
+                onChange={formChangeHandler}
+                id="email"
+                aria-describedby="email-text"
+              />
+              <FormHelperText id="email-text">Enter a valid email address.</FormHelperText>
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="password">Password *</InputLabel>
+              <Input
+                onChange={formChangeHandler}
+                name="password"
+                required
+                inputProps={{ type: 'password' }}
+                id="password"
+                aria-describedby="password-text"
+              />
+              <FormHelperText id="password-text">Enter password</FormHelperText>
+            </FormControl>
+            <Button disabled={loading} type="submit">
+              Login
+            </Button>
+          </form>
+          <div>
+            Need have an account?{' '}
+            <Link to="/signup" className={styles.link}>
+              {' '}
+              Sign up{' '}
+            </Link>{' '}
+          </div>
         </div>
-      </div>
+      </ThemeProvider>
     </>
   );
 }

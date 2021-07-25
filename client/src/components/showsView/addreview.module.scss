@@ -1,0 +1,14 @@
+.addReviewContainer {
+  padding: 24px 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ratingContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.rating {
+  padding-right: 20px;
+}

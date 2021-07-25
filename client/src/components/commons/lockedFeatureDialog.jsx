@@ -8,7 +8,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core';
-import styles from './lockedFeatureDialog.module';
+import styles from './lockedFeatureDialog.module.scss';
 
 export default function LockedFeatureDialog({
   showLockedFeatureDialog,
@@ -38,10 +38,14 @@ export default function LockedFeatureDialog({
       </DialogContent>
       <DialogActions>
         <Button onClick={() => setShowLockedFeatureDialog(false)}>
-          <Link to="/signup">Sign up!</Link>
+          <Link to="/signup" className={styles.link}>
+            Sign up!
+          </Link>
         </Button>
         <Button onClick={() => setShowLockedFeatureDialog(false)}>
-          <Link to="/login">Member login</Link>
+          <Link to="/login" className={styles.link}>
+            Member login
+          </Link>
         </Button>
       </DialogActions>
     </Dialog>

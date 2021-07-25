@@ -21,7 +21,7 @@
 //   display: 'block';
 // }
 
-.sectionDesktop{
+.sectionDesktop {
   display: 'none';
   padding-right: 25px;
   padding-left: 25px;
@@ -29,4 +29,8 @@
 
 .sectionMobile {
   display: 'flex';
+}
+
+.link {
+  color: inherit;
 }

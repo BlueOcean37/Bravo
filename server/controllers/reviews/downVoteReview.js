@@ -1,12 +1,10 @@
-// put update a review down vote controller
-const pool = require('../../db/index');
+const { updateReviewDownVote } = require('../../models/reviews');
 
 const downVoteReview = (req, res) => {
-  const downVoteReview = `UPDATE reviews SET rating = rating - 1 WHERE id = ${req.params.id}`;
-  pool
-    .query(downVoteReview)
+  updateReviewDownVote(req.params.id)
     .then((result) => res.status(204).send('Review downvoted!'))
     .catch((err) => {
+      console.error('error updating downvote review to db', err.stack);
       res.sendStatus(500);
     });
 };

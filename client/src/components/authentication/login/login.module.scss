@@ -1,14 +1,18 @@
-#formContainer{
-  display:flex;
+#formContainer {
+  display: flex;
   flex-direction: column;
   min-width: 300px;
   max-width: 900px;
 }
 
-#loginContainer{
-  display:flex;
+#loginContainer {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 45px;
+}
+
+.link {
+  color: #0079d3;
 }

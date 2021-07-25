@@ -1,0 +1,24 @@
+.showInfoContainer {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.link {
+  color: inherit;
+  // text-decoration: none;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.showDescription {
+  text-align: justify;
+  text-justify: inter-word;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.padding {
+  padding-left: 2px;
+  padding-right: 2px;
+}

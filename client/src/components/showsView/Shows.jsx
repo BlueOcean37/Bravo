@@ -1,6 +1,39 @@
-// shows MAIN page, only import sub components here
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ShowInfo from './ShowInfo';
+import Reviews from './Reviews';
+import AddReview from './AddReview';
+import styles from './shows.module.scss';
 
-export default function Shows() {
-  return <div>Shows Main Page</div>;
-}
+const { container, reviewsContainer, theme } = styles;
+
+const Shows = ({ location }) => {
+  const [id, setId] = useState(location.state);
+  const [reviewsCounter, setReviewsCounter] = useState(0);
+  const [reviewsInfo, setReviewsInfo] = useState([]);
+
+  useEffect(() => {
+    setId(location.state);
+  }, [location.state]);
+
+  useEffect(() => {
+    axios
+      .get(`/api/reviews/show/${id}`)
+      .then(({ data }) => {
+        setReviewsInfo(data);
+      })
+      .catch((err) => console.log(err));
+  }, [id, reviewsCounter]);
+
+  return (
+    <div className={container}>
+      <ShowInfo id={id} />
+      <div className={reviewsContainer}>
+        <AddReview id={id} reviewsCounter={reviewsCounter} setReviewsCounter={setReviewsCounter} />
+        <Reviews reviewsInfo={reviewsInfo} />
+      </div>
+    </div>
+  );
+};
+
+export default Shows;

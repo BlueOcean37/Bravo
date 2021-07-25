@@ -1,1 +1,23 @@
-// main show page scss
+.container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  max-width: 1300px;
+  padding: 24px;
+}
+
+// .container {
+//   padding: 24px;
+//   display: flex;
+//   justify-content: center;
+// }
+
+.reviewsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.theme {
+  color: var(--font-color);
+}

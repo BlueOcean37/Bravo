@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { ArrowForward, ArrowBack } from '@material-ui/icons';
 import axios from 'axios';
-import styles from './homeshows.module';
+import styles from './homeshows.module.scss';
 
 export default function HomeShows({ sort }) {
   const [shows, setShows] = useState([]);
@@ -41,17 +41,15 @@ export default function HomeShows({ sort }) {
       <Button onClick={() => displayMoreShows('back')}>
         <ArrowBack />
       </Button>
-      {shows.map((show, index) => (
-        <div key={index}>
-          {index >= start && index <= start + 4 ? (
-            <Link to={{ pathname: '/shows', state: show.id }}>
-              <div className={styles.imgContainer}>
-                <img className={styles.showsPhoto} src={show.photo} />
-              </div>
-            </Link>
-          ) : null}
-        </div>
-      ))}
+      {shows.map((show, index) =>
+        index >= start && index <= start + 4 ? (
+          <Link to={{ pathname: '/shows', state: show.id }}>
+            <div className={styles.imgContainer}>
+              <img className={styles.showsPhoto} src={show.photo} alt="showPhoto" />
+            </div>
+          </Link>
+        ) : null
+      )}
       <Button onClick={() => displayMoreShows('forward')}>
         <ArrowForward />
       </Button>
